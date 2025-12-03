@@ -1,4 +1,6 @@
-# DEEPS - Departmental Exam Processing System
+# DEEPS: Departmental Exams Processing Spreadsheet-based System
+
+**DEEPS** (Departmental Exams Processing Spreadsheet-based System) is an initiative by **[SiliconWit](https://siliconwit.com)** to provide low-income educational institutions with an affordable, transparent exam processing solution. A small maintenance fee applies.
 
 **Professional Academic Data Management for Educational Institutions**
 

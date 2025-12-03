@@ -1,10 +1,10 @@
-site_name: DEEPS - Departmental Exam Processing System
-site_description: Professional academic data management for educational institutions
-site_author: Samuel Macharia
-site_url: https://SamMachariaPhD.github.io/exam-system-docs/
+site_name: DEEPS - Departmental Exams Processing Spreadsheet-based System
+site_description: DEEPS is a lightweight, cost-effective exam management system built to meet the practical needs of resource-constrained educational institutions.
+site_author: SSiliconWit
+site_url: https://siliconwit.github.io/deeps/
 
-repo_name: SamMachariaPhD/exam-system-docs
-repo_url: https://github.com/SamMachariaPhD/exam-system-docs
+repo_name: SiliconWit/deeps
+repo_url: https://github.com/SiliconWit/deeps
 
 theme:
   name: material
@@ -87,11 +87,11 @@ markdown_extensions:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/SamMachariaPhD
+      link: https://github.com/SiliconWit/
     - icon: fontawesome/solid/globe
-      link: https://www.dkut.ac.ke
+      link: https://siliconwit.com
     - icon: fontawesome/solid/envelope
-      link: mailto:samuel.macharia@dkut.ac.ke
+      link: mailto:sam@siliconwit.com
   generator: false
 
-copyright: Copyright &copy; 2024 Samuel Macharia - Personal Academic Research Project
+copyright: Copyright &copy; 2025 SiliconWit - Research, Education, and Product Development
