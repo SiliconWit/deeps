@@ -22,10 +22,10 @@ DEEPS is available for all major operating systems. Choose your platform below:
     **Download Options:**
 
     - **Installer (.msi)** - Recommended for most users
-      [:material-download: Download Windows Installer](https://github.com/SamMachariaPhD/exam-system-releases/releases/latest){ .md-button .md-button--primary }
+      [:material-download: Download Windows Installer](https://github.com/SiliconWit/deeps-releases/releases/latest){ .md-button .md-button--primary }
 
     - **Portable (.zip)** - No installation required
-      [:material-download: Download Portable Version](https://github.com/SamMachariaPhD/exam-system-releases/releases/latest){ .md-button }
+      [:material-download: Download Portable Version](https://github.com/SiliconWit/deeps-releases/releases/latest){ .md-button }
 
 === "macOS"
 
@@ -37,7 +37,7 @@ DEEPS is available for all major operating systems. Choose your platform below:
 
     **Download:**
 
-    [:material-download: Download for macOS (.dmg)](https://github.com/SamMachariaPhD/exam-system-releases/releases/latest){ .md-button .md-button--primary }
+    [:material-download: Download for macOS (.dmg)](https://github.com/SiliconWit/deeps-releases/releases/latest){ .md-button .md-button--primary }
 
 === "Linux"
 
@@ -50,10 +50,10 @@ DEEPS is available for all major operating systems. Choose your platform below:
     **Download Options:**
 
     - **AppImage** - Universal Linux package
-      [:material-download: Download AppImage](https://github.com/SamMachariaPhD/exam-system-releases/releases/latest){ .md-button .md-button--primary }
+      [:material-download: Download AppImage](https://github.com/SiliconWit/deeps-releases/releases/latest){ .md-button .md-button--primary }
 
     - **Debian Package (.deb)**
-      [:material-download: Download .deb Package](https://github.com/SamMachariaPhD/exam-system-releases/releases/latest){ .md-button }
+      [:material-download: Download .deb Package](https://github.com/SiliconWit/deeps-releases/releases/latest){ .md-button }
 
 ---
 
@@ -133,17 +133,9 @@ Test your DEEPS installation:
 
 DEEPS requires internet access for initial license verification:
 
-- **Outbound HTTPS** (port 443) to GitHub
+- **Outbound HTTPS** (port 443) for updates
 - **No inbound ports** required
 - **Proxy support** available for corporate networks
-
-### Firewall Settings
-
-If using institutional firewalls, allow access to:
-
-```
-https://raw.githubusercontent.com/SamMachariaPhD/exam-system-auth/main/licenses.json
-```
 
 ---
 

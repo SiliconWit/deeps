@@ -10,7 +10,7 @@
 
 ## :material-school: About DEEPS
 
-DEEPS (Departmental Exam Processing System) is an experimental desktop application exploring simplified academic data management approaches. This is a personal research project investigating whether exam processing can be made simpler and more decentralized.
+DEEPS (Departmental Exams Processing Spreadsheet-based System) is an experimental desktop application exploring simplified academic data management approaches. This is a personal research project investigating whether exam processing can be made simpler and more decentralized.
 
 !!! warning "Important: Experimental System"
     - **Testing Phase Only**: Currently tested with dummy data, not real student records

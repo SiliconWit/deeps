@@ -1,0 +1,120 @@
+/* SiliconWit Brand Colors */
+:root {
+  /* Primary Brand Colors */
+  --sw-teal: #2A9D8F;
+  --sw-golden-yellow: #E9C46A;
+  --sw-slate-blue-gray: #598392;
+  --sw-medium-gray: #6B7280;
+  --sw-light-gray: #E5E7EB;
+  --sw-very-light-gray: #F8FAFC;
+
+  /* Material theme overrides - Light mode */
+  --md-primary-fg-color: #2A9D8F;
+  --md-primary-fg-color--light: #3DB3A3;
+  --md-primary-fg-color--dark: #258B7F;
+  --md-accent-fg-color: #E9C46A;
+  --md-accent-fg-color--transparent: rgba(233, 196, 106, 0.1);
+}
+
+/* Dark mode color overrides */
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #2A9D8F;
+  --md-primary-fg-color--light: #3DB3A3;
+  --md-primary-fg-color--dark: #258B7F;
+  --md-accent-fg-color: #E9C46A;
+  --md-accent-fg-color--transparent: rgba(233, 196, 106, 0.1);
+}
+
+/* Admonition customizations using SiliconWit palette */
+.md-typeset .admonition.note,
+.md-typeset details.note {
+  border-color: var(--sw-teal);
+}
+
+.md-typeset .note > .admonition-title,
+.md-typeset .note > summary {
+  background-color: rgba(42, 157, 143, 0.1);
+  border-color: var(--sw-teal);
+}
+
+.md-typeset .note > .admonition-title::before,
+.md-typeset .note > summary::before {
+  background-color: var(--sw-teal);
+}
+
+.md-typeset .admonition.tip,
+.md-typeset details.tip {
+  border-color: var(--sw-golden-yellow);
+}
+
+.md-typeset .tip > .admonition-title,
+.md-typeset .tip > summary {
+  background-color: rgba(233, 196, 106, 0.1);
+  border-color: var(--sw-golden-yellow);
+}
+
+.md-typeset .tip > .admonition-title::before,
+.md-typeset .tip > summary::before {
+  background-color: var(--sw-golden-yellow);
+}
+
+.md-typeset .admonition.warning,
+.md-typeset details.warning {
+  border-color: var(--sw-slate-blue-gray);
+}
+
+.md-typeset .warning > .admonition-title,
+.md-typeset .warning > summary {
+  background-color: rgba(89, 131, 146, 0.1);
+  border-color: var(--sw-slate-blue-gray);
+}
+
+.md-typeset .warning > .admonition-title::before,
+.md-typeset .warning > summary::before {
+  background-color: var(--sw-slate-blue-gray);
+}
+
+/* Links and interactive elements */
+.md-typeset a {
+  color: var(--sw-teal);
+}
+
+.md-typeset a:hover {
+  color: var(--md-primary-fg-color--light);
+}
+
+/* Code block copy button */
+.md-clipboard {
+  color: var(--sw-teal);
+}
+
+/* Search highlight */
+.md-search-result__article--document::before {
+  color: var(--sw-teal);
+}
+
+/* Table of contents active item */
+.md-nav__link--active {
+  color: var(--sw-teal);
+}
+
+/* Buttons */
+.md-button {
+  background-color: var(--sw-teal);
+  border-color: var(--sw-teal);
+}
+
+.md-button:hover {
+  background-color: var(--md-primary-fg-color--light);
+  border-color: var(--md-primary-fg-color--light);
+}
+
+.md-button--primary {
+  background-color: var(--sw-teal);
+  border-color: var(--sw-teal);
+  color: white;
+}
+
+.md-button--primary:hover {
+  background-color: var(--md-primary-fg-color--dark);
+}

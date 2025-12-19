@@ -11,15 +11,15 @@ theme:
   palette:
     # Light mode
     - scheme: default
-      primary: blue
-      accent: blue
+      primary: teal
+      accent: amber
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     # Dark mode
     - scheme: slate
-      primary: blue
-      accent: blue
+      primary: teal
+      accent: amber
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
@@ -93,5 +93,8 @@ extra:
     - icon: fontawesome/solid/envelope
       link: mailto:sam@siliconwit.com
   generator: false
+
+extra_css:
+  - stylesheets/custom.css
 
 copyright: Copyright &copy; 2025 SiliconWit - Research, Education, and Product Development

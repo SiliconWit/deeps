@@ -46,10 +46,7 @@ Ensure your system meets these requirements for optimal DEEPS performance.
 - **Updates**: Periodic connection for version updates
 
 ### Firewall Configuration
-Allow outbound HTTPS connections to:
-```
-https://raw.githubusercontent.com/SamMachariaPhD/exam-system-auth/main/licenses.json
-```
+Allow outbound HTTPS connections for updates and license verification.
 
 ---
 
