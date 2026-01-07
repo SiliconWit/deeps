@@ -97,4 +97,7 @@ extra:
 extra_css:
   - stylesheets/custom.css
 
+extra_javascript:
+  - https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6590816372910687
+
 copyright: Copyright &copy; 2025 SiliconWit - Research, Education, and Product Development
