@@ -1687,11 +1687,13 @@
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Simple Analogy</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>OpenPGP = The PDF format standard
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>GPG/Gpg4win/GPG Suite = Your PDF reader
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>.gpg file = The encrypted document
-</code></pre></div>
-<p>All OpenPGP-compatible tools work together - files encrypted with one can be decrypted by any other.</p>
+<p><strong>Think of it like documents:</strong></p>
+<ul>
+<li><strong>OpenPGP</strong> = The standard way to write documents (like "use A4 paper")</li>
+<li><strong>GPG/Gpg4win/GPG Suite</strong> = The pen you use to write (different brands, same result)</li>
+<li><strong>.gpg file</strong> = The locked document (same lock, different keys to open it)</li>
+</ul>
+<p><strong>All OpenPGP tools are compatible</strong> - A file encrypted with GPG on Linux can be decrypted with Gpg4win on Windows or GPG Suite on Mac. They all speak the same "language."</p>
 </div>
 <hr />
 <h2 id="how-publicprivate-keys-work"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.67 13.67c-.47.46-1.04.83-1.67 1.06V23H8v-2H5v-3h3v-3.28c-1.74-.62-3-2.26-3-4.22C5 8 7 6 9.5 6h.1c-.47.95-.68 2-.57 3.08-.59.2-1.03.76-1.03 1.42 0 .83.67 1.5 1.5 1.5.23 0 .45-.06.65-.15.64.84 1.52 1.47 2.52 1.82m8.06 5.77-2.76 1.16-.78-1.84-2.76 1.17-1.17-2.77L16.03 16l-1.27-3c-1.85.08-3.65-.95-4.41-2.75-.96-2.29.12-4.93 2.41-5.9.24-.1.5-.17.74-.23C12.84 2.87 11.5 2 10 2 7.79 2 6 3.79 6 6v.24c-.3.26-.6.58-.85.91C5.06 6.78 5 6.4 5 6c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.42-.6 2.67-1.55 3.57.42.43 1.05.56 1.63.31.77-.32 1.12-1.2.8-1.96a1 1 0 0 0-.14-.26C15.9 7.13 16 6.58 16 6c0-.63-.1-1.24-.28-1.81 1.28.36 2.38 1.25 2.93 2.57.76 1.8.24 3.81-1.15 5.05zM13 8.6c.37-.41.65-.89.82-1.42-.54.27-.85.82-.82 1.42"/></svg></span> How Public/Private Keys Work<a class="headerlink" href="#how-publicprivate-keys-work" title="Permanent link">&para;</a></h2>
@@ -1703,19 +1705,25 @@
 <li><strong>Private Key</strong> = The mailbox key (only you can retrieve mail)</li>
 </ul>
 </div>
-<div class="annotate">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>graph LR
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    A[Your Computer] --&gt;|Get their public key| B[Recipient&#39;s Public Key]
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    A --&gt;|Encrypt exam files| C[Encrypted .gpg file]
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    B -.-&gt;|Used to encrypt| C
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    C --&gt;|Email safely| D[Recipient]
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    D --&gt;|Decrypt with private key| E[Original Files]
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    style A fill:#e3f2fd
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    style C fill:#fff3e0
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    style E fill:#e8f5e9
+<p><strong>Visual Process:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌──────────────────────────────────────────────────────────────────────┐
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│                                                                        │
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│  YOU                         ENCRYPTION                  RECIPIENT    │
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│  ↓                               ↓                           ↓        │
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│                                                                        │
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│  1. Get recipient&#39;s      2. Encrypt exam files      3. Decrypt with   │
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│     public key               with their public         their private  │
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│                              key                       key            │
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│  ┌─────────┐              ┌──────────────┐          ┌─────────┐     │
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│  │ 🔑 Key  │──────────────▶│ 📦 exam.zip  │─────────▶│ 🔓 Open │     │
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│  │ (theirs)│              │      ↓        │          │         │     │
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│  └─────────┘              │ exam.zip.gpg │          └─────────┘     │
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│                           └──────────────┘                            │
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│                                  ↓                                    │
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│                           📧 Email safely                             │
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>│                                                                        │
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>└──────────────────────────────────────────────────────────────────────┘
 </code></pre></div>
-</div>
 <h3 id="sender-vs-recipient"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16 17v2H2v-2s0-4 7-4 7 4 7 4m-3.5-9.5A3.5 3.5 0 1 0 9 11a3.5 3.5 0 0 0 3.5-3.5m3.44 5.5A5.32 5.32 0 0 1 18 17v2h4v-2s0-3.63-6.06-4M15 4a3.4 3.4 0 0 0-1.93.59 5 5 0 0 1 0 5.82A3.4 3.4 0 0 0 15 11a3.5 3.5 0 0 0 0-7"/></svg></span> Sender vs Recipient<a class="headerlink" href="#sender-vs-recipient" title="Permanent link">&para;</a></h3>
 <div class="grid cards">
 <ul>
@@ -1763,29 +1771,49 @@
 <h2 id="encryption-workflow"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 15V9h8V4.16L19.84 12 12 19.84V15z"/></svg></span> Encryption Workflow<a class="headerlink" href="#encryption-workflow" title="Permanent link">&para;</a></h2>
 <div class="admonition success">
 <p class="admonition-title">Complete Process at a Glance</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>📄 Exam Files      🗜️ Zip Archive      🔐 Encrypt         📧 Email          🔓 Recipient
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>(PDF, DOCX)    →   (.zip)          →   (.zip.gpg)     →   Secure send  →   Decrypts
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>   ↓                  ↓
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>Organize         Keep backup!
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>📄 Exam Files      🗜️ Zip Archive      🔐 Encrypt         📧 Email          🔓 Recipient
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>(PDF, DOCX)    →   (.zip)          →   (.zip.gpg)     →   Secure send  →   Decrypts
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>   ↓                  ↓
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Organize         Keep backup!
 </code></pre></div>
 </div>
-<p><strong>Step-by-Step Flow:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>flowchart TD
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    A[📁 Organize Exam Files] --&gt; B[🗜️ Create ZIP Archive]
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    B --&gt; C[💾 Save ZIP as Backup]
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    C --&gt; D[🔑 Get Recipient&#39;s Public Key]
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    D --&gt; E[🔐 Encrypt ZIP → .gpg file]
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    E --&gt; F[📧 Email .gpg to Recipient]
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    F --&gt; G[🗑️ Optional: Delete .gpg after confirming delivery]
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    C -.-&gt;|Always Keep!| H[💾 Secure Storage]
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    style A fill:#e3f2fd
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    style B fill:#e1f5fe
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    style C fill:#fff9c4
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>    style D fill:#f3e5f5
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>    style E fill:#fff3e0
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>    style F fill:#e8f5e9
-<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>    style H fill:#ffebee
+<p><strong>Detailed Step-by-Step Flow:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>    ┌──────────────────────┐
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    │ 1. Organize Exam     │
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    │    Files (PDF/DOCX)  │
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    └──────────┬───────────┘
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>               ↓
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    ┌──────────────────────┐
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    │ 2. Create ZIP        │  ⚠️  Use .ZIP only (universal format)
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    │    Archive           │      Don&#39;t use .RAR, .7z, or other formats
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    └──────────┬───────────┘
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>               ↓
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    ┌──────────────────────┐
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    │ 3. SAVE ZIP BACKUP   │  ⭐ CRITICAL: Keep this file safe!
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    │    (You can&#39;t decrypt│     You cannot decrypt the .gpg later
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    │     your .gpg file!)  │
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>    └──────────┬───────────┘
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>               ↓
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    ┌──────────────────────┐
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>    │ 4. Get Recipient&#39;s   │
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>    │    Public Key (.asc) │
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>    └──────────┬───────────┘
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>               ↓
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>    ┌──────────────────────┐
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>    │ 5. Encrypt ZIP       │  Creates: exam.zip.gpg
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>    │    → .gpg file       │
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>    └──────────┬───────────┘
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>               ↓
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>    ┌──────────────────────┐
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>    │ 6. Email Both Files: │  📎 Attach TWO files:
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>    │    • exam.zip.gpg    │     1. exam.zip.gpg (encrypted)
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>    │    • your-public.asc │     2. your-public-key.asc (for replies)
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>    └──────────┬───────────┘
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>               ↓
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>    ┌──────────────────────┐
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>    │ 7. Recipient Decrypts│
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>    │    with Private Key  │
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>    └──────────────────────┘
 </code></pre></div>
 <hr />
 <h2 id="installation-guide"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"/></svg></span> Installation Guide<a class="headerlink" href="#installation-guide" title="Permanent link">&para;</a></h2>
@@ -1816,7 +1844,7 @@
 <div class="admonition success">
 <p class="admonition-title">Verify Installation</p>
 <p>Open <strong>Command Prompt</strong> or <strong>PowerShell</strong> and run:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>gpg --version
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>gpg --version
 </code></pre></div>
 <p>Expected output: <code>gpg (GnuPG) 2.x.x</code></p>
 </div>
@@ -1826,14 +1854,14 @@
 <div class="admonition info">
 <p class="admonition-title">Check Installation</p>
 <p>Most Linux distributions include GPG by default. Verify with:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>gpg<span class="w"> </span>--version
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>gpg<span class="w"> </span>--version
 </code></pre></div>
 </div>
 <div class="admonition download">
 <p class="admonition-title">Install if Needed</p>
 <p>If not installed:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>gnupg
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>gnupg
 </code></pre></div>
 <p>For other distributions:</p>
 <ul>
@@ -1843,7 +1871,7 @@
 </div>
 <div class="admonition success">
 <p class="admonition-title">Verify Installation</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>gpg<span class="w"> </span>--version
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>gpg<span class="w"> </span>--version
 </code></pre></div>
 <p>Expected output: <code>gpg (GnuPG) 2.x.x</code></p>
 </div>
@@ -1856,7 +1884,7 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p><strong>If you have Homebrew installed:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>brew<span class="w"> </span>install<span class="w"> </span>gnupg
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>brew<span class="w"> </span>install<span class="w"> </span>gnupg
 </code></pre></div>
 <p><strong>Don't have Homebrew?</strong> Install from <a href="https://brew.sh/">brew.sh</a></p>
 </div>
@@ -1876,7 +1904,7 @@
 <div class="admonition success">
 <p class="admonition-title">Verify Installation</p>
 <p>Open <strong>Terminal</strong> and run:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>gpg<span class="w"> </span>--version
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>gpg<span class="w"> </span>--version
 </code></pre></div>
 <p>Expected output: <code>gpg (GnuPG) 2.x.x</code></p>
 </div>
@@ -1909,8 +1937,8 @@
 <li>Click <strong>New Key Pair</strong> button (top toolbar)</li>
 </ul>
 <p><strong>3. Enter Your Details</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Name:    Your Full Name
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Email:   coordinator@institution.edu
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Name:    Your Full Name
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>Email:   coordinator@institution.edu
 </code></pre></div>
 <p><strong>4. Advanced Settings (Optional)</strong></p>
 <ul>
@@ -1943,29 +1971,29 @@
 <div class="admonition example">
 <p class="admonition-title">Generate Key Pair</p>
 <p><strong>Run the generation command:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>gpg<span class="w"> </span>--full-generate-key
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>gpg<span class="w"> </span>--full-generate-key
 </code></pre></div>
 <p><strong>Follow the prompts:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Please select what kind of key you want:
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>   (1) RSA and RSA (default)
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>   (2) DSA and Elgamal
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>   ...
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>Your selection? 1 ← Press 1
-<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
-<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>What keysize do you want? (3072) 4096 ← Type 4096
-<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>
-<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>Please specify how long the key should be valid.
-<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>   0 = key does not expire
-<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>Key is valid for? (0) 0 ← Type 0 (no expiration)
-<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>
-<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>Is this correct? (y/N) y ← Type y
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Please select what kind of key you want:
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>   (1) RSA and RSA (default)
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>   (2) DSA and Elgamal
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>   ...
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>Your selection? 1 ← Press 1
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>What keysize do you want? (3072) 4096 ← Type 4096
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>Please specify how long the key should be valid.
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>   0 = key does not expire
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>Key is valid for? (0) 0 ← Type 0 (no expiration)
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>Is this correct? (y/N) y ← Type y
 </code></pre></div>
 <p><strong>Enter your information:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Real name: Your Full Name
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>Email address: coordinator@institution.edu
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>Comment: (optional - can leave blank)
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O ← Type O
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Real name: Your Full Name
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>Email address: coordinator@institution.edu
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>Comment: (optional - can leave blank)
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O ← Type O
 </code></pre></div>
 <p><strong>Set passphrase:</strong></p>
 <ul>
@@ -1976,9 +2004,9 @@
 </div>
 <div class="admonition success">
 <p class="admonition-title">Key Generated</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>gpg:<span class="w"> </span>key<span class="w"> </span>XXXXXXXX<span class="w"> </span>marked<span class="w"> </span>as<span class="w"> </span>ultimately<span class="w"> </span>trusted
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>gpg:<span class="w"> </span>revocation<span class="w"> </span>certificate<span class="w"> </span>stored<span class="w"> </span>at<span class="w"> </span><span class="s1">&#39;/home/user/.gnupg/openpgp-revocs.d/...&#39;</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>public<span class="w"> </span>and<span class="w"> </span>secret<span class="w"> </span>key<span class="w"> </span>created<span class="w"> </span>and<span class="w"> </span>signed.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>gpg:<span class="w"> </span>key<span class="w"> </span>XXXXXXXX<span class="w"> </span>marked<span class="w"> </span>as<span class="w"> </span>ultimately<span class="w"> </span>trusted
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>gpg:<span class="w"> </span>revocation<span class="w"> </span>certificate<span class="w"> </span>stored<span class="w"> </span>at<span class="w"> </span><span class="s1">&#39;/home/user/.gnupg/openpgp-revocs.d/...&#39;</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>public<span class="w"> </span>and<span class="w"> </span>secret<span class="w"> </span>key<span class="w"> </span>created<span class="w"> </span>and<span class="w"> </span>signed.
 </code></pre></div>
 </div>
 </div>
@@ -1986,29 +2014,29 @@
 <div class="admonition example">
 <p class="admonition-title">Generate Key Pair</p>
 <p><strong>Run the generation command:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>gpg<span class="w"> </span>--full-generate-key
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>gpg<span class="w"> </span>--full-generate-key
 </code></pre></div>
 <p><strong>Follow the prompts:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>Please select what kind of key you want:
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>   (1) RSA and RSA (default)
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>   (2) DSA and Elgamal
-<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>   ...
-<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>Your selection? 1 ← Press 1
-<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>
-<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>What keysize do you want? (3072) 4096 ← Type 4096
-<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>
-<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>Please specify how long the key should be valid.
-<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>   0 = key does not expire
-<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>Key is valid for? (0) 0 ← Type 0 (no expiration)
-<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>
-<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>Is this correct? (y/N) y ← Type y
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Please select what kind of key you want:
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>   (1) RSA and RSA (default)
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>   (2) DSA and Elgamal
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>   ...
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>Your selection? 1 ← Press 1
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>What keysize do you want? (3072) 4096 ← Type 4096
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>Please specify how long the key should be valid.
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>   0 = key does not expire
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>Key is valid for? (0) 0 ← Type 0 (no expiration)
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>Is this correct? (y/N) y ← Type y
 </code></pre></div>
 <p><strong>Enter your information:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>Real name: Your Full Name
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>Email address: coordinator@institution.edu
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>Comment: (optional - can leave blank)
-<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>
-<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O ← Type O
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>Real name: Your Full Name
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>Email address: coordinator@institution.edu
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>Comment: (optional - can leave blank)
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O ← Type O
 </code></pre></div>
 <p><strong>Set passphrase:</strong></p>
 <ul>
@@ -2019,8 +2047,8 @@
 </div>
 <div class="admonition success">
 <p class="admonition-title">Key Generated</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>gpg:<span class="w"> </span>key<span class="w"> </span>XXXXXXXX<span class="w"> </span>marked<span class="w"> </span>as<span class="w"> </span>ultimately<span class="w"> </span>trusted
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>public<span class="w"> </span>and<span class="w"> </span>secret<span class="w"> </span>key<span class="w"> </span>created<span class="w"> </span>and<span class="w"> </span>signed.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>gpg:<span class="w"> </span>key<span class="w"> </span>XXXXXXXX<span class="w"> </span>marked<span class="w"> </span>as<span class="w"> </span>ultimately<span class="w"> </span>trusted
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>public<span class="w"> </span>and<span class="w"> </span>secret<span class="w"> </span>key<span class="w"> </span>created<span class="w"> </span>and<span class="w"> </span>signed.
 </code></pre></div>
 </div>
 </div>
@@ -2059,12 +2087,12 @@
 <div class="tabbed-block">
 <div class="admonition example">
 <p class="admonition-title">Export Public Key</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>gpg<span class="w"> </span>--export<span class="w"> </span>-a<span class="w"> </span>coordinator@institution.edu<span class="w"> </span>&gt;<span class="w"> </span>MyPublicKey.asc
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>gpg<span class="w"> </span>--export<span class="w"> </span>-a<span class="w"> </span>coordinator@institution.edu<span class="w"> </span>&gt;<span class="w"> </span>MyPublicKey.asc
 </code></pre></div>
 <p>This creates <code>MyPublicKey.asc</code> in your current directory.</p>
 <p><strong>Verify the export:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>ls<span class="w"> </span>-lh<span class="w"> </span>MyPublicKey.asc
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>cat<span class="w"> </span>MyPublicKey.asc<span class="w">  </span><span class="c1"># Should show ASCII-armored key</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>ls<span class="w"> </span>-lh<span class="w"> </span>MyPublicKey.asc
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>cat<span class="w"> </span>MyPublicKey.asc<span class="w">  </span><span class="c1"># Should show ASCII-armored key</span>
 </code></pre></div>
 <p><strong>Share this file</strong> with anyone who needs to send you encrypted documents.</p>
 </div>
@@ -2072,12 +2100,12 @@
 <div class="tabbed-block">
 <div class="admonition example">
 <p class="admonition-title">Export Public Key</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>gpg<span class="w"> </span>--export<span class="w"> </span>-a<span class="w"> </span>coordinator@institution.edu<span class="w"> </span>&gt;<span class="w"> </span>MyPublicKey.asc
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>gpg<span class="w"> </span>--export<span class="w"> </span>-a<span class="w"> </span>coordinator@institution.edu<span class="w"> </span>&gt;<span class="w"> </span>MyPublicKey.asc
 </code></pre></div>
 <p>This creates <code>MyPublicKey.asc</code> in your current directory.</p>
 <p><strong>Verify the export:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>ls<span class="w"> </span>-lh<span class="w"> </span>MyPublicKey.asc
-<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>cat<span class="w"> </span>MyPublicKey.asc<span class="w">  </span><span class="c1"># Should show ASCII-armored key</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>ls<span class="w"> </span>-lh<span class="w"> </span>MyPublicKey.asc
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>cat<span class="w"> </span>MyPublicKey.asc<span class="w">  </span><span class="c1"># Should show ASCII-armored key</span>
 </code></pre></div>
 <p><strong>Share this file</strong> with anyone who needs to send you encrypted documents.</p>
 </div>
@@ -2125,14 +2153,14 @@
 <div class="tabbed-block">
 <div class="admonition example">
 <p class="admonition-title">Import Public Key</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>gpg<span class="w"> </span>--import<span class="w"> </span>ExamsOffice-PublicKey.asc
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>gpg<span class="w"> </span>--import<span class="w"> </span>ExamsOffice-PublicKey.asc
 </code></pre></div>
 <p><strong>Verify the import:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>gpg<span class="w"> </span>--list-keys
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>gpg<span class="w"> </span>--list-keys
 </code></pre></div>
 <p>You should see the exam office's key listed.</p>
 <p><strong>Check the fingerprint (recommended):</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>gpg<span class="w"> </span>--fingerprint<span class="w"> </span>exams@institution.edu
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>gpg<span class="w"> </span>--fingerprint<span class="w"> </span>exams@institution.edu
 </code></pre></div>
 <p>Verify this matches the fingerprint provided by the exam office (via phone or in-person).</p>
 </div>
@@ -2140,14 +2168,14 @@
 <div class="tabbed-block">
 <div class="admonition example">
 <p class="admonition-title">Import Public Key</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>gpg<span class="w"> </span>--import<span class="w"> </span>ExamsOffice-PublicKey.asc
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>gpg<span class="w"> </span>--import<span class="w"> </span>ExamsOffice-PublicKey.asc
 </code></pre></div>
 <p><strong>Verify the import:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>gpg<span class="w"> </span>--list-keys
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>gpg<span class="w"> </span>--list-keys
 </code></pre></div>
 <p>You should see the exam office's key listed.</p>
 <p><strong>Check the fingerprint (recommended):</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>gpg<span class="w"> </span>--fingerprint<span class="w"> </span>exams@institution.edu
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>gpg<span class="w"> </span>--fingerprint<span class="w"> </span>exams@institution.edu
 </code></pre></div>
 <p>Verify this matches the fingerprint provided by the exam office (via phone or in-person).</p>
 </div>
@@ -2159,6 +2187,18 @@
 <p>Now let's encrypt your exam materials for secure transmission.</p>
 <h3 id="create-a-zip-archive"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7v2h2v8h2V7zm2-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2"/></svg></span> Create a Zip Archive<a class="headerlink" href="#create-a-zip-archive" title="Permanent link">&para;</a></h3>
 <p>Combine all exam files into a single compressed archive.</p>
+<div class="admonition warning">
+<p class="admonition-title">Use ZIP Format Only</p>
+<p><strong>Always use .ZIP format</strong> - it's universally supported on all platforms (Windows, Mac, Linux) without additional software.</p>
+<p><strong>Do NOT use:</strong></p>
+<ul>
+<li>❌ .RAR (requires WinRAR)</li>
+<li>❌ .7z (requires 7-Zip)</li>
+<li>❌ .tar.gz (Linux-specific, confusing on Windows)</li>
+<li>❌ Other proprietary formats</li>
+</ul>
+<p><strong>Why ZIP?</strong> Built into every operating system, guaranteed to work everywhere, exam offices can open it without installing extra software.</p>
+</div>
 <div class="tabbed-set tabbed-alternate" data-tabs="6:3"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><input id="__tabbed_6_3" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="m0 93.7 183.6-25.3v177.4H0zm0 324.6 183.6 25.3V268.4H0zm203.8 28L448 480V268.4H203.8zm0-380.6v180.1H448V32z"/></svg></span> Windows</label><label for="__tabbed_6_2"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M469.2 75c0-20.1-8-39.3-22.2-53.5S413.6-.7 393.5-.7s-39.3 8-53.5 22.2-22.2 33.4-22.2 53.5 8 39.3 22.1 53.5 33.4 22.1 53.5 22.1 39.3-8 53.5-22.1S469 95.1 469 75h.1zm-315 165.7a75.6 75.6 0 1 0-151.2 0 75.6 75.6 0 1 0 151.2 0M57 346c18.6 46.9 51 87 93 115.1s91.5 42.6 142 41.7c-14.7-18.6-22.9-41.5-23.2-65.2-6.8-.9-13.3-2.1-19.5-3.4-26.8-5.7-51.9-17.3-73.6-34s-39.3-38.1-51.7-62.5c-20.9 9.9-44.5 12.8-67.1 8.2zm395.1 89.8a75.6 75.6 0 1 0-151.2 0 75.6 75.6 0 1 0 151.2 0m-8.1-84.2c18.5 14.8 31.6 35.2 37.2 58.2 33.3-41.3 52.6-92.2 54.8-145.2s-12.5-105.4-42.2-149.4c-8.6 21.5-24 39.6-43.8 51.6 15.4 28.6 22.9 60.8 21.9 93.2s-10.7 64-28 91.6zM101.1 135.4c12.4 2.7 24.3 7.5 35.1 14.3 16.6-24.2 38.9-44.1 64.8-58s54.8-21.3 84.2-21.7c.2-5.9.9-11.9 2-17.7C290.8 35.6 298.3 20 309 6.8c-47.7-3.8-95.4 6-137.6 28.5S94.3 91.7 70.8 133.4c2.7-.2 5.3-.3 8-.3 7.5 0 15 .8 22.4 2.3z"/></svg></span> Ubuntu/Linux</label><label for="__tabbed_6_3"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M319.1 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7-55.8.9-115.1 44.5-115.1 133.2 0 26.2 4.8 53.3 14.4 81.2 12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9m-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3"/></svg></span> macOS</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -2204,18 +2244,18 @@
 <div class="tabbed-block">
 <div class="admonition example">
 <p class="admonition-title">Create ZIP Archive</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="c1"># Navigate to parent directory</span>
-<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="nb">cd</span><span class="w"> </span>/path/to/exams/
-<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>
-<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="c1"># Create zip archive</span>
-<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>zip<span class="w"> </span>-r<span class="w"> </span>MSc-Exams-Dec2025.zip<span class="w"> </span>MSc-Exams-Dec2025/
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="c1"># Navigate to parent directory</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="nb">cd</span><span class="w"> </span>/path/to/exams/
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="c1"># Create zip archive</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>zip<span class="w"> </span>-r<span class="w"> </span>MSc-Exams-Dec2025.zip<span class="w"> </span>MSc-Exams-Dec2025/
 </code></pre></div>
 <p><strong>For verbose output:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>zip<span class="w"> </span>-rv<span class="w"> </span>MSc-Exams-Dec2025.zip<span class="w"> </span>MSc-Exams-Dec2025/
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>zip<span class="w"> </span>-rv<span class="w"> </span>MSc-Exams-Dec2025.zip<span class="w"> </span>MSc-Exams-Dec2025/
 </code></pre></div>
 <p><strong>Verify the zip:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>ls<span class="w"> </span>-lh<span class="w"> </span>MSc-Exams-Dec2025.zip
-<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>unzip<span class="w"> </span>-l<span class="w"> </span>MSc-Exams-Dec2025.zip<span class="w">  </span><span class="c1"># List contents without extracting</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>ls<span class="w"> </span>-lh<span class="w"> </span>MSc-Exams-Dec2025.zip
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>unzip<span class="w"> </span>-l<span class="w"> </span>MSc-Exams-Dec2025.zip<span class="w">  </span><span class="c1"># List contents without extracting</span>
 </code></pre></div>
 </div>
 <div class="admonition success">
@@ -2243,11 +2283,11 @@
 </ul>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="c1"># Navigate to parent directory</span>
-<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="nb">cd</span><span class="w"> </span>/path/to/exams/
-<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>
-<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="c1"># Create zip archive</span>
-<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>zip<span class="w"> </span>-r<span class="w"> </span>MSc-Exams-Dec2025.zip<span class="w"> </span>MSc-Exams-Dec2025/
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="c1"># Navigate to parent directory</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="nb">cd</span><span class="w"> </span>/path/to/exams/
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="c1"># Create zip archive</span>
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>zip<span class="w"> </span>-r<span class="w"> </span>MSc-Exams-Dec2025.zip<span class="w"> </span>MSc-Exams-Dec2025/
 </code></pre></div>
 </div>
 </div>
@@ -2307,19 +2347,19 @@
 <div class="admonition example">
 <p class="admonition-title">Encrypt via Command Line</p>
 <p><strong>Basic encryption:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>gpg<span class="w"> </span>--trust-model<span class="w"> </span>always<span class="w"> </span>--encrypt<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>gpg<span class="w"> </span>--trust-model<span class="w"> </span>always<span class="w"> </span>--encrypt<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="w">  </span>--recipient<span class="w"> </span>exams@institution.edu<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="w">  </span>MSc-Exams-Dec2025.zip
+</code></pre></div>
+<p><strong>With signature (recommended for authenticity):</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>gpg<span class="w"> </span>--trust-model<span class="w"> </span>always<span class="w"> </span>--sign<span class="w"> </span>--encrypt<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="w">  </span>--recipient<span class="w"> </span>exams@institution.edu<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="w">  </span>MSc-Exams-Dec2025.zip
 </code></pre></div>
-<p><strong>With signature (recommended for authenticity):</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>gpg<span class="w"> </span>--trust-model<span class="w"> </span>always<span class="w"> </span>--sign<span class="w"> </span>--encrypt<span class="w"> </span><span class="se">\</span>
+<p><strong>For ASCII-armored output (.asc instead of .gpg):</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>gpg<span class="w"> </span>--trust-model<span class="w"> </span>always<span class="w"> </span>--armor<span class="w"> </span>--encrypt<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="w">  </span>--recipient<span class="w"> </span>exams@institution.edu<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="w">  </span>MSc-Exams-Dec2025.zip
-</code></pre></div>
-<p><strong>For ASCII-armored output (.asc instead of .gpg):</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>gpg<span class="w"> </span>--trust-model<span class="w"> </span>always<span class="w"> </span>--armor<span class="w"> </span>--encrypt<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="w">  </span>--recipient<span class="w"> </span>exams@institution.edu<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="w">  </span>MSc-Exams-Dec2025.zip
 </code></pre></div>
 </div>
 <div class="admonition info">
@@ -2335,7 +2375,7 @@
 <div class="admonition success">
 <p class="admonition-title">File Encrypted</p>
 <p>Created: <code>MSc-Exams-Dec2025.zip.gpg</code></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>ls<span class="w"> </span>-lh<span class="w"> </span>MSc-Exams-Dec2025.zip*
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>ls<span class="w"> </span>-lh<span class="w"> </span>MSc-Exams-Dec2025.zip*
 </code></pre></div>
 <p>You should see both files:
 - <code>MSc-Exams-Dec2025.zip</code> (original - keep this!)
@@ -2346,19 +2386,19 @@
 <div class="admonition example">
 <p class="admonition-title">Encrypt via Command Line</p>
 <p><strong>Basic encryption:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>gpg<span class="w"> </span>--trust-model<span class="w"> </span>always<span class="w"> </span>--encrypt<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>gpg<span class="w"> </span>--trust-model<span class="w"> </span>always<span class="w"> </span>--encrypt<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="w">  </span>--recipient<span class="w"> </span>exams@institution.edu<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="w">  </span>MSc-Exams-Dec2025.zip
+</code></pre></div>
+<p><strong>With signature (recommended for authenticity):</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>gpg<span class="w"> </span>--trust-model<span class="w"> </span>always<span class="w"> </span>--sign<span class="w"> </span>--encrypt<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="w">  </span>--recipient<span class="w"> </span>exams@institution.edu<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="w">  </span>MSc-Exams-Dec2025.zip
 </code></pre></div>
-<p><strong>With signature (recommended for authenticity):</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>gpg<span class="w"> </span>--trust-model<span class="w"> </span>always<span class="w"> </span>--sign<span class="w"> </span>--encrypt<span class="w"> </span><span class="se">\</span>
+<p><strong>For ASCII-armored output (.asc instead of .gpg):</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>gpg<span class="w"> </span>--trust-model<span class="w"> </span>always<span class="w"> </span>--armor<span class="w"> </span>--encrypt<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="w">  </span>--recipient<span class="w"> </span>exams@institution.edu<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="w">  </span>MSc-Exams-Dec2025.zip
-</code></pre></div>
-<p><strong>For ASCII-armored output (.asc instead of .gpg):</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>gpg<span class="w"> </span>--trust-model<span class="w"> </span>always<span class="w"> </span>--armor<span class="w"> </span>--encrypt<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="w">  </span>--recipient<span class="w"> </span>exams@institution.edu<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="w">  </span>MSc-Exams-Dec2025.zip
 </code></pre></div>
 </div>
 <div class="admonition info">
@@ -2391,25 +2431,45 @@
 <li>Subject: <code>MSc December 2025 Examinations - Encrypted</code></li>
 </ul>
 <p><strong>2. Write Brief Message</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>Dear Exams Office,
-<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>
-<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>Please find attached the encrypted examination materials for MSc December 2025.
-<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a>
-<a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a>Contents:
-<a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a>- Question papers (5 courses)
-<a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a>- Marking schemes
-<a id="__codelineno-40-8" name="__codelineno-40-8" href="#__codelineno-40-8"></a>- Answer keys
-<a id="__codelineno-40-9" name="__codelineno-40-9" href="#__codelineno-40-9"></a>
-<a id="__codelineno-40-10" name="__codelineno-40-10" href="#__codelineno-40-10"></a>Please confirm receipt.
-<a id="__codelineno-40-11" name="__codelineno-40-11" href="#__codelineno-40-11"></a>
-<a id="__codelineno-40-12" name="__codelineno-40-12" href="#__codelineno-40-12"></a>Best regards,
-<a id="__codelineno-40-13" name="__codelineno-40-13" href="#__codelineno-40-13"></a>[Your Name]
-<a id="__codelineno-40-14" name="__codelineno-40-14" href="#__codelineno-40-14"></a>[Your Department]
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>Dear Exams Office,
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>Please find attached the encrypted examination materials for MSc December 2025.
+<a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a>
+<a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a>Attachments:
+<a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a>1. MSc-Exams-Dec2025.zip.gpg (encrypted exam files)
+<a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a>2. MyPublicKey.asc (my public key for your replies)
+<a id="__codelineno-39-8" name="__codelineno-39-8" href="#__codelineno-39-8"></a>
+<a id="__codelineno-39-9" name="__codelineno-39-9" href="#__codelineno-39-9"></a>Contents:
+<a id="__codelineno-39-10" name="__codelineno-39-10" href="#__codelineno-39-10"></a>- Question papers (5 courses)
+<a id="__codelineno-39-11" name="__codelineno-39-11" href="#__codelineno-39-11"></a>- Marking schemes
+<a id="__codelineno-39-12" name="__codelineno-39-12" href="#__codelineno-39-12"></a>- Answer keys
+<a id="__codelineno-39-13" name="__codelineno-39-13" href="#__codelineno-39-13"></a>
+<a id="__codelineno-39-14" name="__codelineno-39-14" href="#__codelineno-39-14"></a>Please confirm receipt and use my public key if you need to send
+<a id="__codelineno-39-15" name="__codelineno-39-15" href="#__codelineno-39-15"></a>encrypted materials back to me.
+<a id="__codelineno-39-16" name="__codelineno-39-16" href="#__codelineno-39-16"></a>
+<a id="__codelineno-39-17" name="__codelineno-39-17" href="#__codelineno-39-17"></a>Best regards,
+<a id="__codelineno-39-18" name="__codelineno-39-18" href="#__codelineno-39-18"></a>[Your Name]
+<a id="__codelineno-39-19" name="__codelineno-39-19" href="#__codelineno-39-19"></a>[Your Department]
 </code></pre></div>
-<p><strong>3. Attach Encrypted File</strong></p>
+<p><strong>3. Attach Files</strong></p>
+<p>Attach <strong>TWO files</strong>:</p>
+<ol>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 13c-1.4 0-2.8 1.1-2.8 2.5V17c-.6 0-1.2.6-1.2 1.2v3.5c0 .7.6 1.3 1.2 1.3h5.5c.7 0 1.3-.6 1.3-1.2v-3.5c0-.7-.6-1.3-1.2-1.3v-1.5c0-1.4-1.4-2.5-2.8-2.5m0 1.2c.8 0 1.5.5 1.5 1.3V17h-3v-1.5c0-.8.7-1.3 1.5-1.3M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h6v-3.8c0-1 .4-1.7 1-2.2.1-.1.2-.1.2-.2v-.3c0-2.7 2.4-4.5 4.8-4.5.7 0 1.4.2 2 .4V8l-6-6zm7 1.5L18.5 9H13z"/></svg></span> <code>MSc-Exams-Dec2025.zip.gpg</code> (the encrypted exams)</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2m5.6-4c-.8-2.3-3-4-5.6-4-3.3 0-6 2.7-6 6s2.7 6 6 6c2.6 0 4.8-1.7 5.6-4H16v4h4v-4h3v-4z"/></svg></span> <code>MyPublicKey.asc</code> (your public key - so they can send encrypted replies to you)</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Why attach your public key?</p>
+<p>Including your public key allows the exam office to:</p>
 <ul>
-<li>Attach: <code>MSc-Exams-Dec2025.zip.gpg</code> (encrypted file only)</li>
-<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></span> Do NOT attach the original .zip</li>
+<li>Send encrypted confirmation back to you</li>
+<li>Send encrypted score reports or feedback</li>
+<li>Avoid having to request your key later</li>
+</ul>
+<p><strong>Your public key is safe to share</strong> - it can only encrypt, not decrypt.</p>
+</div>
+<p><strong>Do NOT attach:</strong></p>
+<ul>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg></span> The original .zip file (keep this as backup)</li>
 </ul>
 <p><strong>4. Send</strong></p>
 <ul>
@@ -2439,28 +2499,28 @@
 <div class="tabbed-set tabbed-alternate" data-tabs="10:3"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><input id="__tabbed_10_3" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="m0 93.7 183.6-25.3v177.4H0zm0 324.6 183.6 25.3V268.4H0zm203.8 28L448 480V268.4H203.8zm0-380.6v180.1H448V32z"/></svg></span> Windows</label><label for="__tabbed_10_2"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M469.2 75c0-20.1-8-39.3-22.2-53.5S413.6-.7 393.5-.7s-39.3 8-53.5 22.2-22.2 33.4-22.2 53.5 8 39.3 22.1 53.5 33.4 22.1 53.5 22.1 39.3-8 53.5-22.1S469 95.1 469 75h.1zm-315 165.7a75.6 75.6 0 1 0-151.2 0 75.6 75.6 0 1 0 151.2 0M57 346c18.6 46.9 51 87 93 115.1s91.5 42.6 142 41.7c-14.7-18.6-22.9-41.5-23.2-65.2-6.8-.9-13.3-2.1-19.5-3.4-26.8-5.7-51.9-17.3-73.6-34s-39.3-38.1-51.7-62.5c-20.9 9.9-44.5 12.8-67.1 8.2zm395.1 89.8a75.6 75.6 0 1 0-151.2 0 75.6 75.6 0 1 0 151.2 0m-8.1-84.2c18.5 14.8 31.6 35.2 37.2 58.2 33.3-41.3 52.6-92.2 54.8-145.2s-12.5-105.4-42.2-149.4c-8.6 21.5-24 39.6-43.8 51.6 15.4 28.6 22.9 60.8 21.9 93.2s-10.7 64-28 91.6zM101.1 135.4c12.4 2.7 24.3 7.5 35.1 14.3 16.6-24.2 38.9-44.1 64.8-58s54.8-21.3 84.2-21.7c.2-5.9.9-11.9 2-17.7C290.8 35.6 298.3 20 309 6.8c-47.7-3.8-95.4 6-137.6 28.5S94.3 91.7 70.8 133.4c2.7-.2 5.3-.3 8-.3 7.5 0 15 .8 22.4 2.3z"/></svg></span> Ubuntu/Linux</label><label for="__tabbed_10_3"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M319.1 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7-55.8.9-115.1 44.5-115.1 133.2 0 26.2 4.8 53.3 14.4 81.2 12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9m-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3"/></svg></span> macOS</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="c"># 1. Organize files in folder</span>
-<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="c"># C:\Users\You\Documents\Exams\BSc-Supp-Dec2025\</span>
-<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="c">#   ├── EMCH101-Exam.pdf</span>
-<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a><span class="c">#   ├── EMCH102-Exam.pdf</span>
-<a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a><span class="c">#   └── Marking-Scheme.pdf</span>
-<a id="__codelineno-41-6" name="__codelineno-41-6" href="#__codelineno-41-6"></a>
-<a id="__codelineno-41-7" name="__codelineno-41-7" href="#__codelineno-41-7"></a><span class="c"># 2. Create ZIP (via File Explorer)</span>
-<a id="__codelineno-41-8" name="__codelineno-41-8" href="#__codelineno-41-8"></a><span class="c"># Right-click folder → Send to → Compressed folder</span>
-<a id="__codelineno-41-9" name="__codelineno-41-9" href="#__codelineno-41-9"></a><span class="c"># Result: BSc-Supp-Dec2025.zip</span>
-<a id="__codelineno-41-10" name="__codelineno-41-10" href="#__codelineno-41-10"></a>
-<a id="__codelineno-41-11" name="__codelineno-41-11" href="#__codelineno-41-11"></a><span class="c"># 3. Encrypt using Kleopatra</span>
-<a id="__codelineno-41-12" name="__codelineno-41-12" href="#__codelineno-41-12"></a><span class="c"># - Open Kleopatra</span>
-<a id="__codelineno-41-13" name="__codelineno-41-13" href="#__codelineno-41-13"></a><span class="c"># - Click &quot;Sign/Encrypt&quot;</span>
-<a id="__codelineno-41-14" name="__codelineno-41-14" href="#__codelineno-41-14"></a><span class="c"># - Select BSc-Supp-Dec2025.zip</span>
-<a id="__codelineno-41-15" name="__codelineno-41-15" href="#__codelineno-41-15"></a><span class="c"># - Choose recipient: Exams Office</span>
-<a id="__codelineno-41-16" name="__codelineno-41-16" href="#__codelineno-41-16"></a><span class="c"># - Check &quot;Encrypt&quot; and &quot;Sign&quot;</span>
-<a id="__codelineno-41-17" name="__codelineno-41-17" href="#__codelineno-41-17"></a><span class="c"># - Click Encrypt</span>
-<a id="__codelineno-41-18" name="__codelineno-41-18" href="#__codelineno-41-18"></a><span class="c"># Result: BSc-Supp-Dec2025.zip.gpg</span>
-<a id="__codelineno-41-19" name="__codelineno-41-19" href="#__codelineno-41-19"></a>
-<a id="__codelineno-41-20" name="__codelineno-41-20" href="#__codelineno-41-20"></a><span class="c"># 4. Email the .gpg file to exams@institution.edu</span>
-<a id="__codelineno-41-21" name="__codelineno-41-21" href="#__codelineno-41-21"></a>
-<a id="__codelineno-41-22" name="__codelineno-41-22" href="#__codelineno-41-22"></a><span class="c"># 5. Move original .zip to backup folder (keep it safe!)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="c"># 1. Organize files in folder</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="c"># C:\Users\You\Documents\Exams\BSc-Supp-Dec2025\</span>
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="c">#   ├── EMCH101-Exam.pdf</span>
+<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a><span class="c">#   ├── EMCH102-Exam.pdf</span>
+<a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a><span class="c">#   └── Marking-Scheme.pdf</span>
+<a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a>
+<a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a><span class="c"># 2. Create ZIP (via File Explorer)</span>
+<a id="__codelineno-40-8" name="__codelineno-40-8" href="#__codelineno-40-8"></a><span class="c"># Right-click folder → Send to → Compressed folder</span>
+<a id="__codelineno-40-9" name="__codelineno-40-9" href="#__codelineno-40-9"></a><span class="c"># Result: BSc-Supp-Dec2025.zip</span>
+<a id="__codelineno-40-10" name="__codelineno-40-10" href="#__codelineno-40-10"></a>
+<a id="__codelineno-40-11" name="__codelineno-40-11" href="#__codelineno-40-11"></a><span class="c"># 3. Encrypt using Kleopatra</span>
+<a id="__codelineno-40-12" name="__codelineno-40-12" href="#__codelineno-40-12"></a><span class="c"># - Open Kleopatra</span>
+<a id="__codelineno-40-13" name="__codelineno-40-13" href="#__codelineno-40-13"></a><span class="c"># - Click &quot;Sign/Encrypt&quot;</span>
+<a id="__codelineno-40-14" name="__codelineno-40-14" href="#__codelineno-40-14"></a><span class="c"># - Select BSc-Supp-Dec2025.zip</span>
+<a id="__codelineno-40-15" name="__codelineno-40-15" href="#__codelineno-40-15"></a><span class="c"># - Choose recipient: Exams Office</span>
+<a id="__codelineno-40-16" name="__codelineno-40-16" href="#__codelineno-40-16"></a><span class="c"># - Check &quot;Encrypt&quot; and &quot;Sign&quot;</span>
+<a id="__codelineno-40-17" name="__codelineno-40-17" href="#__codelineno-40-17"></a><span class="c"># - Click Encrypt</span>
+<a id="__codelineno-40-18" name="__codelineno-40-18" href="#__codelineno-40-18"></a><span class="c"># Result: BSc-Supp-Dec2025.zip.gpg</span>
+<a id="__codelineno-40-19" name="__codelineno-40-19" href="#__codelineno-40-19"></a>
+<a id="__codelineno-40-20" name="__codelineno-40-20" href="#__codelineno-40-20"></a><span class="c"># 4. Email the .gpg file to exams@institution.edu</span>
+<a id="__codelineno-40-21" name="__codelineno-40-21" href="#__codelineno-40-21"></a>
+<a id="__codelineno-40-22" name="__codelineno-40-22" href="#__codelineno-40-22"></a><span class="c"># 5. Move original .zip to backup folder (keep it safe!)</span>
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Pro Tips</p>
@@ -2473,83 +2533,83 @@
 </div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="c1"># 1. Create folder and organize files</span>
-<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/Exams/BSc-Supp-Dec2025
-<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="nb">cd</span><span class="w"> </span>~/Exams/
-<a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a>
-<a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a><span class="c1"># Copy exam files into folder</span>
-<a id="__codelineno-42-6" name="__codelineno-42-6" href="#__codelineno-42-6"></a>cp<span class="w"> </span>/path/to/EMCH101-Exam.pdf<span class="w"> </span>BSc-Supp-Dec2025/
-<a id="__codelineno-42-7" name="__codelineno-42-7" href="#__codelineno-42-7"></a>cp<span class="w"> </span>/path/to/EMCH102-Exam.pdf<span class="w"> </span>BSc-Supp-Dec2025/
-<a id="__codelineno-42-8" name="__codelineno-42-8" href="#__codelineno-42-8"></a>cp<span class="w"> </span>/path/to/Marking-Scheme.pdf<span class="w"> </span>BSc-Supp-Dec2025/
-<a id="__codelineno-42-9" name="__codelineno-42-9" href="#__codelineno-42-9"></a>
-<a id="__codelineno-42-10" name="__codelineno-42-10" href="#__codelineno-42-10"></a><span class="c1"># 2. Create ZIP archive</span>
-<a id="__codelineno-42-11" name="__codelineno-42-11" href="#__codelineno-42-11"></a>zip<span class="w"> </span>-r<span class="w"> </span>BSc-Supp-Dec2025.zip<span class="w"> </span>BSc-Supp-Dec2025/
-<a id="__codelineno-42-12" name="__codelineno-42-12" href="#__codelineno-42-12"></a>
-<a id="__codelineno-42-13" name="__codelineno-42-13" href="#__codelineno-42-13"></a><span class="c1"># Verify contents</span>
-<a id="__codelineno-42-14" name="__codelineno-42-14" href="#__codelineno-42-14"></a>unzip<span class="w"> </span>-l<span class="w"> </span>BSc-Supp-Dec2025.zip
-<a id="__codelineno-42-15" name="__codelineno-42-15" href="#__codelineno-42-15"></a>
-<a id="__codelineno-42-16" name="__codelineno-42-16" href="#__codelineno-42-16"></a><span class="c1"># 3. Encrypt for exam office</span>
-<a id="__codelineno-42-17" name="__codelineno-42-17" href="#__codelineno-42-17"></a>gpg<span class="w"> </span>--trust-model<span class="w"> </span>always<span class="w"> </span>--sign<span class="w"> </span>--encrypt<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-42-18" name="__codelineno-42-18" href="#__codelineno-42-18"></a><span class="w">  </span>--recipient<span class="w"> </span>exams@institution.edu<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-42-19" name="__codelineno-42-19" href="#__codelineno-42-19"></a><span class="w">  </span>BSc-Supp-Dec2025.zip
-<a id="__codelineno-42-20" name="__codelineno-42-20" href="#__codelineno-42-20"></a>
-<a id="__codelineno-42-21" name="__codelineno-42-21" href="#__codelineno-42-21"></a><span class="c1"># Verify encryption succeeded</span>
-<a id="__codelineno-42-22" name="__codelineno-42-22" href="#__codelineno-42-22"></a>ls<span class="w"> </span>-lh<span class="w"> </span>BSc-Supp-Dec2025.zip.gpg
-<a id="__codelineno-42-23" name="__codelineno-42-23" href="#__codelineno-42-23"></a>
-<a id="__codelineno-42-24" name="__codelineno-42-24" href="#__codelineno-42-24"></a><span class="c1"># 4. Email the .gpg file</span>
-<a id="__codelineno-42-25" name="__codelineno-42-25" href="#__codelineno-42-25"></a><span class="c1"># Use your email client to attach and send BSc-Supp-Dec2025.zip.gpg</span>
-<a id="__codelineno-42-26" name="__codelineno-42-26" href="#__codelineno-42-26"></a>
-<a id="__codelineno-42-27" name="__codelineno-42-27" href="#__codelineno-42-27"></a><span class="c1"># 5. Backup original ZIP</span>
-<a id="__codelineno-42-28" name="__codelineno-42-28" href="#__codelineno-42-28"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/Exams/Backup/
-<a id="__codelineno-42-29" name="__codelineno-42-29" href="#__codelineno-42-29"></a>cp<span class="w"> </span>BSc-Supp-Dec2025.zip<span class="w"> </span>~/Exams/Backup/
-<a id="__codelineno-42-30" name="__codelineno-42-30" href="#__codelineno-42-30"></a>
-<a id="__codelineno-42-31" name="__codelineno-42-31" href="#__codelineno-42-31"></a><span class="c1"># Optional: Clean up after confirmation of delivery</span>
-<a id="__codelineno-42-32" name="__codelineno-42-32" href="#__codelineno-42-32"></a><span class="c1"># rm BSc-Supp-Dec2025.zip.gpg</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="c1"># 1. Create folder and organize files</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/Exams/BSc-Supp-Dec2025
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="nb">cd</span><span class="w"> </span>~/Exams/
+<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a>
+<a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a><span class="c1"># Copy exam files into folder</span>
+<a id="__codelineno-41-6" name="__codelineno-41-6" href="#__codelineno-41-6"></a>cp<span class="w"> </span>/path/to/EMCH101-Exam.pdf<span class="w"> </span>BSc-Supp-Dec2025/
+<a id="__codelineno-41-7" name="__codelineno-41-7" href="#__codelineno-41-7"></a>cp<span class="w"> </span>/path/to/EMCH102-Exam.pdf<span class="w"> </span>BSc-Supp-Dec2025/
+<a id="__codelineno-41-8" name="__codelineno-41-8" href="#__codelineno-41-8"></a>cp<span class="w"> </span>/path/to/Marking-Scheme.pdf<span class="w"> </span>BSc-Supp-Dec2025/
+<a id="__codelineno-41-9" name="__codelineno-41-9" href="#__codelineno-41-9"></a>
+<a id="__codelineno-41-10" name="__codelineno-41-10" href="#__codelineno-41-10"></a><span class="c1"># 2. Create ZIP archive</span>
+<a id="__codelineno-41-11" name="__codelineno-41-11" href="#__codelineno-41-11"></a>zip<span class="w"> </span>-r<span class="w"> </span>BSc-Supp-Dec2025.zip<span class="w"> </span>BSc-Supp-Dec2025/
+<a id="__codelineno-41-12" name="__codelineno-41-12" href="#__codelineno-41-12"></a>
+<a id="__codelineno-41-13" name="__codelineno-41-13" href="#__codelineno-41-13"></a><span class="c1"># Verify contents</span>
+<a id="__codelineno-41-14" name="__codelineno-41-14" href="#__codelineno-41-14"></a>unzip<span class="w"> </span>-l<span class="w"> </span>BSc-Supp-Dec2025.zip
+<a id="__codelineno-41-15" name="__codelineno-41-15" href="#__codelineno-41-15"></a>
+<a id="__codelineno-41-16" name="__codelineno-41-16" href="#__codelineno-41-16"></a><span class="c1"># 3. Encrypt for exam office</span>
+<a id="__codelineno-41-17" name="__codelineno-41-17" href="#__codelineno-41-17"></a>gpg<span class="w"> </span>--trust-model<span class="w"> </span>always<span class="w"> </span>--sign<span class="w"> </span>--encrypt<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-41-18" name="__codelineno-41-18" href="#__codelineno-41-18"></a><span class="w">  </span>--recipient<span class="w"> </span>exams@institution.edu<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-41-19" name="__codelineno-41-19" href="#__codelineno-41-19"></a><span class="w">  </span>BSc-Supp-Dec2025.zip
+<a id="__codelineno-41-20" name="__codelineno-41-20" href="#__codelineno-41-20"></a>
+<a id="__codelineno-41-21" name="__codelineno-41-21" href="#__codelineno-41-21"></a><span class="c1"># Verify encryption succeeded</span>
+<a id="__codelineno-41-22" name="__codelineno-41-22" href="#__codelineno-41-22"></a>ls<span class="w"> </span>-lh<span class="w"> </span>BSc-Supp-Dec2025.zip.gpg
+<a id="__codelineno-41-23" name="__codelineno-41-23" href="#__codelineno-41-23"></a>
+<a id="__codelineno-41-24" name="__codelineno-41-24" href="#__codelineno-41-24"></a><span class="c1"># 4. Email the .gpg file</span>
+<a id="__codelineno-41-25" name="__codelineno-41-25" href="#__codelineno-41-25"></a><span class="c1"># Use your email client to attach and send BSc-Supp-Dec2025.zip.gpg</span>
+<a id="__codelineno-41-26" name="__codelineno-41-26" href="#__codelineno-41-26"></a>
+<a id="__codelineno-41-27" name="__codelineno-41-27" href="#__codelineno-41-27"></a><span class="c1"># 5. Backup original ZIP</span>
+<a id="__codelineno-41-28" name="__codelineno-41-28" href="#__codelineno-41-28"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/Exams/Backup/
+<a id="__codelineno-41-29" name="__codelineno-41-29" href="#__codelineno-41-29"></a>cp<span class="w"> </span>BSc-Supp-Dec2025.zip<span class="w"> </span>~/Exams/Backup/
+<a id="__codelineno-41-30" name="__codelineno-41-30" href="#__codelineno-41-30"></a>
+<a id="__codelineno-41-31" name="__codelineno-41-31" href="#__codelineno-41-31"></a><span class="c1"># Optional: Clean up after confirmation of delivery</span>
+<a id="__codelineno-41-32" name="__codelineno-41-32" href="#__codelineno-41-32"></a><span class="c1"># rm BSc-Supp-Dec2025.zip.gpg</span>
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Automation Tip</p>
 <p>Create a shell script for repeated submissions:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="ch">#!/bin/bash</span>
-<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="c1"># encrypt-exams.sh</span>
-<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a><span class="nv">EXAM_FOLDER</span><span class="o">=</span><span class="nv">$1</span>
-<a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a><span class="nv">RECIPIENT</span><span class="o">=</span><span class="s2">&quot;exams@institution.edu&quot;</span>
-<a id="__codelineno-43-5" name="__codelineno-43-5" href="#__codelineno-43-5"></a>
-<a id="__codelineno-43-6" name="__codelineno-43-6" href="#__codelineno-43-6"></a>zip<span class="w"> </span>-r<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">EXAM_FOLDER</span><span class="si">}</span><span class="s2">.zip&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$EXAM_FOLDER</span><span class="s2">&quot;</span>
-<a id="__codelineno-43-7" name="__codelineno-43-7" href="#__codelineno-43-7"></a>gpg<span class="w"> </span>--trust-model<span class="w"> </span>always<span class="w"> </span>--sign<span class="w"> </span>--encrypt<span class="w"> </span>--recipient<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$RECIPIENT</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">EXAM_FOLDER</span><span class="si">}</span><span class="s2">.zip&quot;</span>
-<a id="__codelineno-43-8" name="__codelineno-43-8" href="#__codelineno-43-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Created: </span><span class="si">${</span><span class="nv">EXAM_FOLDER</span><span class="si">}</span><span class="s2">.zip.gpg&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="ch">#!/bin/bash</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="c1"># encrypt-exams.sh</span>
+<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="nv">EXAM_FOLDER</span><span class="o">=</span><span class="nv">$1</span>
+<a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a><span class="nv">RECIPIENT</span><span class="o">=</span><span class="s2">&quot;exams@institution.edu&quot;</span>
+<a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a>
+<a id="__codelineno-42-6" name="__codelineno-42-6" href="#__codelineno-42-6"></a>zip<span class="w"> </span>-r<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">EXAM_FOLDER</span><span class="si">}</span><span class="s2">.zip&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$EXAM_FOLDER</span><span class="s2">&quot;</span>
+<a id="__codelineno-42-7" name="__codelineno-42-7" href="#__codelineno-42-7"></a>gpg<span class="w"> </span>--trust-model<span class="w"> </span>always<span class="w"> </span>--sign<span class="w"> </span>--encrypt<span class="w"> </span>--recipient<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$RECIPIENT</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">EXAM_FOLDER</span><span class="si">}</span><span class="s2">.zip&quot;</span>
+<a id="__codelineno-42-8" name="__codelineno-42-8" href="#__codelineno-42-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Created: </span><span class="si">${</span><span class="nv">EXAM_FOLDER</span><span class="si">}</span><span class="s2">.zip.gpg&quot;</span>
 </code></pre></div>
 </div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="c1"># 1. Create folder and organize files</span>
-<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/Documents/Exams/BSc-Supp-Dec2025
-<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="nb">cd</span><span class="w"> </span>~/Documents/Exams/
-<a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a>
-<a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a><span class="c1"># Copy exam files into folder</span>
-<a id="__codelineno-44-6" name="__codelineno-44-6" href="#__codelineno-44-6"></a>cp<span class="w"> </span>/path/to/EMCH101-Exam.pdf<span class="w"> </span>BSc-Supp-Dec2025/
-<a id="__codelineno-44-7" name="__codelineno-44-7" href="#__codelineno-44-7"></a>cp<span class="w"> </span>/path/to/EMCH102-Exam.pdf<span class="w"> </span>BSc-Supp-Dec2025/
-<a id="__codelineno-44-8" name="__codelineno-44-8" href="#__codelineno-44-8"></a>cp<span class="w"> </span>/path/to/Marking-Scheme.pdf<span class="w"> </span>BSc-Supp-Dec2025/
-<a id="__codelineno-44-9" name="__codelineno-44-9" href="#__codelineno-44-9"></a>
-<a id="__codelineno-44-10" name="__codelineno-44-10" href="#__codelineno-44-10"></a><span class="c1"># 2. Create ZIP archive</span>
-<a id="__codelineno-44-11" name="__codelineno-44-11" href="#__codelineno-44-11"></a>zip<span class="w"> </span>-r<span class="w"> </span>BSc-Supp-Dec2025.zip<span class="w"> </span>BSc-Supp-Dec2025/
-<a id="__codelineno-44-12" name="__codelineno-44-12" href="#__codelineno-44-12"></a>
-<a id="__codelineno-44-13" name="__codelineno-44-13" href="#__codelineno-44-13"></a><span class="c1"># Verify contents</span>
-<a id="__codelineno-44-14" name="__codelineno-44-14" href="#__codelineno-44-14"></a>unzip<span class="w"> </span>-l<span class="w"> </span>BSc-Supp-Dec2025.zip
-<a id="__codelineno-44-15" name="__codelineno-44-15" href="#__codelineno-44-15"></a>
-<a id="__codelineno-44-16" name="__codelineno-44-16" href="#__codelineno-44-16"></a><span class="c1"># 3. Encrypt for exam office</span>
-<a id="__codelineno-44-17" name="__codelineno-44-17" href="#__codelineno-44-17"></a>gpg<span class="w"> </span>--trust-model<span class="w"> </span>always<span class="w"> </span>--sign<span class="w"> </span>--encrypt<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-44-18" name="__codelineno-44-18" href="#__codelineno-44-18"></a><span class="w">  </span>--recipient<span class="w"> </span>exams@institution.edu<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-44-19" name="__codelineno-44-19" href="#__codelineno-44-19"></a><span class="w">  </span>BSc-Supp-Dec2025.zip
-<a id="__codelineno-44-20" name="__codelineno-44-20" href="#__codelineno-44-20"></a>
-<a id="__codelineno-44-21" name="__codelineno-44-21" href="#__codelineno-44-21"></a><span class="c1"># Verify encryption succeeded</span>
-<a id="__codelineno-44-22" name="__codelineno-44-22" href="#__codelineno-44-22"></a>ls<span class="w"> </span>-lh<span class="w"> </span>BSc-Supp-Dec2025.zip.gpg
-<a id="__codelineno-44-23" name="__codelineno-44-23" href="#__codelineno-44-23"></a>
-<a id="__codelineno-44-24" name="__codelineno-44-24" href="#__codelineno-44-24"></a><span class="c1"># 4. Email the .gpg file</span>
-<a id="__codelineno-44-25" name="__codelineno-44-25" href="#__codelineno-44-25"></a><span class="c1"># Use Mail.app or your email client to attach BSc-Supp-Dec2025.zip.gpg</span>
-<a id="__codelineno-44-26" name="__codelineno-44-26" href="#__codelineno-44-26"></a>
-<a id="__codelineno-44-27" name="__codelineno-44-27" href="#__codelineno-44-27"></a><span class="c1"># 5. Backup original ZIP</span>
-<a id="__codelineno-44-28" name="__codelineno-44-28" href="#__codelineno-44-28"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/Documents/Exams/Backup/
-<a id="__codelineno-44-29" name="__codelineno-44-29" href="#__codelineno-44-29"></a>cp<span class="w"> </span>BSc-Supp-Dec2025.zip<span class="w"> </span>~/Documents/Exams/Backup/
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="c1"># 1. Create folder and organize files</span>
+<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/Documents/Exams/BSc-Supp-Dec2025
+<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a><span class="nb">cd</span><span class="w"> </span>~/Documents/Exams/
+<a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a>
+<a id="__codelineno-43-5" name="__codelineno-43-5" href="#__codelineno-43-5"></a><span class="c1"># Copy exam files into folder</span>
+<a id="__codelineno-43-6" name="__codelineno-43-6" href="#__codelineno-43-6"></a>cp<span class="w"> </span>/path/to/EMCH101-Exam.pdf<span class="w"> </span>BSc-Supp-Dec2025/
+<a id="__codelineno-43-7" name="__codelineno-43-7" href="#__codelineno-43-7"></a>cp<span class="w"> </span>/path/to/EMCH102-Exam.pdf<span class="w"> </span>BSc-Supp-Dec2025/
+<a id="__codelineno-43-8" name="__codelineno-43-8" href="#__codelineno-43-8"></a>cp<span class="w"> </span>/path/to/Marking-Scheme.pdf<span class="w"> </span>BSc-Supp-Dec2025/
+<a id="__codelineno-43-9" name="__codelineno-43-9" href="#__codelineno-43-9"></a>
+<a id="__codelineno-43-10" name="__codelineno-43-10" href="#__codelineno-43-10"></a><span class="c1"># 2. Create ZIP archive</span>
+<a id="__codelineno-43-11" name="__codelineno-43-11" href="#__codelineno-43-11"></a>zip<span class="w"> </span>-r<span class="w"> </span>BSc-Supp-Dec2025.zip<span class="w"> </span>BSc-Supp-Dec2025/
+<a id="__codelineno-43-12" name="__codelineno-43-12" href="#__codelineno-43-12"></a>
+<a id="__codelineno-43-13" name="__codelineno-43-13" href="#__codelineno-43-13"></a><span class="c1"># Verify contents</span>
+<a id="__codelineno-43-14" name="__codelineno-43-14" href="#__codelineno-43-14"></a>unzip<span class="w"> </span>-l<span class="w"> </span>BSc-Supp-Dec2025.zip
+<a id="__codelineno-43-15" name="__codelineno-43-15" href="#__codelineno-43-15"></a>
+<a id="__codelineno-43-16" name="__codelineno-43-16" href="#__codelineno-43-16"></a><span class="c1"># 3. Encrypt for exam office</span>
+<a id="__codelineno-43-17" name="__codelineno-43-17" href="#__codelineno-43-17"></a>gpg<span class="w"> </span>--trust-model<span class="w"> </span>always<span class="w"> </span>--sign<span class="w"> </span>--encrypt<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-43-18" name="__codelineno-43-18" href="#__codelineno-43-18"></a><span class="w">  </span>--recipient<span class="w"> </span>exams@institution.edu<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-43-19" name="__codelineno-43-19" href="#__codelineno-43-19"></a><span class="w">  </span>BSc-Supp-Dec2025.zip
+<a id="__codelineno-43-20" name="__codelineno-43-20" href="#__codelineno-43-20"></a>
+<a id="__codelineno-43-21" name="__codelineno-43-21" href="#__codelineno-43-21"></a><span class="c1"># Verify encryption succeeded</span>
+<a id="__codelineno-43-22" name="__codelineno-43-22" href="#__codelineno-43-22"></a>ls<span class="w"> </span>-lh<span class="w"> </span>BSc-Supp-Dec2025.zip.gpg
+<a id="__codelineno-43-23" name="__codelineno-43-23" href="#__codelineno-43-23"></a>
+<a id="__codelineno-43-24" name="__codelineno-43-24" href="#__codelineno-43-24"></a><span class="c1"># 4. Email the .gpg file</span>
+<a id="__codelineno-43-25" name="__codelineno-43-25" href="#__codelineno-43-25"></a><span class="c1"># Use Mail.app or your email client to attach BSc-Supp-Dec2025.zip.gpg</span>
+<a id="__codelineno-43-26" name="__codelineno-43-26" href="#__codelineno-43-26"></a>
+<a id="__codelineno-43-27" name="__codelineno-43-27" href="#__codelineno-43-27"></a><span class="c1"># 5. Backup original ZIP</span>
+<a id="__codelineno-43-28" name="__codelineno-43-28" href="#__codelineno-43-28"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/Documents/Exams/Backup/
+<a id="__codelineno-43-29" name="__codelineno-43-29" href="#__codelineno-43-29"></a>cp<span class="w"> </span>BSc-Supp-Dec2025.zip<span class="w"> </span>~/Documents/Exams/Backup/
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Finder Integration</p>
@@ -2597,17 +2657,17 @@
 <summary>Can I use the same encryption for multiple recipients?</summary>
 <p><strong>No.</strong> Each recipient needs their own encrypted copy.</p>
 <p>To send to multiple recipients:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="c1"># Encrypt for first recipient</span>
-<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a>gpg<span class="w"> </span>--encrypt<span class="w"> </span>--recipient<span class="w"> </span>office1@institution.edu<span class="w"> </span>exam.zip
-<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a>
-<a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a><span class="c1"># Encrypt for second recipient</span>
-<a id="__codelineno-45-5" name="__codelineno-45-5" href="#__codelineno-45-5"></a>gpg<span class="w"> </span>--encrypt<span class="w"> </span>--recipient<span class="w"> </span>office2@institution.edu<span class="w"> </span>exam.zip
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="c1"># Encrypt for first recipient</span>
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>gpg<span class="w"> </span>--encrypt<span class="w"> </span>--recipient<span class="w"> </span>office1@institution.edu<span class="w"> </span>exam.zip
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a>
+<a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a><span class="c1"># Encrypt for second recipient</span>
+<a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a>gpg<span class="w"> </span>--encrypt<span class="w"> </span>--recipient<span class="w"> </span>office2@institution.edu<span class="w"> </span>exam.zip
 </code></pre></div>
 <p>Or encrypt for multiple recipients at once:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>gpg<span class="w"> </span>--encrypt<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a><span class="w">  </span>--recipient<span class="w"> </span>office1@institution.edu<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a><span class="w">  </span>--recipient<span class="w"> </span>office2@institution.edu<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-46-4" name="__codelineno-46-4" href="#__codelineno-46-4"></a><span class="w">  </span>exam.zip
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>gpg<span class="w"> </span>--encrypt<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="w">  </span>--recipient<span class="w"> </span>office1@institution.edu<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="w">  </span>--recipient<span class="w"> </span>office2@institution.edu<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a><span class="w">  </span>exam.zip
 </code></pre></div>
 <p>This creates one file both recipients can decrypt with their respective private keys.</p>
 </details>
@@ -2625,7 +2685,7 @@
 </ul>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>gpg<span class="w"> </span>--fingerprint<span class="w"> </span>exams@institution.edu
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>gpg<span class="w"> </span>--fingerprint<span class="w"> </span>exams@institution.edu
 </code></pre></div>
 </div>
 </div>
@@ -2667,7 +2727,7 @@
 </tbody>
 </table>
 <p><strong>Best practice:</strong> Use both for exam submissions!</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>gpg<span class="w"> </span>--sign<span class="w"> </span>--encrypt<span class="w"> </span>--recipient<span class="w"> </span>exams@institution.edu<span class="w"> </span>exam.zip
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>gpg<span class="w"> </span>--sign<span class="w"> </span>--encrypt<span class="w"> </span>--recipient<span class="w"> </span>exams@institution.edu<span class="w"> </span>exam.zip
 </code></pre></div>
 </details>
 <details class="question">
@@ -2715,7 +2775,7 @@
 <summary>Can I password-protect instead of using keys?</summary>
 <p>Yes, GPG supports symmetric encryption (password-based), but it's less secure for exam submissions.</p>
 <p><strong>Symmetric encryption:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a>gpg<span class="w"> </span>--symmetric<span class="w"> </span>exam.zip
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>gpg<span class="w"> </span>--symmetric<span class="w"> </span>exam.zip
 </code></pre></div>
 <p><strong>Why key-based is better:</strong></p>
 <ul>
@@ -2826,22 +2886,22 @@
 <div class="tabbed-block">
 <div class="admonition example">
 <p class="admonition-title">Export Private Key</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="c1"># Export your private key</span>
-<a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a>gpg<span class="w"> </span>--export-secret-keys<span class="w"> </span>-a<span class="w"> </span>coordinator@institution.edu<span class="w"> </span>&gt;<span class="w"> </span>PRIVATE-KEY-BACKUP.asc
-<a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a>
-<a id="__codelineno-50-4" name="__codelineno-50-4" href="#__codelineno-50-4"></a><span class="c1"># Verify the export</span>
-<a id="__codelineno-50-5" name="__codelineno-50-5" href="#__codelineno-50-5"></a>ls<span class="w"> </span>-lh<span class="w"> </span>PRIVATE-KEY-BACKUP.asc
-<a id="__codelineno-50-6" name="__codelineno-50-6" href="#__codelineno-50-6"></a>file<span class="w"> </span>PRIVATE-KEY-BACKUP.asc
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="c1"># Export your private key</span>
+<a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a>gpg<span class="w"> </span>--export-secret-keys<span class="w"> </span>-a<span class="w"> </span>coordinator@institution.edu<span class="w"> </span>&gt;<span class="w"> </span>PRIVATE-KEY-BACKUP.asc
+<a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a>
+<a id="__codelineno-49-4" name="__codelineno-49-4" href="#__codelineno-49-4"></a><span class="c1"># Verify the export</span>
+<a id="__codelineno-49-5" name="__codelineno-49-5" href="#__codelineno-49-5"></a>ls<span class="w"> </span>-lh<span class="w"> </span>PRIVATE-KEY-BACKUP.asc
+<a id="__codelineno-49-6" name="__codelineno-49-6" href="#__codelineno-49-6"></a>file<span class="w"> </span>PRIVATE-KEY-BACKUP.asc
 </code></pre></div>
 <p><strong>Secure the backup:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="c1"># Move to secure location</span>
-<a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a>mv<span class="w"> </span>PRIVATE-KEY-BACKUP.asc<span class="w"> </span>~/SecureBackup/
-<a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a>
-<a id="__codelineno-51-4" name="__codelineno-51-4" href="#__codelineno-51-4"></a><span class="c1"># Set strict permissions</span>
-<a id="__codelineno-51-5" name="__codelineno-51-5" href="#__codelineno-51-5"></a>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/SecureBackup/PRIVATE-KEY-BACKUP.asc
-<a id="__codelineno-51-6" name="__codelineno-51-6" href="#__codelineno-51-6"></a>
-<a id="__codelineno-51-7" name="__codelineno-51-7" href="#__codelineno-51-7"></a><span class="c1"># Optional: Encrypt the backup with a password</span>
-<a id="__codelineno-51-8" name="__codelineno-51-8" href="#__codelineno-51-8"></a>gpg<span class="w"> </span>--symmetric<span class="w"> </span>~/SecureBackup/PRIVATE-KEY-BACKUP.asc
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="c1"># Move to secure location</span>
+<a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a>mv<span class="w"> </span>PRIVATE-KEY-BACKUP.asc<span class="w"> </span>~/SecureBackup/
+<a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a>
+<a id="__codelineno-50-4" name="__codelineno-50-4" href="#__codelineno-50-4"></a><span class="c1"># Set strict permissions</span>
+<a id="__codelineno-50-5" name="__codelineno-50-5" href="#__codelineno-50-5"></a>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/SecureBackup/PRIVATE-KEY-BACKUP.asc
+<a id="__codelineno-50-6" name="__codelineno-50-6" href="#__codelineno-50-6"></a>
+<a id="__codelineno-50-7" name="__codelineno-50-7" href="#__codelineno-50-7"></a><span class="c1"># Optional: Encrypt the backup with a password</span>
+<a id="__codelineno-50-8" name="__codelineno-50-8" href="#__codelineno-50-8"></a>gpg<span class="w"> </span>--symmetric<span class="w"> </span>~/SecureBackup/PRIVATE-KEY-BACKUP.asc
 </code></pre></div>
 </div>
 <div class="admonition warning">
@@ -2857,23 +2917,23 @@
 <div class="tabbed-block">
 <div class="admonition example">
 <p class="admonition-title">Export Private Key</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="c1"># Export your private key</span>
-<a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a>gpg<span class="w"> </span>--export-secret-keys<span class="w"> </span>-a<span class="w"> </span>coordinator@institution.edu<span class="w"> </span>&gt;<span class="w"> </span>PRIVATE-KEY-BACKUP.asc
-<a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a>
-<a id="__codelineno-52-4" name="__codelineno-52-4" href="#__codelineno-52-4"></a><span class="c1"># Verify the export</span>
-<a id="__codelineno-52-5" name="__codelineno-52-5" href="#__codelineno-52-5"></a>ls<span class="w"> </span>-lh<span class="w"> </span>PRIVATE-KEY-BACKUP.asc
-<a id="__codelineno-52-6" name="__codelineno-52-6" href="#__codelineno-52-6"></a>file<span class="w"> </span>PRIVATE-KEY-BACKUP.asc
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="c1"># Export your private key</span>
+<a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a>gpg<span class="w"> </span>--export-secret-keys<span class="w"> </span>-a<span class="w"> </span>coordinator@institution.edu<span class="w"> </span>&gt;<span class="w"> </span>PRIVATE-KEY-BACKUP.asc
+<a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a>
+<a id="__codelineno-51-4" name="__codelineno-51-4" href="#__codelineno-51-4"></a><span class="c1"># Verify the export</span>
+<a id="__codelineno-51-5" name="__codelineno-51-5" href="#__codelineno-51-5"></a>ls<span class="w"> </span>-lh<span class="w"> </span>PRIVATE-KEY-BACKUP.asc
+<a id="__codelineno-51-6" name="__codelineno-51-6" href="#__codelineno-51-6"></a>file<span class="w"> </span>PRIVATE-KEY-BACKUP.asc
 </code></pre></div>
 <p><strong>Secure the backup:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="c1"># Move to secure location</span>
-<a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a>mv<span class="w"> </span>PRIVATE-KEY-BACKUP.asc<span class="w"> </span>~/Documents/SecureBackup/
-<a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a>
-<a id="__codelineno-53-4" name="__codelineno-53-4" href="#__codelineno-53-4"></a><span class="c1"># Set strict permissions</span>
-<a id="__codelineno-53-5" name="__codelineno-53-5" href="#__codelineno-53-5"></a>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/Documents/SecureBackup/PRIVATE-KEY-BACKUP.asc
-<a id="__codelineno-53-6" name="__codelineno-53-6" href="#__codelineno-53-6"></a>
-<a id="__codelineno-53-7" name="__codelineno-53-7" href="#__codelineno-53-7"></a><span class="c1"># Optional: Create encrypted disk image</span>
-<a id="__codelineno-53-8" name="__codelineno-53-8" href="#__codelineno-53-8"></a>hdiutil<span class="w"> </span>create<span class="w"> </span>-encryption<span class="w"> </span>AES-256<span class="w"> </span>-size<span class="w"> </span>10m<span class="w"> </span>-volname<span class="w"> </span><span class="s2">&quot;GPG Backup&quot;</span><span class="w"> </span>-fs<span class="w"> </span>HFS+<span class="w"> </span>GPGBackup.dmg
-<a id="__codelineno-53-9" name="__codelineno-53-9" href="#__codelineno-53-9"></a><span class="c1"># Mount and copy backup file to encrypted image</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="c1"># Move to secure location</span>
+<a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a>mv<span class="w"> </span>PRIVATE-KEY-BACKUP.asc<span class="w"> </span>~/Documents/SecureBackup/
+<a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a>
+<a id="__codelineno-52-4" name="__codelineno-52-4" href="#__codelineno-52-4"></a><span class="c1"># Set strict permissions</span>
+<a id="__codelineno-52-5" name="__codelineno-52-5" href="#__codelineno-52-5"></a>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/Documents/SecureBackup/PRIVATE-KEY-BACKUP.asc
+<a id="__codelineno-52-6" name="__codelineno-52-6" href="#__codelineno-52-6"></a>
+<a id="__codelineno-52-7" name="__codelineno-52-7" href="#__codelineno-52-7"></a><span class="c1"># Optional: Create encrypted disk image</span>
+<a id="__codelineno-52-8" name="__codelineno-52-8" href="#__codelineno-52-8"></a>hdiutil<span class="w"> </span>create<span class="w"> </span>-encryption<span class="w"> </span>AES-256<span class="w"> </span>-size<span class="w"> </span>10m<span class="w"> </span>-volname<span class="w"> </span><span class="s2">&quot;GPG Backup&quot;</span><span class="w"> </span>-fs<span class="w"> </span>HFS+<span class="w"> </span>GPGBackup.dmg
+<a id="__codelineno-52-9" name="__codelineno-52-9" href="#__codelineno-52-9"></a><span class="c1"># Mount and copy backup file to encrypted image</span>
 </code></pre></div>
 </div>
 <div class="admonition warning">
@@ -2926,68 +2986,68 @@
 <div class="tabbed-block">
 <div class="admonition example">
 <p class="admonition-title">Restore Keys</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="c1"># Install GPG (if needed)</span>
-<a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>gnupg
-<a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a>
-<a id="__codelineno-54-4" name="__codelineno-54-4" href="#__codelineno-54-4"></a><span class="c1"># Import your private key</span>
-<a id="__codelineno-54-5" name="__codelineno-54-5" href="#__codelineno-54-5"></a>gpg<span class="w"> </span>--import<span class="w"> </span>PRIVATE-KEY-BACKUP.asc
-<a id="__codelineno-54-6" name="__codelineno-54-6" href="#__codelineno-54-6"></a>
-<a id="__codelineno-54-7" name="__codelineno-54-7" href="#__codelineno-54-7"></a><span class="c1"># Import recipient public keys</span>
-<a id="__codelineno-54-8" name="__codelineno-54-8" href="#__codelineno-54-8"></a>gpg<span class="w"> </span>--import<span class="w"> </span>ExamsOffice-PublicKey.asc
-<a id="__codelineno-54-9" name="__codelineno-54-9" href="#__codelineno-54-9"></a>gpg<span class="w"> </span>--import<span class="w"> </span>RegistrarOffice-PublicKey.asc
-<a id="__codelineno-54-10" name="__codelineno-54-10" href="#__codelineno-54-10"></a>
-<a id="__codelineno-54-11" name="__codelineno-54-11" href="#__codelineno-54-11"></a><span class="c1"># Verify imports</span>
-<a id="__codelineno-54-12" name="__codelineno-54-12" href="#__codelineno-54-12"></a>gpg<span class="w"> </span>--list-secret-keys<span class="w">  </span><span class="c1"># Your private key</span>
-<a id="__codelineno-54-13" name="__codelineno-54-13" href="#__codelineno-54-13"></a>gpg<span class="w"> </span>--list-keys<span class="w">         </span><span class="c1"># All public keys</span>
-<a id="__codelineno-54-14" name="__codelineno-54-14" href="#__codelineno-54-14"></a>
-<a id="__codelineno-54-15" name="__codelineno-54-15" href="#__codelineno-54-15"></a><span class="c1"># Set ultimate trust on your own key</span>
-<a id="__codelineno-54-16" name="__codelineno-54-16" href="#__codelineno-54-16"></a>gpg<span class="w"> </span>--edit-key<span class="w"> </span>coordinator@institution.edu
-<a id="__codelineno-54-17" name="__codelineno-54-17" href="#__codelineno-54-17"></a><span class="c1"># At gpg&gt; prompt, type: trust</span>
-<a id="__codelineno-54-18" name="__codelineno-54-18" href="#__codelineno-54-18"></a><span class="c1"># Select: 5 = I trust ultimately</span>
-<a id="__codelineno-54-19" name="__codelineno-54-19" href="#__codelineno-54-19"></a><span class="c1"># Type: quit</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="c1"># Install GPG (if needed)</span>
+<a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>gnupg
+<a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a>
+<a id="__codelineno-53-4" name="__codelineno-53-4" href="#__codelineno-53-4"></a><span class="c1"># Import your private key</span>
+<a id="__codelineno-53-5" name="__codelineno-53-5" href="#__codelineno-53-5"></a>gpg<span class="w"> </span>--import<span class="w"> </span>PRIVATE-KEY-BACKUP.asc
+<a id="__codelineno-53-6" name="__codelineno-53-6" href="#__codelineno-53-6"></a>
+<a id="__codelineno-53-7" name="__codelineno-53-7" href="#__codelineno-53-7"></a><span class="c1"># Import recipient public keys</span>
+<a id="__codelineno-53-8" name="__codelineno-53-8" href="#__codelineno-53-8"></a>gpg<span class="w"> </span>--import<span class="w"> </span>ExamsOffice-PublicKey.asc
+<a id="__codelineno-53-9" name="__codelineno-53-9" href="#__codelineno-53-9"></a>gpg<span class="w"> </span>--import<span class="w"> </span>RegistrarOffice-PublicKey.asc
+<a id="__codelineno-53-10" name="__codelineno-53-10" href="#__codelineno-53-10"></a>
+<a id="__codelineno-53-11" name="__codelineno-53-11" href="#__codelineno-53-11"></a><span class="c1"># Verify imports</span>
+<a id="__codelineno-53-12" name="__codelineno-53-12" href="#__codelineno-53-12"></a>gpg<span class="w"> </span>--list-secret-keys<span class="w">  </span><span class="c1"># Your private key</span>
+<a id="__codelineno-53-13" name="__codelineno-53-13" href="#__codelineno-53-13"></a>gpg<span class="w"> </span>--list-keys<span class="w">         </span><span class="c1"># All public keys</span>
+<a id="__codelineno-53-14" name="__codelineno-53-14" href="#__codelineno-53-14"></a>
+<a id="__codelineno-53-15" name="__codelineno-53-15" href="#__codelineno-53-15"></a><span class="c1"># Set ultimate trust on your own key</span>
+<a id="__codelineno-53-16" name="__codelineno-53-16" href="#__codelineno-53-16"></a>gpg<span class="w"> </span>--edit-key<span class="w"> </span>coordinator@institution.edu
+<a id="__codelineno-53-17" name="__codelineno-53-17" href="#__codelineno-53-17"></a><span class="c1"># At gpg&gt; prompt, type: trust</span>
+<a id="__codelineno-53-18" name="__codelineno-53-18" href="#__codelineno-53-18"></a><span class="c1"># Select: 5 = I trust ultimately</span>
+<a id="__codelineno-53-19" name="__codelineno-53-19" href="#__codelineno-53-19"></a><span class="c1"># Type: quit</span>
 </code></pre></div>
 </div>
 <div class="admonition success">
 <p class="admonition-title">Keys Restored</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="c1"># Test encryption</span>
-<a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Test&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>test.txt
-<a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a>gpg<span class="w"> </span>--encrypt<span class="w"> </span>--recipient<span class="w"> </span>exams@institution.edu<span class="w"> </span>test.txt
-<a id="__codelineno-55-4" name="__codelineno-55-4" href="#__codelineno-55-4"></a>
-<a id="__codelineno-55-5" name="__codelineno-55-5" href="#__codelineno-55-5"></a><span class="c1"># If successful, you&#39;re ready to go!</span>
-<a id="__codelineno-55-6" name="__codelineno-55-6" href="#__codelineno-55-6"></a>rm<span class="w"> </span>test.txt<span class="w"> </span>test.txt.gpg
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="c1"># Test encryption</span>
+<a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Test&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>test.txt
+<a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a>gpg<span class="w"> </span>--encrypt<span class="w"> </span>--recipient<span class="w"> </span>exams@institution.edu<span class="w"> </span>test.txt
+<a id="__codelineno-54-4" name="__codelineno-54-4" href="#__codelineno-54-4"></a>
+<a id="__codelineno-54-5" name="__codelineno-54-5" href="#__codelineno-54-5"></a><span class="c1"># If successful, you&#39;re ready to go!</span>
+<a id="__codelineno-54-6" name="__codelineno-54-6" href="#__codelineno-54-6"></a>rm<span class="w"> </span>test.txt<span class="w"> </span>test.txt.gpg
 </code></pre></div>
 </div>
 </div>
 <div class="tabbed-block">
 <div class="admonition example">
 <p class="admonition-title">Restore Keys</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="c1"># Install GPG (via Homebrew)</span>
-<a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a>brew<span class="w"> </span>install<span class="w"> </span>gnupg
-<a id="__codelineno-56-3" name="__codelineno-56-3" href="#__codelineno-56-3"></a>
-<a id="__codelineno-56-4" name="__codelineno-56-4" href="#__codelineno-56-4"></a><span class="c1"># Import your private key</span>
-<a id="__codelineno-56-5" name="__codelineno-56-5" href="#__codelineno-56-5"></a>gpg<span class="w"> </span>--import<span class="w"> </span>PRIVATE-KEY-BACKUP.asc
-<a id="__codelineno-56-6" name="__codelineno-56-6" href="#__codelineno-56-6"></a>
-<a id="__codelineno-56-7" name="__codelineno-56-7" href="#__codelineno-56-7"></a><span class="c1"># Import recipient public keys</span>
-<a id="__codelineno-56-8" name="__codelineno-56-8" href="#__codelineno-56-8"></a>gpg<span class="w"> </span>--import<span class="w"> </span>ExamsOffice-PublicKey.asc
-<a id="__codelineno-56-9" name="__codelineno-56-9" href="#__codelineno-56-9"></a>
-<a id="__codelineno-56-10" name="__codelineno-56-10" href="#__codelineno-56-10"></a><span class="c1"># Verify imports</span>
-<a id="__codelineno-56-11" name="__codelineno-56-11" href="#__codelineno-56-11"></a>gpg<span class="w"> </span>--list-secret-keys<span class="w">  </span><span class="c1"># Your private key</span>
-<a id="__codelineno-56-12" name="__codelineno-56-12" href="#__codelineno-56-12"></a>gpg<span class="w"> </span>--list-keys<span class="w">         </span><span class="c1"># All public keys</span>
-<a id="__codelineno-56-13" name="__codelineno-56-13" href="#__codelineno-56-13"></a>
-<a id="__codelineno-56-14" name="__codelineno-56-14" href="#__codelineno-56-14"></a><span class="c1"># Set ultimate trust on your own key</span>
-<a id="__codelineno-56-15" name="__codelineno-56-15" href="#__codelineno-56-15"></a>gpg<span class="w"> </span>--edit-key<span class="w"> </span>coordinator@institution.edu
-<a id="__codelineno-56-16" name="__codelineno-56-16" href="#__codelineno-56-16"></a><span class="c1"># At gpg&gt; prompt, type: trust</span>
-<a id="__codelineno-56-17" name="__codelineno-56-17" href="#__codelineno-56-17"></a><span class="c1"># Select: 5 = I trust ultimately</span>
-<a id="__codelineno-56-18" name="__codelineno-56-18" href="#__codelineno-56-18"></a><span class="c1"># Type: quit</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="c1"># Install GPG (via Homebrew)</span>
+<a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a>brew<span class="w"> </span>install<span class="w"> </span>gnupg
+<a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a>
+<a id="__codelineno-55-4" name="__codelineno-55-4" href="#__codelineno-55-4"></a><span class="c1"># Import your private key</span>
+<a id="__codelineno-55-5" name="__codelineno-55-5" href="#__codelineno-55-5"></a>gpg<span class="w"> </span>--import<span class="w"> </span>PRIVATE-KEY-BACKUP.asc
+<a id="__codelineno-55-6" name="__codelineno-55-6" href="#__codelineno-55-6"></a>
+<a id="__codelineno-55-7" name="__codelineno-55-7" href="#__codelineno-55-7"></a><span class="c1"># Import recipient public keys</span>
+<a id="__codelineno-55-8" name="__codelineno-55-8" href="#__codelineno-55-8"></a>gpg<span class="w"> </span>--import<span class="w"> </span>ExamsOffice-PublicKey.asc
+<a id="__codelineno-55-9" name="__codelineno-55-9" href="#__codelineno-55-9"></a>
+<a id="__codelineno-55-10" name="__codelineno-55-10" href="#__codelineno-55-10"></a><span class="c1"># Verify imports</span>
+<a id="__codelineno-55-11" name="__codelineno-55-11" href="#__codelineno-55-11"></a>gpg<span class="w"> </span>--list-secret-keys<span class="w">  </span><span class="c1"># Your private key</span>
+<a id="__codelineno-55-12" name="__codelineno-55-12" href="#__codelineno-55-12"></a>gpg<span class="w"> </span>--list-keys<span class="w">         </span><span class="c1"># All public keys</span>
+<a id="__codelineno-55-13" name="__codelineno-55-13" href="#__codelineno-55-13"></a>
+<a id="__codelineno-55-14" name="__codelineno-55-14" href="#__codelineno-55-14"></a><span class="c1"># Set ultimate trust on your own key</span>
+<a id="__codelineno-55-15" name="__codelineno-55-15" href="#__codelineno-55-15"></a>gpg<span class="w"> </span>--edit-key<span class="w"> </span>coordinator@institution.edu
+<a id="__codelineno-55-16" name="__codelineno-55-16" href="#__codelineno-55-16"></a><span class="c1"># At gpg&gt; prompt, type: trust</span>
+<a id="__codelineno-55-17" name="__codelineno-55-17" href="#__codelineno-55-17"></a><span class="c1"># Select: 5 = I trust ultimately</span>
+<a id="__codelineno-55-18" name="__codelineno-55-18" href="#__codelineno-55-18"></a><span class="c1"># Type: quit</span>
 </code></pre></div>
 </div>
 <div class="admonition success">
 <p class="admonition-title">Keys Restored</p>
 <p>Test the restoration:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Test&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>test.txt
-<a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a>gpg<span class="w"> </span>--encrypt<span class="w"> </span>--recipient<span class="w"> </span>exams@institution.edu<span class="w"> </span>test.txt
-<a id="__codelineno-57-3" name="__codelineno-57-3" href="#__codelineno-57-3"></a>ls<span class="w"> </span>test.txt.gpg<span class="w">  </span><span class="c1"># Should exist</span>
-<a id="__codelineno-57-4" name="__codelineno-57-4" href="#__codelineno-57-4"></a>rm<span class="w"> </span>test.txt<span class="w"> </span>test.txt.gpg
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Test&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>test.txt
+<a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a>gpg<span class="w"> </span>--encrypt<span class="w"> </span>--recipient<span class="w"> </span>exams@institution.edu<span class="w"> </span>test.txt
+<a id="__codelineno-56-3" name="__codelineno-56-3" href="#__codelineno-56-3"></a>ls<span class="w"> </span>test.txt.gpg<span class="w">  </span><span class="c1"># Should exist</span>
+<a id="__codelineno-56-4" name="__codelineno-56-4" href="#__codelineno-56-4"></a>rm<span class="w"> </span>test.txt<span class="w"> </span>test.txt.gpg
 </code></pre></div>
 </div>
 </div>
@@ -3161,35 +3221,25 @@
 <div class="grid cards">
 <ul>
 <li>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> <strong>DO's</strong></p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> <strong>Critical DO's</strong></p>
 <hr />
 <ul>
-<li>✅ Always keep original .zip files as backup</li>
-<li>✅ Use strong passphrases (12+ characters, mixed types)</li>
-<li>✅ Verify recipient's public key fingerprint before first use</li>
-<li>✅ Back up your private key to secure, offline storage</li>
-<li>✅ Sign and encrypt important exam submissions</li>
-<li>✅ Use .zip compression before encryption</li>
-<li>✅ Test the entire process before deadline pressure</li>
-<li>✅ Store backups in multiple secure locations</li>
-<li>✅ Update GPG software regularly</li>
-<li>✅ Keep a submission log for tracking</li>
+<li>✅ <strong>Always keep original .zip files</strong> - You can't decrypt your own .gpg files!</li>
+<li>✅ <strong>Use .ZIP format only</strong> - Universal compatibility (not RAR/7z)</li>
+<li>✅ <strong>Back up your private key</strong> - Secure, offline storage</li>
+<li>✅ <strong>Verify recipient's key fingerprint</strong> - Ensure authenticity</li>
+<li>✅ <strong>Test before deadline</strong> - Practice the process when not under pressure</li>
 </ul>
 </li>
 <li>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2c5.53 0 10 4.47 10 10s-4.47 10-10 10S2 17.53 2 12 6.47 2 12 2m3.59 5L12 10.59 8.41 7 7 8.41 10.59 12 7 15.59 8.41 17 12 13.41 15.59 17 17 15.59 13.41 12 17 8.41z"/></svg></span> <strong>DON'Ts</strong></p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2c5.53 0 10 4.47 10 10s-4.47 10-10 10S2 17.53 2 12 6.47 2 12 2m3.59 5L12 10.59 8.41 7 7 8.41 10.59 12 7 15.59 8.41 17 12 13.41 15.59 17 17 15.59 13.41 12 17 8.41z"/></svg></span> <strong>Critical DON'Ts</strong></p>
 <hr />
 <ul>
-<li>❌ Never share your private key with anyone</li>
-<li>❌ Don't email your private key backup</li>
-<li>❌ Don't delete original files after encryption</li>
-<li>❌ Don't reuse weak passphrases</li>
-<li>❌ Don't skip verifying key fingerprints</li>
-<li>❌ Don't forget to import recipient's key first</li>
-<li>❌ Don't assume you can decrypt what you encrypted for others</li>
-<li>❌ Don't store private key backups unencrypted in cloud</li>
-<li>❌ Don't use the same key for personal and professional use</li>
-<li>❌ Don't ignore GPG security updates</li>
+<li>❌ <strong>Never share your private key</strong> - Not with anyone, ever!</li>
+<li>❌ <strong>Don't delete originals after encrypting</strong> - You'll need them!</li>
+<li>❌ <strong>Don't forget you can't decrypt what you encrypt</strong> - Only recipient can</li>
+<li>❌ <strong>Don't store private keys unencrypted</strong> - Even in cloud backups</li>
+<li>❌ <strong>Don't skip importing recipient's key</strong> - Must have it before encrypting</li>
 </ul>
 </li>
 </ul>
@@ -3232,14 +3282,14 @@
 </ol>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="c1"># Install GPG</span>
-<a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>gnupg<span class="w">  </span><span class="c1"># Ubuntu/Debian</span>
-<a id="__codelineno-58-3" name="__codelineno-58-3" href="#__codelineno-58-3"></a>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>gnupg2<span class="w">  </span><span class="c1"># Fedora</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="c1"># Install GPG</span>
+<a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>gnupg<span class="w">  </span><span class="c1"># Ubuntu/Debian</span>
+<a id="__codelineno-57-3" name="__codelineno-57-3" href="#__codelineno-57-3"></a>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>gnupg2<span class="w">  </span><span class="c1"># Fedora</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a>brew<span class="w"> </span>install<span class="w"> </span>gnupg
-<a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a><span class="c1"># Or reinstall: brew reinstall gnupg</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a>brew<span class="w"> </span>install<span class="w"> </span>gnupg
+<a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a><span class="c1"># Or reinstall: brew reinstall gnupg</span>
 </code></pre></div>
 </div>
 </div>
@@ -3268,15 +3318,15 @@
 <li>File remains encrypted - safe to share link</li>
 </ol>
 <p><strong>Option 2: Split Large Files</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="c1"># Split encrypted file into parts</span>
-<a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a>split<span class="w"> </span>-b<span class="w"> </span>20M<span class="w"> </span>exam.zip.gpg<span class="w"> </span>exam.zip.gpg.part-
-<a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a>
-<a id="__codelineno-60-4" name="__codelineno-60-4" href="#__codelineno-60-4"></a><span class="c1"># Creates: exam.zip.gpg.part-aa, exam.zip.gpg.part-ab, etc.</span>
-<a id="__codelineno-60-5" name="__codelineno-60-5" href="#__codelineno-60-5"></a><span class="c1"># Email each part separately</span>
-<a id="__codelineno-60-6" name="__codelineno-60-6" href="#__codelineno-60-6"></a>
-<a id="__codelineno-60-7" name="__codelineno-60-7" href="#__codelineno-60-7"></a><span class="c1"># Recipient reassembles:</span>
-<a id="__codelineno-60-8" name="__codelineno-60-8" href="#__codelineno-60-8"></a>cat<span class="w"> </span>exam.zip.gpg.part-*<span class="w"> </span>&gt;<span class="w"> </span>exam.zip.gpg
-<a id="__codelineno-60-9" name="__codelineno-60-9" href="#__codelineno-60-9"></a>gpg<span class="w"> </span>--decrypt<span class="w"> </span>exam.zip.gpg<span class="w"> </span>&gt;<span class="w"> </span>exam.zip
+<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="c1"># Split encrypted file into parts</span>
+<a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a>split<span class="w"> </span>-b<span class="w"> </span>20M<span class="w"> </span>exam.zip.gpg<span class="w"> </span>exam.zip.gpg.part-
+<a id="__codelineno-59-3" name="__codelineno-59-3" href="#__codelineno-59-3"></a>
+<a id="__codelineno-59-4" name="__codelineno-59-4" href="#__codelineno-59-4"></a><span class="c1"># Creates: exam.zip.gpg.part-aa, exam.zip.gpg.part-ab, etc.</span>
+<a id="__codelineno-59-5" name="__codelineno-59-5" href="#__codelineno-59-5"></a><span class="c1"># Email each part separately</span>
+<a id="__codelineno-59-6" name="__codelineno-59-6" href="#__codelineno-59-6"></a>
+<a id="__codelineno-59-7" name="__codelineno-59-7" href="#__codelineno-59-7"></a><span class="c1"># Recipient reassembles:</span>
+<a id="__codelineno-59-8" name="__codelineno-59-8" href="#__codelineno-59-8"></a>cat<span class="w"> </span>exam.zip.gpg.part-*<span class="w"> </span>&gt;<span class="w"> </span>exam.zip.gpg
+<a id="__codelineno-59-9" name="__codelineno-59-9" href="#__codelineno-59-9"></a>gpg<span class="w"> </span>--decrypt<span class="w"> </span>exam.zip.gpg<span class="w"> </span>&gt;<span class="w"> </span>exam.zip
 </code></pre></div>
 </details>
 <details class="warning">
@@ -3284,14 +3334,14 @@
 <p><strong>Problem:</strong> GPG cannot verify the authenticity of the imported key.</p>
 <p><strong>Solution:</strong></p>
 <p><strong>Option 1: Bypass with trust flag</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a>gpg<span class="w"> </span>--trust-model<span class="w"> </span>always<span class="w"> </span>--encrypt<span class="w"> </span>--recipient<span class="w"> </span>email@domain.edu<span class="w"> </span>file
+<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a>gpg<span class="w"> </span>--trust-model<span class="w"> </span>always<span class="w"> </span>--encrypt<span class="w"> </span>--recipient<span class="w"> </span>email@domain.edu<span class="w"> </span>file
 </code></pre></div>
 <p><strong>Option 2: Manually trust the key</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a>gpg<span class="w"> </span>--edit-key<span class="w"> </span>email@domain.edu
-<a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a><span class="c1"># At gpg&gt; prompt:</span>
-<a id="__codelineno-62-3" name="__codelineno-62-3" href="#__codelineno-62-3"></a>trust
-<a id="__codelineno-62-4" name="__codelineno-62-4" href="#__codelineno-62-4"></a><span class="c1"># Select: 4 = I trust fully (or 5 = I trust ultimately)</span>
-<a id="__codelineno-62-5" name="__codelineno-62-5" href="#__codelineno-62-5"></a>quit
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a>gpg<span class="w"> </span>--edit-key<span class="w"> </span>email@domain.edu
+<a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a><span class="c1"># At gpg&gt; prompt:</span>
+<a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a>trust
+<a id="__codelineno-61-4" name="__codelineno-61-4" href="#__codelineno-61-4"></a><span class="c1"># Select: 4 = I trust fully (or 5 = I trust ultimately)</span>
+<a id="__codelineno-61-5" name="__codelineno-61-5" href="#__codelineno-61-5"></a>quit
 </code></pre></div>
 <p><strong>Option 3: Verify and sign the key</strong></p>
 <ol>
@@ -3306,14 +3356,14 @@
 <div class="tabbed-set tabbed-alternate" data-tabs="16:2"><input checked="checked" id="__tabbed_16_1" name="__tabbed_16" type="radio" /><input id="__tabbed_16_2" name="__tabbed_16" type="radio" /><div class="tabbed-labels"><label for="__tabbed_16_1">Linux/Mac</label><label for="__tabbed_16_2">Windows</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a><span class="c1"># Fix GPG directory permissions</span>
-<a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a>chmod<span class="w"> </span><span class="m">700</span><span class="w"> </span>~/.gnupg
-<a id="__codelineno-63-3" name="__codelineno-63-3" href="#__codelineno-63-3"></a>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/.gnupg/*
-<a id="__codelineno-63-4" name="__codelineno-63-4" href="#__codelineno-63-4"></a>chmod<span class="w"> </span><span class="m">700</span><span class="w"> </span>~/.gnupg/*.d
-<a id="__codelineno-63-5" name="__codelineno-63-5" href="#__codelineno-63-5"></a>
-<a id="__codelineno-63-6" name="__codelineno-63-6" href="#__codelineno-63-6"></a><span class="c1"># Fix key files</span>
-<a id="__codelineno-63-7" name="__codelineno-63-7" href="#__codelineno-63-7"></a>find<span class="w"> </span>~/.gnupg<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-exec<span class="w"> </span>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
-<a id="__codelineno-63-8" name="__codelineno-63-8" href="#__codelineno-63-8"></a>find<span class="w"> </span>~/.gnupg<span class="w"> </span>-type<span class="w"> </span>d<span class="w"> </span>-exec<span class="w"> </span>chmod<span class="w"> </span><span class="m">700</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="c1"># Fix GPG directory permissions</span>
+<a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a>chmod<span class="w"> </span><span class="m">700</span><span class="w"> </span>~/.gnupg
+<a id="__codelineno-62-3" name="__codelineno-62-3" href="#__codelineno-62-3"></a>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/.gnupg/*
+<a id="__codelineno-62-4" name="__codelineno-62-4" href="#__codelineno-62-4"></a>chmod<span class="w"> </span><span class="m">700</span><span class="w"> </span>~/.gnupg/*.d
+<a id="__codelineno-62-5" name="__codelineno-62-5" href="#__codelineno-62-5"></a>
+<a id="__codelineno-62-6" name="__codelineno-62-6" href="#__codelineno-62-6"></a><span class="c1"># Fix key files</span>
+<a id="__codelineno-62-7" name="__codelineno-62-7" href="#__codelineno-62-7"></a>find<span class="w"> </span>~/.gnupg<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-exec<span class="w"> </span>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
+<a id="__codelineno-62-8" name="__codelineno-62-8" href="#__codelineno-62-8"></a>find<span class="w"> </span>~/.gnupg<span class="w"> </span>-type<span class="w"> </span>d<span class="w"> </span>-exec<span class="w"> </span>chmod<span class="w"> </span><span class="m">700</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -3341,14 +3391,14 @@
 <li>[ ] Try re-encrypting with explicit --armor flag</li>
 </ul>
 <p><strong>Debug test:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a><span class="c1"># Create test file</span>
-<a id="__codelineno-64-2" name="__codelineno-64-2" href="#__codelineno-64-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Test message&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>test.txt
-<a id="__codelineno-64-3" name="__codelineno-64-3" href="#__codelineno-64-3"></a>
-<a id="__codelineno-64-4" name="__codelineno-64-4" href="#__codelineno-64-4"></a><span class="c1"># Encrypt</span>
-<a id="__codelineno-64-5" name="__codelineno-64-5" href="#__codelineno-64-5"></a>gpg<span class="w"> </span>--armor<span class="w"> </span>--encrypt<span class="w"> </span>--recipient<span class="w"> </span>exams@institution.edu<span class="w"> </span>test.txt
-<a id="__codelineno-64-6" name="__codelineno-64-6" href="#__codelineno-64-6"></a>
-<a id="__codelineno-64-7" name="__codelineno-64-7" href="#__codelineno-64-7"></a><span class="c1"># Send test.txt.asc to recipient</span>
-<a id="__codelineno-64-8" name="__codelineno-64-8" href="#__codelineno-64-8"></a><span class="c1"># If they can decrypt this, issue is with your original file</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a><span class="c1"># Create test file</span>
+<a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Test message&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>test.txt
+<a id="__codelineno-63-3" name="__codelineno-63-3" href="#__codelineno-63-3"></a>
+<a id="__codelineno-63-4" name="__codelineno-63-4" href="#__codelineno-63-4"></a><span class="c1"># Encrypt</span>
+<a id="__codelineno-63-5" name="__codelineno-63-5" href="#__codelineno-63-5"></a>gpg<span class="w"> </span>--armor<span class="w"> </span>--encrypt<span class="w"> </span>--recipient<span class="w"> </span>exams@institution.edu<span class="w"> </span>test.txt
+<a id="__codelineno-63-6" name="__codelineno-63-6" href="#__codelineno-63-6"></a>
+<a id="__codelineno-63-7" name="__codelineno-63-7" href="#__codelineno-63-7"></a><span class="c1"># Send test.txt.asc to recipient</span>
+<a id="__codelineno-63-8" name="__codelineno-63-8" href="#__codelineno-63-8"></a><span class="c1"># If they can decrypt this, issue is with your original file</span>
 </code></pre></div>
 </details>
 <hr />
@@ -3536,6 +3586,8 @@
         <script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6590816372910687"></script>
       
         <script src="../../javascripts/tawk.js"></script>
+      
+        <script src="../../javascripts/copyright.js"></script>
       
     
   </body>

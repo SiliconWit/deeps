@@ -37,13 +37,13 @@ Secure guide for encrypting sensitive exam materials (scoresheets, question pape
 </div>
 
 !!! tip "Simple Analogy"
-    ```
-    OpenPGP = The PDF format standard
-    GPG/Gpg4win/GPG Suite = Your PDF reader
-    .gpg file = The encrypted document
-    ```
+    **Think of it like documents:**
 
-    All OpenPGP-compatible tools work together - files encrypted with one can be decrypted by any other.
+    - **OpenPGP** = The standard way to write documents (like "use A4 paper")
+    - **GPG/Gpg4win/GPG Suite** = The pen you use to write (different brands, same result)
+    - **.gpg file** = The locked document (same lock, different keys to open it)
+
+    **All OpenPGP tools are compatible** - A file encrypted with GPG on Linux can be decrypted with Gpg4win on Windows or GPG Suite on Mac. They all speak the same "language."
 
 ---
 
@@ -55,22 +55,27 @@ Secure guide for encrypting sensitive exam materials (scoresheets, question pape
     - **Public Key** = The mailbox slot (anyone can drop mail in)
     - **Private Key** = The mailbox key (only you can retrieve mail)
 
-<div class="annotate" markdown>
+**Visual Process:**
 
-```mermaid
-graph LR
-    A[Your Computer] -->|Get their public key| B[Recipient's Public Key]
-    A -->|Encrypt exam files| C[Encrypted .gpg file]
-    B -.->|Used to encrypt| C
-    C -->|Email safely| D[Recipient]
-    D -->|Decrypt with private key| E[Original Files]
-
-    style A fill:#e3f2fd
-    style C fill:#fff3e0
-    style E fill:#e8f5e9
 ```
-
-</div>
+┌──────────────────────────────────────────────────────────────────────┐
+│                                                                        │
+│  YOU                         ENCRYPTION                  RECIPIENT    │
+│  ↓                               ↓                           ↓        │
+│                                                                        │
+│  1. Get recipient's      2. Encrypt exam files      3. Decrypt with   │
+│     public key               with their public         their private  │
+│                              key                       key            │
+│  ┌─────────┐              ┌──────────────┐          ┌─────────┐     │
+│  │ 🔑 Key  │──────────────▶│ 📦 exam.zip  │─────────▶│ 🔓 Open │     │
+│  │ (theirs)│              │      ↓        │          │         │     │
+│  └─────────┘              │ exam.zip.gpg │          └─────────┘     │
+│                           └──────────────┘                            │
+│                                  ↓                                    │
+│                           📧 Email safely                             │
+│                                                                        │
+└──────────────────────────────────────────────────────────────────────┘
+```
 
 ### :material-account-multiple: Sender vs Recipient
 
@@ -129,25 +134,45 @@ graph LR
     Organize         Keep backup!
     ```
 
-**Step-by-Step Flow:**
+**Detailed Step-by-Step Flow:**
 
-```mermaid
-flowchart TD
-    A[📁 Organize Exam Files] --> B[🗜️ Create ZIP Archive]
-    B --> C[💾 Save ZIP as Backup]
-    C --> D[🔑 Get Recipient's Public Key]
-    D --> E[🔐 Encrypt ZIP → .gpg file]
-    E --> F[📧 Email .gpg to Recipient]
-    F --> G[🗑️ Optional: Delete .gpg after confirming delivery]
-    C -.->|Always Keep!| H[💾 Secure Storage]
-
-    style A fill:#e3f2fd
-    style B fill:#e1f5fe
-    style C fill:#fff9c4
-    style D fill:#f3e5f5
-    style E fill:#fff3e0
-    style F fill:#e8f5e9
-    style H fill:#ffebee
+```
+    ┌──────────────────────┐
+    │ 1. Organize Exam     │
+    │    Files (PDF/DOCX)  │
+    └──────────┬───────────┘
+               ↓
+    ┌──────────────────────┐
+    │ 2. Create ZIP        │  ⚠️  Use .ZIP only (universal format)
+    │    Archive           │      Don't use .RAR, .7z, or other formats
+    └──────────┬───────────┘
+               ↓
+    ┌──────────────────────┐
+    │ 3. SAVE ZIP BACKUP   │  ⭐ CRITICAL: Keep this file safe!
+    │    (You can't decrypt│     You cannot decrypt the .gpg later
+    │     your .gpg file!)  │
+    └──────────┬───────────┘
+               ↓
+    ┌──────────────────────┐
+    │ 4. Get Recipient's   │
+    │    Public Key (.asc) │
+    └──────────┬───────────┘
+               ↓
+    ┌──────────────────────┐
+    │ 5. Encrypt ZIP       │  Creates: exam.zip.gpg
+    │    → .gpg file       │
+    └──────────┬───────────┘
+               ↓
+    ┌──────────────────────┐
+    │ 6. Email Both Files: │  📎 Attach TWO files:
+    │    • exam.zip.gpg    │     1. exam.zip.gpg (encrypted)
+    │    • your-public.asc │     2. your-public-key.asc (for replies)
+    └──────────┬───────────┘
+               ↓
+    ┌──────────────────────┐
+    │ 7. Recipient Decrypts│
+    │    with Private Key  │
+    └──────────────────────┘
 ```
 
 ---
@@ -552,6 +577,18 @@ Now let's encrypt your exam materials for secure transmission.
 
 Combine all exam files into a single compressed archive.
 
+!!! warning "Use ZIP Format Only"
+    **Always use .ZIP format** - it's universally supported on all platforms (Windows, Mac, Linux) without additional software.
+
+    **Do NOT use:**
+
+    - ❌ .RAR (requires WinRAR)
+    - ❌ .7z (requires 7-Zip)
+    - ❌ .tar.gz (Linux-specific, confusing on Windows)
+    - ❌ Other proprietary formats
+
+    **Why ZIP?** Built into every operating system, guaranteed to work everywhere, exam offices can open it without installing extra software.
+
 === ":fontawesome-brands-windows: Windows"
     !!! example "Create ZIP File"
         === "File Explorer Method"
@@ -779,22 +816,42 @@ Now encrypt the zip file so only the recipient can open it.
 
     Please find attached the encrypted examination materials for MSc December 2025.
 
+    Attachments:
+    1. MSc-Exams-Dec2025.zip.gpg (encrypted exam files)
+    2. MyPublicKey.asc (my public key for your replies)
+
     Contents:
     - Question papers (5 courses)
     - Marking schemes
     - Answer keys
 
-    Please confirm receipt.
+    Please confirm receipt and use my public key if you need to send
+    encrypted materials back to me.
 
     Best regards,
     [Your Name]
     [Your Department]
     ```
 
-    **3. Attach Encrypted File**
+    **3. Attach Files**
 
-    - Attach: `MSc-Exams-Dec2025.zip.gpg` (encrypted file only)
-    - :material-close: Do NOT attach the original .zip
+    Attach **TWO files**:
+
+    1. :material-file-lock: `MSc-Exams-Dec2025.zip.gpg` (the encrypted exams)
+    2. :material-key: `MyPublicKey.asc` (your public key - so they can send encrypted replies to you)
+
+    !!! tip "Why attach your public key?"
+        Including your public key allows the exam office to:
+
+        - Send encrypted confirmation back to you
+        - Send encrypted score reports or feedback
+        - Avoid having to request your key later
+
+        **Your public key is safe to share** - it can only encrypt, not decrypt.
+
+    **Do NOT attach:**
+
+    - :material-close: The original .zip file (keep this as backup)
 
     **4. Send**
 
@@ -1355,35 +1412,25 @@ Let's walk through a real-world scenario from start to finish.
 
 <div class="grid cards" markdown>
 
--   :material-check-circle: **DO's**
+-   :material-check-circle: **Critical DO's**
 
     ---
 
-    - ✅ Always keep original .zip files as backup
-    - ✅ Use strong passphrases (12+ characters, mixed types)
-    - ✅ Verify recipient's public key fingerprint before first use
-    - ✅ Back up your private key to secure, offline storage
-    - ✅ Sign and encrypt important exam submissions
-    - ✅ Use .zip compression before encryption
-    - ✅ Test the entire process before deadline pressure
-    - ✅ Store backups in multiple secure locations
-    - ✅ Update GPG software regularly
-    - ✅ Keep a submission log for tracking
+    - ✅ **Always keep original .zip files** - You can't decrypt your own .gpg files!
+    - ✅ **Use .ZIP format only** - Universal compatibility (not RAR/7z)
+    - ✅ **Back up your private key** - Secure, offline storage
+    - ✅ **Verify recipient's key fingerprint** - Ensure authenticity
+    - ✅ **Test before deadline** - Practice the process when not under pressure
 
--   :material-close-circle: **DON'Ts**
+-   :material-close-circle: **Critical DON'Ts**
 
     ---
 
-    - ❌ Never share your private key with anyone
-    - ❌ Don't email your private key backup
-    - ❌ Don't delete original files after encryption
-    - ❌ Don't reuse weak passphrases
-    - ❌ Don't skip verifying key fingerprints
-    - ❌ Don't forget to import recipient's key first
-    - ❌ Don't assume you can decrypt what you encrypted for others
-    - ❌ Don't store private key backups unencrypted in cloud
-    - ❌ Don't use the same key for personal and professional use
-    - ❌ Don't ignore GPG security updates
+    - ❌ **Never share your private key** - Not with anyone, ever!
+    - ❌ **Don't delete originals after encrypting** - You'll need them!
+    - ❌ **Don't forget you can't decrypt what you encrypt** - Only recipient can
+    - ❌ **Don't store private keys unencrypted** - Even in cloud backups
+    - ❌ **Don't skip importing recipient's key** - Must have it before encrypting
 
 </div>
 
