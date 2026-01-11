@@ -54,6 +54,7 @@ nav:
     - Processing Exams: user-guide/processing.md
     - Generating Reports: user-guide/reports.md
     - Data Security: user-guide/security.md
+    - Encrypting Documents: user-guide/encrypting-documents.md
   - Features:
     - Core Capabilities: features/capabilities.md
     - Academic Workflow: features/workflow.md
