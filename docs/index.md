@@ -1,6 +1,6 @@
 # DEEPS: Departmental Exams Processing Spreadsheet-based System
 
-**DEEPS** (Departmental Exams Processing Spreadsheet-based System) is an initiative by **[SiliconWit](https://siliconwit.com)** to provide low-income educational institutions with an affordable, transparent exam processing solution. A small maintenance fee applies.
+**DEEPS** (Departmental Exams Processing Spreadsheet-based System) is an initiative by **[SiliconWit](https://siliconwit.com)** to provide low-income educational institutions with an affordable, transparent exam processing solution. DEEPS is donation-supported software.
 
 **Professional Academic Data Management for Educational Institutions**
 
@@ -150,9 +150,9 @@ Ready to get started? Follow these simple steps:
 
     DEEPS is currently in development and testing phase using dummy data only. This is a personal research project to explore simplified academic data processing approaches.
 
-!!! info "Free for Educational Use"
+!!! info "Donation-Supported Software"
 
-    DEEPS is provided **free of charge** to educational institutions worldwide. Our mission is to improve academic data management while ensuring student privacy.
+    DEEPS is **donation-supported** software for educational institutions worldwide. Users who support SiliconWit receive credentials to activate the application. Our mission is to improve academic data management while ensuring student privacy. Visit [siliconwit.com/donate](https://siliconwit.com/donate) to support DEEPS development.
 
 !!! warning "Important Notice"
 
