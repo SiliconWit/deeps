@@ -55,26 +55,18 @@ Secure guide for encrypting sensitive exam materials (scoresheets, question pape
     - **Public Key** = The mailbox slot (anyone can drop mail in)
     - **Private Key** = The mailbox key (only you can retrieve mail)
 
-**Visual Process:**
+**How Encryption Works:**
 
 ```
-┌──────────────────────────────────────────────────────────────────────┐
-│                                                                        │
-│  YOU                         ENCRYPTION                  RECIPIENT    │
-│  ↓                               ↓                           ↓        │
-│                                                                        │
-│  1. Get recipient's      2. Encrypt exam files      3. Decrypt with   │
-│     public key               with their public         their private  │
-│                              key                       key            │
-│  ┌─────────┐              ┌──────────────┐          ┌─────────┐     │
-│  │ 🔑 Key  │──────────────▶│ 📦 exam.zip  │─────────▶│ 🔓 Open │     │
-│  │ (theirs)│              │      ↓        │          │         │     │
-│  └─────────┘              │ exam.zip.gpg │          └─────────┘     │
-│                           └──────────────┘                            │
-│                                  ↓                                    │
-│                           📧 Email safely                             │
-│                                                                        │
-└──────────────────────────────────────────────────────────────────────┘
+        YOU                           EXAM OFFICE
+         ↓                                 ↓
+
+    🔑 Get their          📦 Encrypt with      📧 Email        🔓 They decrypt
+    public key      →     their public key →   .gpg file  →   with private key
+
+                          exam.zip  →  exam.zip.gpg  →  [Email]  →  exam.zip
+
+                          ⚠️ You CANNOT decrypt .gpg - keep original .zip!
 ```
 
 ### :material-account-multiple: Sender vs Recipient
@@ -134,46 +126,17 @@ Secure guide for encrypting sensitive exam materials (scoresheets, question pape
     Organize         Keep backup!
     ```
 
-**Detailed Step-by-Step Flow:**
+**Step-by-Step Instructions:**
 
-```
-    ┌──────────────────────┐
-    │ 1. Organize Exam     │
-    │    Files (PDF/DOCX)  │
-    └──────────┬───────────┘
-               ↓
-    ┌──────────────────────┐
-    │ 2. Create ZIP        │  ⚠️  Use .ZIP only (universal format)
-    │    Archive           │      Don't use .RAR, .7z, or other formats
-    └──────────┬───────────┘
-               ↓
-    ┌──────────────────────┐
-    │ 3. SAVE ZIP BACKUP   │  ⭐ CRITICAL: Keep this file safe!
-    │    (You can't decrypt│     You cannot decrypt the .gpg later
-    │     your .gpg file!)  │
-    └──────────┬───────────┘
-               ↓
-    ┌──────────────────────┐
-    │ 4. Get Recipient's   │
-    │    Public Key (.asc) │
-    └──────────┬───────────┘
-               ↓
-    ┌──────────────────────┐
-    │ 5. Encrypt ZIP       │  Creates: exam.zip.gpg
-    │    → .gpg file       │
-    └──────────┬───────────┘
-               ↓
-    ┌──────────────────────┐
-    │ 6. Email Both Files: │  📎 Attach TWO files:
-    │    • exam.zip.gpg    │     1. exam.zip.gpg (encrypted)
-    │    • your-public.asc │     2. your-public-key.asc (for replies)
-    └──────────┬───────────┘
-               ↓
-    ┌──────────────────────┐
-    │ 7. Recipient Decrypts│
-    │    with Private Key  │
-    └──────────────────────┘
-```
+| Step | Action | Important Notes |
+|:----:|--------|-----------------|
+| **1** | Organize exam files (PDF/DOCX) | Collect all materials in one folder |
+| **2** | Create .ZIP archive | ⚠️ Use .ZIP only (universal format)<br>Don't use .RAR, .7z, or other formats |
+| **3** | **SAVE ZIP BACKUP** | ⭐ **CRITICAL**: Keep this safe!<br>You cannot decrypt the .gpg later |
+| **4** | Import recipient's public key | Get their .asc file and import it |
+| **5** | Encrypt ZIP → .gpg file | Creates: `exam.zip.gpg` |
+| **6** | Email both files | 📎 Attach TWO files:<br>• `exam.zip.gpg` (encrypted exams)<br>• `your-public-key.asc` (for replies) |
+| **7** | Recipient decrypts | They use their private key to open |
 
 ---
 
