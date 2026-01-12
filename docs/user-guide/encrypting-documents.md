@@ -12,7 +12,9 @@ Secure guide for encrypting sensitive exam materials (scoresheets, question pape
 **Core Capabilities:**
 
 :material-shield-lock: **Encrypt files** - Make content unreadable to everyone except intended recipient
+
 :material-shield-check: **Sign files** - Prove authenticity and detect tampering
+
 :material-key-chain: **Key pairs** - You encrypt with recipient's public key, they decrypt with their private key
 
 ### :material-help-circle-outline: Understanding the Terminology
