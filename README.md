@@ -163,6 +163,6 @@ DEEPS is provided as-is. SiliconWit assumes no liability for any errors, omissio
 ## Support
 
 For technical issues, questions, or contributions:
-- **Technical Support**: Contact Dr. Sam at [sam@siliconwit.com](mailto:sam@siliconwit.com)
+- **Technical Support**: Contact SiliconWit Lab at [lab@siliconwit.com](mailto:lab@siliconwit.com)
 - **GitHub Issues**: Visit the [GitHub repository](https://github.com/SiliconWit/deeps)
 - **Website**: [https://siliconwit.com](https://siliconwit.com)
