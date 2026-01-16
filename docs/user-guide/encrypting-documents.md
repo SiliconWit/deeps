@@ -7,7 +7,7 @@ Secure guide for encrypting sensitive exam materials (scoresheets, question pape
 ## :material-lock-question: What is OpenPGP?
 
 !!! info "OpenPGP in 30 Seconds"
-    OpenPGP is an encryption standard that creates a **digital lock** only the recipient can open. You lock files with their **public key**, they unlock with their **private key**. Like sending a locked box where only they have the key.
+    OpenPGP is an encryption standard that lets you lock files using the recipient’s public key. **Only the recipient can unlock** those files using their private key. You do not have the key, and no one else does. This is like placing documents in a box and locking it with the recipient’s padlock. Anyone can lock the box, but only the recipient, who owns the padlock, has the key to open it.
 
 **Core Capabilities:**
 
