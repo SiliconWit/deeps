@@ -82,7 +82,7 @@ Secure guide for encrypting sensitive exam materials (scoresheets, question pape
     **Your Keys:**
 
     - :material-key-variant: Private Key (keep secret)
-    - :material-key: Public Key (share freely)
+    - :material-lock-open: Public Key (share freely)
 
     **Your Actions:**
 
@@ -98,7 +98,7 @@ Secure guide for encrypting sensitive exam materials (scoresheets, question pape
     **Their Keys:**
 
     - :material-key-variant: Private Key (they keep secret)
-    - :material-key: Public Key (they share with you)
+    - :material-lock-open: Public Key (they share with you)
 
     **Their Actions:**
 
