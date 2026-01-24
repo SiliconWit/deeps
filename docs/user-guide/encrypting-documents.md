@@ -831,6 +831,143 @@ Now encrypt the zip file so only the recipient can open it.
 
 ---
 
+## :material-lock-open: Decrypting Documents
+
+When someone sends YOU an encrypted file (using your public key), here's how to decrypt it.
+
+!!! info "Prerequisites"
+    - You must have your **private key** on this computer
+    - The file was encrypted with **your public key**
+    - You know your **passphrase**
+
+### :material-numeric-1-circle: Decrypt the File
+
+=== ":fontawesome-brands-windows: Windows (Kleopatra)"
+    !!! example "Decrypt with Kleopatra"
+        **1. Start Decryption**
+
+        - Click **Decrypt/Verify...** button (top toolbar)
+        - Or: File → Decrypt/Verify Files
+
+        **2. Select Encrypted File**
+
+        - Browse and select the `.gpg` file (e.g., `Results-Dec2025.zip.gpg`)
+        - Click **Open**
+
+        **3. Enter Passphrase**
+
+        - Enter your private key passphrase when prompted
+        - Click **OK**
+
+        **4. Choose Output Location**
+
+        - Select where to save the decrypted file
+        - Default: Same folder, without `.gpg` extension
+
+    !!! success "File Decrypted"
+        The original file (e.g., `Results-Dec2025.zip`) is now available.
+
+=== ":fontawesome-brands-ubuntu: Ubuntu/Linux"
+    !!! example "Decrypt via Command Line"
+        **Basic decryption:**
+
+        ```bash
+        gpg --decrypt Results-Dec2025.zip.gpg > Results-Dec2025.zip
+        ```
+
+        **Or let GPG choose the filename:**
+
+        ```bash
+        gpg --output Results-Dec2025.zip --decrypt Results-Dec2025.zip.gpg
+        ```
+
+        **Interactive decryption (prompts for output):**
+
+        ```bash
+        gpg Results-Dec2025.zip.gpg
+        ```
+
+        You'll be prompted for your passphrase.
+
+    !!! success "File Decrypted"
+        ```bash
+        ls -lh Results-Dec2025.zip
+        # Should show the decrypted file
+        ```
+
+=== ":fontawesome-brands-apple: macOS"
+    !!! example "Decrypt via Command Line"
+        **Basic decryption:**
+
+        ```bash
+        gpg --decrypt Results-Dec2025.zip.gpg > Results-Dec2025.zip
+        ```
+
+        **Or with explicit output:**
+
+        ```bash
+        gpg --output Results-Dec2025.zip --decrypt Results-Dec2025.zip.gpg
+        ```
+
+        You'll be prompted for your passphrase.
+
+    !!! success "File Decrypted"
+        The decrypted file is ready to use.
+
+---
+
+### :material-numeric-2-circle: Extract the Contents
+
+After decryption, you'll have a `.zip` file. Extract it:
+
+=== ":fontawesome-brands-windows: Windows"
+    - Right-click the `.zip` file
+    - Select **Extract All...**
+    - Choose destination folder
+    - Click **Extract**
+
+=== ":fontawesome-brands-ubuntu: Ubuntu/Linux"
+    ```bash
+    unzip Results-Dec2025.zip
+    ```
+
+=== ":fontawesome-brands-apple: macOS"
+    - Double-click the `.zip` file (auto-extracts)
+    - Or via Terminal: `unzip Results-Dec2025.zip`
+
+---
+
+### :material-shield-check: Verify Signature (Optional)
+
+If the sender signed the file, verify their identity:
+
+=== ":fontawesome-brands-windows: Windows (Kleopatra)"
+    When decrypting a signed file, Kleopatra automatically shows:
+
+    - :material-check-circle: **Good signature** - File is authentic
+    - :material-alert-circle: **Unknown signature** - Sender's key not imported
+    - :material-close-circle: **Bad signature** - File may be tampered
+
+=== ":fontawesome-brands-ubuntu: Ubuntu/Linux"
+    ```bash
+    gpg --verify Results-Dec2025.zip.gpg
+    ```
+
+    **Good output:**
+    ```
+    gpg: Signature made Mon 01 Dec 2025 10:00:00 AM
+    gpg: Good signature from "Exams Office <exams@institution.edu>"
+    ```
+
+=== ":fontawesome-brands-apple: macOS"
+    ```bash
+    gpg --verify Results-Dec2025.zip.gpg
+    ```
+
+    Look for "Good signature" in the output.
+
+---
+
 ## :material-file-document-multiple: Complete Example Workflow
 
 Let's walk through a real-world scenario from start to finish.
@@ -1611,11 +1748,11 @@ Let's walk through a real-world scenario from start to finish.
 
 <div class="grid cards" markdown>
 
--   :material-shield-lock: **[Data Security](security.md)**
+-   :material-cloud-upload: **[Cloud Backup](cloud-backup.md)**
 
     ---
 
-    Learn about DEEPS comprehensive security features and institutional data protection
+    Set up automatic backups of your DEEPS data to Google Drive
 
 -   :material-frequently-asked-questions: **[FAQ](../support/faq.md)**
 
@@ -1633,7 +1770,7 @@ Let's walk through a real-world scenario from start to finish.
 
 ---
 
-!!! success "You're Now Ready to Encrypt Exam Documents!"
+!!! success "You're Now Ready to Encrypt and Decrypt Documents!"
     You've learned how to:
 
     - ✅ Install and configure GPG on your platform
@@ -1641,8 +1778,7 @@ Let's walk through a real-world scenario from start to finish.
     - ✅ Import recipient public keys
     - ✅ Create encrypted zip archives
     - ✅ Send encrypted exams securely
+    - ✅ **Decrypt files sent to you**
     - ✅ Backup and restore your keys
 
     **Remember:** Always keep original files as backup before encrypting!
-
-*For more information about DEEPS security practices, see [Data Security](security.md) documentation.*

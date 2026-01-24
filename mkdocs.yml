@@ -1,6 +1,6 @@
 site_name: DEEPS - Departmental Exams Processing Spreadsheet-based System
 site_description: DEEPS is a lightweight, cost-effective exam management system built to meet the practical needs of resource-constrained educational institutions.
-site_author: SSiliconWit
+site_author: SiliconWit
 site_url: https://siliconwit.github.io/deeps/
 
 repo_name: SiliconWit/deeps
@@ -46,21 +46,15 @@ nav:
   - Home: index.md
   - Getting Started:
     - Installation: getting-started/installation.md
-    - System Requirements: getting-started/requirements.md
-    - First Setup: getting-started/setup.md
+    - Quick Start: getting-started/quick-start.md
   - User Guide:
-    - Overview: user-guide/overview.md
-    - Student Data Management: user-guide/student-data.md
-    - Processing Exams: user-guide/processing.md
-    - Generating Reports: user-guide/reports.md
-    - Data Security: user-guide/security.md
+    - Folder Structure: user-guide/folder-structure.md
+    - Processing Scoresheets: user-guide/processing-scoresheets.md
+    - Tools Reference: user-guide/tools-reference.md
+    - Settings: user-guide/settings.md
+    - Cloud Backup: user-guide/cloud-backup.md
     - Encrypting Documents: user-guide/encrypting-documents.md
-  - Features:
-    - Core Capabilities: features/capabilities.md
-    - Academic Workflow: features/workflow.md
-    - Report Types: features/reports.md
   - Support:
-    - Troubleshooting: support/troubleshooting.md
     - FAQ: support/faq.md
     - Contact: support/contact.md
 
@@ -91,8 +85,6 @@ extra:
       link: https://github.com/SiliconWit/
     - icon: fontawesome/solid/globe
       link: https://siliconwit.com
-    - icon: fontawesome/solid/envelope
-      link: mailto:lab@siliconwit.com
   generator: false
 
 extra_css:

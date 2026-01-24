@@ -1,190 +1,201 @@
 # DEEPS: Departmental Exams Processing Spreadsheet-based System
 
-**DEEPS** (Departmental Exams Processing Spreadsheet-based System) is an initiative by **[SiliconWit](https://siliconwit.com)** to provide low-income educational institutions with an affordable, transparent exam processing solution. DEEPS is donation-supported software.
+**DEEPS** (Departmental Exams Processing Spreadsheet-based System) is an initiative by **[SiliconWit](https://siliconwit.com)** to provide educational institutions with an affordable, transparent exam processing solution.
 
-**Professional Academic Data Management for Educational Institutions**
-
-![DEEPS Overview](https://img.shields.io/badge/DEEPS-v2.1-blue?style=for-the-badge) ![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey?style=for-the-badge) ![License](https://img.shields.io/badge/License-Free%20for%20Education-green?style=for-the-badge)
+![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey?style=for-the-badge) ![License](https://img.shields.io/badge/License-Donation--Supported-green?style=for-the-badge)
 
 ---
 
-## :material-school: About DEEPS
+## :material-school: What is DEEPS?
 
-DEEPS (Departmental Exams Processing Spreadsheet-based System) is an experimental desktop application exploring simplified academic data management approaches. This is a personal research project investigating whether exam processing can be made simpler and more decentralized.
+DEEPS is a desktop application that processes exam scoresheets from lecturers and generates:
 
-!!! warning "Important: Experimental System"
-    - **Testing Phase Only**: Currently tested with dummy data, not real student records
-    - **User Responsibility**: You are fully responsible for your data security and handling
-    - **No Data Collection**: DEEPS processes everything locally - no data is recorded or transmitted
-    - **Personal Research**: This is not an approved institutional system
+- **Consolidated results** - All marks merged by student
+- **Pass/Supplementary lists** - Automatic classification
+- **Senate documents** - Official board-ready reports
+- **Annual consolidated** - Year-end summaries
+
+!!! info "Key Principles"
+    - **Spreadsheet-based** - Works with familiar Excel files
+    - **Local processing** - All data stays on your computer
+    - **No database** - Simple file-based workflow
+    - **Cross-platform** - Runs on Windows, macOS, and Linux
+
+---
 
 ## :material-rocket: Key Features
 
-### :material-shield-check: **Data Security & Privacy**
-- **Local Processing Only** - All student data remains on your institutional servers
-- **No Cloud Dependencies** - Complete offline functionality
-- **FERPA Compliant** - Built for educational privacy requirements
-- **Encrypted Storage** - Secure local database with access controls
-
-### :material-file-document-multiple: **Comprehensive Processing**
-- **Excel Integration** - Import familiar spreadsheet formats from lecturers
-- **Multi-Year Tracking** - Complete academic history management
-- **Status Management** - Handle academic leave, suspensions, repeats
-- **Automatic Validation** - Flag conflicts and data inconsistencies
-
-### :material-chart-line: **Professional Reporting**
-- **Senate Documents** - Official university-style PDF and DOCX reports
-- **Pass/Supplementary Lists** - Automated student classification
-- **Individual Transcripts** - Batch or single transcript generation
-- **Audit Trails** - Complete change tracking and documentation
-
-### :material-cog: **Robust Architecture**
-- **Cross-Platform** - Runs on Windows, macOS, and Linux
-- **Fast Performance** - SQLite database for rapid processing
-- **Rule Engine** - Configurable academic regulations
-- **User-Friendly Interface** - Intuitive design for academic staff
-
----
-
-## :material-speedometer: Quick Start
-
-Ready to get started? Follow these simple steps:
-
 <div class="grid cards" markdown>
 
--   :material-download:{ .lg .middle } **Download & Install**
+-   :material-file-excel: **Excel Processing**
 
     ---
 
-    Download DEEPS for your operating system and follow the installation guide
+    Import scoresheet files from lecturers and automatically merge, validate, and calculate results
 
-    [:octicons-arrow-right-24: Installation Guide](getting-started/installation.md)
-
--   :material-cog:{ .lg .middle } **System Setup**
+-   :material-file-document-multiple: **Senate Documents**
 
     ---
 
-    Configure DEEPS for your institution and verify system requirements
+    Generate professional Word documents with institution branding, ready for board approval
 
-    [:octicons-arrow-right-24: Setup Guide](getting-started/setup.md)
-
--   :material-school:{ .lg .middle } **Process Your First Exam**
+-   :material-account-multiple: **Student Classification**
 
     ---
 
-    Learn how to import Excel data and generate your first reports
+    Automatically categorize students into pass, supplementary, retake, and special cases
 
-    [:octicons-arrow-right-24: User Guide](user-guide/overview.md)
-
--   :material-help-circle:{ .lg .middle } **Get Support**
+-   :material-folder-multiple: **Organized Structure**
 
     ---
 
-    Find answers to common questions and get technical assistance
-
-    [:octicons-arrow-right-24: Support Center](support/faq.md)
+    Standard folder organization by academic year, year of study, and semester
 
 </div>
 
 ---
 
-## :material-target: Who Uses DEEPS?
+## :material-speedometer: Quick Start
 
-### :material-account-group: **Academic Departments**
-- **Engineering Schools** - Complex multi-year programs with prerequisites
-- **Science Faculties** - Laboratory and theoretical course management
-- **Business Schools** - Semester-based programs with electives
-- **Medical Schools** - Sequential curriculum with clinical rotations
+<div class="grid cards" markdown>
 
-### :material-account-tie: **Administrative Roles**
-- **Registrars** - Student record management and transcript generation
-- **Academic Coordinators** - Exam processing and grade compilation
-- **Department Heads** - Progress monitoring and report generation
-- **IT Administrators** - System deployment and user management
+-   :material-download:{ .lg .middle } **Install DEEPS**
 
----
+    ---
 
-## :material-feature-search: Core Capabilities
+    Download and install DEEPS for your operating system
 
-=== "Data Processing"
+    [:octicons-arrow-right-24: Installation Guide](getting-started/installation.md)
 
-    **Intelligent Excel Processing**
+-   :material-rocket:{ .lg .middle } **Quick Start**
 
-    - Import multi-sheet Excel files from lecturers
-    - Automatic data validation and error detection
-    - Handle complex grading schemes and weightings
-    - Support for supplementary exams and repeats
+    ---
 
-=== "Student Management"
+    Process your first semester of scoresheets
 
-    **Comprehensive Record Keeping**
+    [:octicons-arrow-right-24: Quick Start Guide](getting-started/quick-start.md)
 
-    - Complete academic history tracking
-    - Status management (active, suspended, graduated)
-    - Transfer credit handling
-    - Academic standing calculations
+-   :material-folder-multiple:{ .lg .middle } **Folder Structure**
 
-=== "Report Generation"
+    ---
 
-    **Professional Documentation**
+    Learn how DEEPS organizes your data
 
-    - Senate-ready documents with institutional branding
-    - Automated pass/fail classifications
-    - Bulk transcript generation
-    - Custom report templates
+    [:octicons-arrow-right-24: Folder Structure](user-guide/folder-structure.md)
 
-=== "Data Security"
+-   :material-help-circle:{ .lg .middle } **Get Help**
 
-    **Privacy-First Design**
+    ---
 
-    - All processing occurs locally
-    - No external data transmission
-    - Role-based access controls
-    - Comprehensive audit logging
+    Find answers and support
+
+    [:octicons-arrow-right-24: FAQ](support/faq.md)
+
+</div>
 
 ---
 
-## :material-trophy: Why Choose DEEPS?
+## :material-clipboard-flow: How It Works
 
-!!! success "Experimental Development"
-
-    DEEPS is currently in development and testing phase using dummy data only. This is a personal research project to explore simplified academic data processing approaches.
-
-!!! info "Donation-Supported Software"
-
-    DEEPS is **donation-supported** software for educational institutions worldwide. Users who support SiliconWit receive credentials to activate the application. Our mission is to improve academic data management while ensuring student privacy. Visit [siliconwit.com/donate](https://siliconwit.com/donate) to support DEEPS development.
-
-!!! warning "Important Notice"
-
-    This is an experimental system for research purposes. Users are responsible for their own data handling and security. DEEPS processes data locally only - no data is recorded or transmitted externally.
-
----
-
-## :material-clock: What's New in v2.1
-
-### Recent Enhancements
-- **Improved Performance** - 40% faster processing for large datasets
-- **Enhanced Security** - Additional encryption and access controls
-- **Better Reporting** - New template options and formatting
-- **Cross-Platform** - Native support for macOS and Linux
-
-### Coming Soon
-- **Web Interface** - Browser-based access for remote users
-- **API Integration** - Connect with student information systems
-- **Advanced Analytics** - Trend analysis and performance metrics
-- **Mobile Support** - Tablet-friendly interface for administrators
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                      DEEPS Workflow                             │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│   📊 Lecturers submit          📁 Organize in                   │
+│      Excel scoresheets    →       semester folders              │
+│                                                                 │
+│            ↓                                                    │
+│                                                                 │
+│   🔄 DEEPS processes           📋 Generates consolidated        │
+│      and validates        →       results                       │
+│                                                                 │
+│            ↓                                                    │
+│                                                                 │
+│   📄 Creates senate            ✅ Ready for                     │
+│      documents            →       board approval                │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
-## :material-phone: Get Started Today
+## :material-tools: Available Tools
 
-Transform your academic data management with DEEPS. Download now and experience the difference professional software makes for your institution.
+| Tool | Purpose |
+|------|---------|
+| **Process Scoresheets** | Main processing - merge and validate marks |
+| **Generate Senate Documents** | Create official board documents |
+| **Generate Annual Consolidated** | Combine semester results |
+| **Next Semester Scoresheets** | Create templates for next term |
+| **Sheet Extractor** | Extract sheets from workbooks |
+| **XLSX to PDF Converter** | Convert Excel to PDF |
+
+[:octicons-arrow-right-24: View All Tools](user-guide/tools-reference.md)
+
+---
+
+## :material-license: Getting DEEPS
+
+!!! tip "Donation-Supported Software"
+    DEEPS is **donation-supported** software. Support the project at [siliconwit.com/donate](https://siliconwit.com/donate) to receive activation credentials.
+
+    Your support helps:
+
+    - Continued development
+    - Bug fixes and improvements
+    - Documentation and support
+
+---
+
+## :material-lock: Security & Privacy
+
+<div class="grid" markdown>
+
+!!! success "What DEEPS Does"
+    - Processes data locally on your computer
+    - Stores files in your chosen folders
+    - Works completely offline
+
+!!! danger "What DEEPS Doesn't Do"
+    - Collect or transmit student data
+    - Store data in external databases
+    - Require internet for processing
+
+</div>
+
+For secure document transmission, see [Encrypting Documents](user-guide/encrypting-documents.md).
+
+---
+
+## :material-help-circle: Support
+
+<div class="grid cards" markdown>
+
+-   :material-frequently-asked-questions: **FAQ**
+
+    ---
+
+    Common questions and answers
+
+    [:octicons-arrow-right-24: View FAQ](support/faq.md)
+
+-   :material-email: **Contact**
+
+    ---
+
+    Get help from the developer
+
+    [:octicons-arrow-right-24: Contact](support/contact.md)
+
+</div>
+
+---
 
 <center>
-[Download DEEPS :material-download:](getting-started/installation.md){ .md-button .md-button--primary }
-[View Documentation :material-book-open-page-variant:](user-guide/overview.md){ .md-button }
+[Get Started :material-arrow-right:](getting-started/installation.md){ .md-button .md-button--primary }
 </center>
 
 ---
 
-*DEEPS is a personal research project by Samuel Macharia exploring decentralized academic data processing solutions.*
+*DEEPS is developed by the [SiliconWit](https://siliconwit.com) team.*

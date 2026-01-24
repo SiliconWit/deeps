@@ -2,68 +2,98 @@
 
 Get help with DEEPS installation, configuration, and usage.
 
-## :material-email: Primary Support
+---
 
-**Email Support**
-📧 **samuel.macharia@dkut.ac.ke**
+## :material-chat: Live Chat
 
-Our support team responds to technical questions, installation issues, and feature requests.
+Use the **chat widget** in the bottom-right corner of this page for quick support.
 
-**Response Times:**
-- Urgent issues: Within 24 hours
-- General questions: 2-3 business days
-- Feature requests: 1 week for initial response
+**Available for:**
 
-## :material-school: Development Team
-
-**Personal Research Project**
-Samuel Macharia
-Kenya
-
-DEEPS is a personal research initiative exploring simplified academic data processing. This is not an institutional project.
-
-## :material-bug: Report Issues
-
-**Before reporting a problem:**
-1. Check the [Troubleshooting Guide](troubleshooting.md)
-2. Review the [FAQ](faq.md)
-3. Note your DEEPS version and operating system
-4. Include exact error messages
-
-**In your email, include:**
-- DEEPS version number
-- Your operating system
-- Steps that caused the problem
-- Screenshots if helpful
-- Sample data files (with sensitive information removed)
-
-## :material-lightbulb: Feature Requests
-
-We welcome suggestions for improving DEEPS! Many current features came from user requests.
-
-**When suggesting features:**
-- Describe the specific need
-- Explain how it would help your institution
-- Provide examples if possible
-- Note any similar features in other systems
-
-## :material-school-outline: Institutional Support
-
-**For large-scale deployments:**
-- Multi-department implementations
-- Custom integration requirements
-- Staff training coordination
-- Ongoing technical consultation
-
-Contact us to discuss institutional support options.
-
-## :material-web: Online Resources
-
-**Documentation:** This comprehensive user guide
-**Updates:** Available through official channels
-**Community:** Connect with other DEEPS users through our support email
+- Technical questions
+- Installation help
+- General inquiries
 
 ---
 
-**Office Hours:** Monday-Friday, 8:00 AM - 5:00 PM (EAT)
-**Emergency Contact:** For critical system failures affecting active academic processes
+## :material-web: Contact Form
+
+For detailed inquiries, bug reports, or feature requests:
+
+[:material-open-in-new: Contact Form](https://siliconwit.com/contact/){ .md-button .md-button--primary }
+
+---
+
+## :material-bug: Reporting Bugs
+
+**Before reporting:**
+
+1. Check the [FAQ](faq.md) for known issues
+2. Note your DEEPS version (**Help → About DEEPS**)
+3. Note your operating system
+
+**Include in your report:**
+
+- DEEPS version number
+- Operating system (Windows/macOS/Linux)
+- Steps that caused the problem
+- Exact error messages
+- Screenshots if helpful
+
+---
+
+## :material-lightbulb: Feature Requests
+
+We welcome suggestions for improving DEEPS.
+
+**When suggesting features:**
+
+- Describe the specific need
+- Explain how it would help your workflow
+- Provide examples if possible
+
+---
+
+## :material-web: Online Resources
+
+<div class="grid cards" markdown>
+
+-   :material-book-open-variant: **Documentation**
+
+    ---
+
+    This comprehensive user guide
+
+-   :material-frequently-asked-questions: **FAQ**
+
+    ---
+
+    Common questions and answers
+
+    [:octicons-arrow-right-24: View FAQ](faq.md)
+
+-   :material-web: **SiliconWit**
+
+    ---
+
+    Project home and updates
+
+    [:octicons-arrow-right-24: siliconwit.com](https://siliconwit.com)
+
+</div>
+
+---
+
+## :material-heart: Support DEEPS
+
+DEEPS is donation-supported software. Your support helps with:
+
+- Continued development
+- Bug fixes and improvements
+- Documentation and support
+
+[:material-gift: Support DEEPS](https://siliconwit.com/donate){ .md-button .md-button--primary }
+
+---
+
+*DEEPS is developed by the SiliconWit team.*

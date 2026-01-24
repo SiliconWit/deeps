@@ -2,105 +2,161 @@
 
 Common questions about DEEPS and their answers.
 
+---
+
 ## :material-download: Installation and Setup
 
-### **Q: What are the minimum system requirements?**
-**A:** Windows 10/macOS 10.15/Ubuntu 18.04+, 4GB RAM, 2GB disk space. See [System Requirements](../getting-started/requirements.md) for details.
+??? question "What are the system requirements?"
+    - **Windows:** Windows 10 or later (64-bit)
+    - **macOS:** macOS 10.15 (Catalina) or later
+    - **Linux:** Ubuntu 18.04+ or equivalent
+    - **RAM:** 4GB minimum
+    - **Disk:** 500MB for application + space for your data
 
-### **Q: Is DEEPS really free for educational institutions?**
-**A:** Yes, DEEPS is provided free for testing and evaluation. This is an experimental system - users are responsible for their own data security and handling.
+??? question "Does DEEPS require an internet connection?"
+    Only for:
 
-### **Q: Does DEEPS work offline?**
-**A:** Yes, after initial setup and license verification, DEEPS works completely offline. No internet required for daily operations.
+    - Initial license activation
+    - License renewal
 
-## :material-database: Data and Privacy
+    All data processing works completely offline.
 
-### **Q: Where is student data stored?**
-**A:** All data is stored locally on your institutional servers. No student information is transmitted externally or stored in the cloud.
-
-### **Q: Is DEEPS FERPA compliant?**
-**A:** Yes, DEEPS is designed with educational privacy requirements in mind, including FERPA compliance for US institutions.
-
-### **Q: Can multiple users access the same database?**
-**A:** Yes, DEEPS supports multi-user access with role-based permissions. See [Multi-User Setup](../getting-started/installation.md#multi-user-setup) for configuration.
-
-## :material-file-import: Data Import
-
-### **Q: What Excel formats are supported?**
-**A:** DEEPS supports .xlsx and .xls files. We recommend using .xlsx format for best compatibility.
-
-### **Q: Can I import data from other student information systems?**
-**A:** DEEPS imports Excel files. If your SIS can export to Excel format, you can use that data with DEEPS.
-
-### **Q: What if lecturers use different Excel formats?**
-**A:** DEEPS has flexible column mapping to handle different Excel layouts. You can also provide lecturers with a standard template.
-
-## :material-account-school: Student Records
-
-### **Q: How does DEEPS handle transfer students?**
-**A:** DEEPS can track transfer credits and maintain complete academic history. Transfer credits can be imported and mapped to your institution's courses.
-
-### **Q: Can DEEPS track students across multiple years?**
-**A:** Yes, DEEPS maintains complete academic history from enrollment to graduation, tracking progression across all years.
-
-### **Q: What about students who repeat courses?**
-**A:** DEEPS handles course repeats and supplementary exams, automatically calculating the best grades and tracking academic standing.
-
-## :material-file-document: Reports and Documents
-
-### **Q: Can I customize transcript formats?**
-**A:** Yes, DEEPS allows customization of report templates to match your institutional formatting requirements.
-
-### **Q: Does DEEPS generate official transcripts?**
-**A:** Yes, DEEPS creates official transcripts with institutional branding, security features, and proper formatting for external use.
-
-### **Q: Can I export data for other systems?**
-**A:** Yes, DEEPS can export data in PDF, Excel, and CSV formats for integration with other institutional systems.
-
-## :material-cog: Technical Issues
-
-### **Q: What if DEEPS crashes during data processing?**
-**A:** DEEPS has automatic backup features. No data should be lost, and you can restore from the most recent backup.
-
-### **Q: How often should I backup DEEPS data?**
-**A:** DEEPS creates automatic backups daily. We recommend additional manual backups before major data imports or at semester end.
-
-### **Q: Can I run DEEPS on a Mac or Linux?**
-**A:** Yes, DEEPS supports Windows, macOS, and Linux. Download the appropriate version for your operating system.
-
-## :material-school-outline: Academic Processes
-
-### **Q: How does DEEPS calculate GPA?**
-**A:** DEEPS uses standard GPA calculation methods and can be configured for your institution's specific grading scale and credit system.
-
-### **Q: Can DEEPS handle different grading systems?**
-**A:** Yes, DEEPS supports letter grades, percentage grades, and various institutional grading scales.
-
-### **Q: What about prerequisite tracking?**
-**A:** DEEPS can track course prerequisites and flag when students attempt courses without meeting requirements.
-
-## :material-update: Updates and Support
-
-### **Q: How do I update DEEPS?**
-**A:** Updates are distributed as new installation packages. Download and install the latest version from the official repository.
-
-### **Q: Is there user training available?**
-**A:** This documentation provides comprehensive guides. Additional training can be arranged through deeps-support@dkut.ac.ke.
-
-### **Q: What if I need a feature that's not available?**
-**A:** Contact samuel.macharia@dkut.ac.ke to discuss feature requests. This is a research project exploring academic data processing improvements.
-
-## :material-license: Licensing and Distribution
-
-### **Q: Can I share DEEPS with other institutions?**
-**A:** Yes, DEEPS is freely available for educational institutions. Share the official download links with other schools.
-
-### **Q: Are there any usage restrictions?**
-**A:** DEEPS is free for educational use. Commercial use or redistribution of modified versions requires permission.
-
-### **Q: Will DEEPS remain free in the future?**
-**A:** Yes, our commitment is to keep DEEPS free for educational institutions to support academic data management worldwide.
+??? question "Is DEEPS free?"
+    DEEPS is **donation-supported** software. Support the project at [siliconwit.com/donate](https://siliconwit.com/donate) to receive activation credentials.
 
 ---
 
-**Still have questions?** Contact us at [samuel.macharia@dkut.ac.ke](mailto:samuel.macharia@dkut.ac.ke) or check our [Contact page](contact.md).
+## :material-file-excel: Working with Scoresheets
+
+??? question "What Excel formats are supported?"
+    DEEPS supports `.xlsx` files (Excel 2007 and later).
+
+    Older `.xls` files should be saved as `.xlsx` first.
+
+??? question "What if lecturers use different Excel layouts?"
+    DEEPS is flexible with column names. Common variations like "REG NO", "Reg. No.", "Registration Number" are recognized.
+
+    For best results, provide lecturers with a standard template using **Tools → Next Semester Scoresheets**.
+
+??? question "How should I name scoresheet files?"
+    Include the unit code in the filename:
+
+    - `EMT3101-Thermodynamics.xlsx`
+    - `SMA2101.xlsx`
+    - `EMT3102 Solid Mechanics.xlsx`
+
+??? question "What happens if a student is missing from a scoresheet?"
+    DEEPS will process available data and flag missing students in the special cases output.
+
+---
+
+## :material-folder-multiple: Folder Organization
+
+??? question "Why does DEEPS need a specific folder structure?"
+    The folder structure (`inputs/YEAR/YR#/SEM#/scoresheets/`) allows DEEPS to automatically detect:
+
+    - Academic year
+    - Year of study
+    - Semester
+
+    This information is used in outputs and documents.
+
+??? question "Can I change the folder structure?"
+    DEEPS expects the standard structure. Use **Tools → Create Academic Folder** to create properly organized folders.
+
+??? question "Where are output files saved?"
+    Outputs go to:
+
+    - `outputs/verified_results/` - Consolidated scoresheets
+    - `outputs/senate_documents/` - Word documents
+    - `outputs/.raw/` - Intermediate files
+
+---
+
+## :material-file-document: Senate Documents
+
+??? question "Can I customize the senate document format?"
+    Yes, configure institution details in **File → Settings → Senate Documents**:
+
+    - Institution name and logo
+    - School and department names
+    - Signing officials
+
+??? question "What document formats are generated?"
+    DEEPS generates:
+
+    - Microsoft Word (.docx) for editing
+    - PDF for distribution
+
+??? question "How are engineering rules cited?"
+    Configure the rules JSON file in **Settings → Paths → Rules JSON**. DEEPS will automatically cite relevant rules (e.g., ENG. 15(d)) in senate documents.
+
+---
+
+## :material-shield: Data Security
+
+??? question "Where is my data stored?"
+    All data stays on your local computer in the folders you specify. DEEPS does not transmit any data externally.
+
+??? question "How should I back up my data?"
+    Back up these folders regularly:
+
+    - `inputs/` - Source scoresheets
+    - `outputs/` - Generated results
+    - `~/.config/deeps/` - Settings
+
+    See [Cloud Backup](../user-guide/cloud-backup.md) for automated cloud backup.
+
+??? question "How do I securely send results to the exam office?"
+    Use GPG encryption. See [Encrypting Documents](../user-guide/encrypting-documents.md) for detailed instructions.
+
+---
+
+## :material-alert: Troubleshooting
+
+??? question "DEEPS won't start"
+    **Windows:** Install Visual C++ Redistributable if prompted
+
+    **Linux:** Check Python version: `python3 --version` (requires 3.8+)
+
+    **macOS:** Allow the app in System Preferences → Security & Privacy
+
+??? question "License activation fails"
+    - Check your internet connection
+    - Verify username and key are correct
+    - Contact support if the problem persists
+
+??? question "Processing takes a long time"
+    - Check for very large files (>50MB)
+    - Close other applications
+    - Ensure sufficient disk space
+
+??? question "Some students are missing from consolidated results"
+    Check for:
+
+    - Typos in registration numbers
+    - Inconsistent reg number formats across files
+    - Missing rows in source scoresheets
+
+---
+
+## :material-license: Licensing
+
+??? question "How do I get a license?"
+    1. Support the project at [siliconwit.com/donate](https://siliconwit.com/donate)
+    2. Receive credentials via email
+    3. Activate in **License → Renew License**
+
+??? question "What happens when my license expires?"
+    Processing features become limited. Renew your license to restore full functionality.
+
+??? question "Can I use DEEPS on multiple computers?"
+    Contact support to discuss multi-machine licensing.
+
+---
+
+## :material-help-circle: Still Have Questions?
+
+Use the **chat widget** in the bottom-right corner, or visit our contact page.
+
+[:octicons-arrow-right-24: Contact Page](contact.md)

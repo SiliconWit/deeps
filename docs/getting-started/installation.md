@@ -1,252 +1,200 @@
 # Installation Guide
 
-Get DEEPS up and running on your system for testing and evaluation.
-
-!!! warning "Experimental System Notice"
-    DEEPS is currently in development/testing phase. Use only with dummy data. You are responsible for your own data security and handling. This is a personal research project exploring academic data processing approaches.
-
-## :material-download: Download DEEPS
-
-### Current Version: v2.1
-
-DEEPS is available for all major operating systems. Choose your platform below:
-
-=== "Windows"
-
-    **System Requirements:**
-    - Windows 10 or later (64-bit)
-    - 4 GB RAM (8 GB recommended)
-    - 2 GB available disk space
-    - Administrator privileges for installation
-
-    **Download Options:**
-
-    - **Installer (.msi)** - Recommended for most users
-      [:material-download: Download Windows Installer](https://github.com/SiliconWit/deeps-releases/releases/latest){ .md-button .md-button--primary }
-
-    - **Portable (.zip)** - No installation required
-      [:material-download: Download Portable Version](https://github.com/SiliconWit/deeps-releases/releases/latest){ .md-button }
-
-=== "macOS"
-
-    **System Requirements:**
-    - macOS 10.15 (Catalina) or later
-    - Intel or Apple Silicon processor
-    - 4 GB RAM (8 GB recommended)
-    - 2 GB available disk space
-
-    **Download:**
-
-    [:material-download: Download for macOS (.dmg)](https://github.com/SiliconWit/deeps-releases/releases/latest){ .md-button .md-button--primary }
-
-=== "Linux"
-
-    **System Requirements:**
-    - Ubuntu 18.04+ / CentOS 7+ / Fedora 30+
-    - 4 GB RAM (8 GB recommended)
-    - 2 GB available disk space
-    - Python 3.8+ (usually pre-installed)
-
-    **Download Options:**
-
-    - **AppImage** - Universal Linux package
-      [:material-download: Download AppImage](https://github.com/SiliconWit/deeps-releases/releases/latest){ .md-button .md-button--primary }
-
-    - **Debian Package (.deb)**
-      [:material-download: Download .deb Package](https://github.com/SiliconWit/deeps-releases/releases/latest){ .md-button }
+Get DEEPS running on your system in minutes.
 
 ---
 
-## :material-cog: Installation Steps
+## :material-information-outline: About DEEPS
 
-### Windows Installation
+!!! info "What is DEEPS?"
+    **DEEPS** (Departmental Exams Processing Spreadsheet-based System) is a desktop application that processes exam scoresheets and generates consolidated results, senate documents, and academic reports.
 
-1. **Download** the Windows installer (.msi file)
-2. **Right-click** the installer and select **"Run as administrator"**
-3. **Follow the setup wizard:**
-   - Accept the license agreement
-   - Choose installation location (default recommended)
-   - Select components to install
-4. **Complete installation** and restart if prompted
-5. **Launch DEEPS** from the Start menu or desktop shortcut
-
-!!! tip "Installation Tips"
-    - Temporarily disable antivirus during installation if prompted
-    - Choose "Install for all users" for multi-user environments
-    - Keep the default installation path for automatic updates
-
-### macOS Installation
-
-1. **Download** the macOS disk image (.dmg file)
-2. **Open** the downloaded .dmg file
-3. **Drag DEEPS** to the Applications folder
-4. **Launch DEEPS** from Applications
-5. **Allow** the app when macOS security prompts appear
-
-!!! warning "Security Notice"
-    On first launch, you may see "DEEPS cannot be opened because it is from an unidentified developer":
-
-    - Right-click DEEPS in Applications
-    - Select "Open" from the context menu
-    - Click "Open" in the security dialog
-
-### Linux Installation
-
-#### Option 1: AppImage (Recommended)
-1. **Download** the AppImage file
-2. **Make it executable:** `chmod +x DEEPS-v2.1-x86_64.AppImage`
-3. **Run:** `./DEEPS-v2.1-x86_64.AppImage`
-
-#### Option 2: Debian Package
-1. **Download** the .deb package
-2. **Install:** `sudo dpkg -i deeps_2.1_amd64.deb`
-3. **Resolve dependencies:** `sudo apt-get install -f`
-4. **Launch:** `deeps` or find in applications menu
+    - **Spreadsheet-based** - Works with Excel files from lecturers
+    - **Local processing** - All data stays on your computer
+    - **Cross-platform** - Runs on Windows, macOS, and Linux
 
 ---
 
-## :material-check-circle: Post-Installation Setup
+## :material-download: Download
 
-### First Launch
+### Current Release
 
-When you start DEEPS for the first time:
+Visit the releases page to download the latest version:
 
-1. **License Verification** - DEEPS will attempt to verify your educational license
-2. **Institution Setup** - Configure your institution's details
-3. **Database Initialization** - Create the local database structure
-4. **User Account** - Set up the first administrator account
+[:material-github: View Releases](https://github.com/SiliconWit/deeps/releases){ .md-button .md-button--primary }
 
-### Verify Installation
+### Download Options
 
-Test your DEEPS installation:
+=== ":fontawesome-brands-windows: Windows"
 
-- [ ] Application launches without errors
-- [ ] License verification completes successfully
-- [ ] You can access the main interface
-- [ ] Sample data can be imported (optional test)
+    **Recommended:** Download the `.exe` installer
+
+    1. Download `DEEPS-Setup-x.x.x.exe`
+    2. Run the installer
+    3. Follow the installation wizard
+    4. Launch DEEPS from Start Menu
+
+=== ":fontawesome-brands-ubuntu: Linux"
+
+    **Option 1: Run from Source (Recommended)**
+
+    ```bash
+    # Clone the repository
+    git clone https://github.com/SiliconWit/deeps.git
+    cd deeps
+
+    # Create virtual environment
+    python3 -m venv venv
+    source venv/bin/activate
+
+    # Install dependencies
+    pip install -r requirements.txt
+
+    # Run DEEPS
+    python -m deeps
+    ```
+
+    **Option 2: AppImage**
+
+    1. Download `DEEPS-x.x.x.AppImage`
+    2. Make executable: `chmod +x DEEPS-x.x.x.AppImage`
+    3. Run: `./DEEPS-x.x.x.AppImage`
+
+=== ":fontawesome-brands-apple: macOS"
+
+    **Run from Source:**
+
+    ```bash
+    # Clone the repository
+    git clone https://github.com/SiliconWit/deeps.git
+    cd deeps
+
+    # Create virtual environment
+    python3 -m venv venv
+    source venv/bin/activate
+
+    # Install dependencies
+    pip install -r requirements.txt
+
+    # Run DEEPS
+    python -m deeps
+    ```
 
 ---
 
-## :material-network: Network Configuration
+## :material-key: License Activation
 
-### License Verification Requirements
+DEEPS requires a license to unlock full functionality.
 
-DEEPS requires internet access for initial license verification:
+!!! tip "Getting a License"
+    DEEPS is donation-supported software. Support the project at [siliconwit.com/donate](https://siliconwit.com/donate) to receive activation credentials.
 
-- **Outbound HTTPS** (port 443) for updates
-- **No inbound ports** required
-- **Proxy support** available for corporate networks
+### Activating Your License
 
----
+1. Launch DEEPS
+2. Go to **License → Renew License**
+3. Enter your credentials:
+   - **Username**: Your registered email
+   - **License Key**: The key provided after donation
+4. Click **Activate**
 
-## :material-database: Data Directory Setup
-
-### Default Locations
-
-DEEPS stores data in these default locations:
-
-=== "Windows"
-    ```
-    C:\Users\[Username]\Documents\DEEPS\
-    ├── databases/          # Student data (local only)
-    ├── exports/           # Generated reports
-    ├── imports/           # Excel file workspace
-    └── backups/           # Automatic backups
-    ```
-
-=== "macOS"
-    ```
-    ~/Documents/DEEPS/
-    ├── databases/          # Student data (local only)
-    ├── exports/           # Generated reports
-    ├── imports/           # Excel file workspace
-    └── backups/           # Automatic backups
-    ```
-
-=== "Linux"
-    ```
-    ~/Documents/DEEPS/
-    ├── databases/          # Student data (local only)
-    ├── exports/           # Generated reports
-    ├── imports/           # Excel file workspace
-    └── backups/           # Automatic backups
-    ```
-
-### Custom Data Location
-
-For institutional deployments, you can specify custom data directories:
-
-1. **Settings** → **Preferences** → **Data Storage**
-2. **Choose** network drive or shared storage location
-3. **Ensure** all users have read/write access
-4. **Configure** automatic backups to secure location
+!!! success "License Benefits"
+    - Full access to all processing features
+    - Senate document generation
+    - Annual consolidated reports
+    - Priority support
 
 ---
 
-## :material-account-multiple: Multi-User Setup
+## :material-folder-cog: Initial Setup
 
-### Shared Installation
+After installation, configure DEEPS for your institution:
 
-For multiple users accessing the same data:
+### 1. Set Data Paths
 
-1. **Install DEEPS** on each user's computer
-2. **Configure** shared network storage for databases
-3. **Set up** user accounts with appropriate permissions
-4. **Test** concurrent access (read-only for most users)
+Go to **File → Settings → Paths** and configure:
 
-### Access Control
+| Setting | Description |
+|---------|-------------|
+| **University Logo** | PNG image for document headers |
+| **Units JSON** | Course units and titles for your program |
+| **Unit Assessments JSON** | Assessment breakdown (CATs, labs, exams) |
+| **Rules JSON** | Engineering rules for senate document citations |
 
-Configure user permissions:
+### 2. Configure Institution Details
 
-- **Administrator** - Full access to all features
-- **Academic Staff** - Process exams, generate reports
-- **Registrar** - Access student records, create transcripts
-- **Read-Only** - View reports, export data
+Go to **File → Settings → Senate Documents** and set:
+
+- Institution name
+- School/Faculty name
+- Department name
+- Academic year
+- Signing officials (Chair, Dean, etc.)
+
+### 3. Create Folder Structure
+
+Use **Tools → Create Academic Folder** to set up the standard folder structure for your first semester.
 
 ---
 
-## :material-tools: Troubleshooting Installation
+## :material-check-circle: Verify Installation
 
-### Common Issues
+Test that DEEPS is working correctly:
 
-**Installation Fails on Windows:**
-- Run installer as Administrator
-- Temporarily disable antivirus software
-- Check available disk space (minimum 2 GB)
+1. **Launch DEEPS** - The main window should open
+2. **Check License** - License menu shows activation status
+3. **Open Settings** - File → Settings should display configuration tabs
+4. **View Sample Data** - View → Course Syllabus (if configured)
 
-**macOS Security Blocks App:**
-- Right-click app, select "Open"
-- Check System Preferences → Security & Privacy
-- Allow app from "unidentified developer"
+!!! success "Ready to Go!"
+    Once verified, proceed to the [Quick Start Guide](quick-start.md) to process your first scoresheets.
 
-**Linux Dependencies Missing:**
-- Update package manager: `sudo apt update`
-- Install Python 3.8+: `sudo apt install python3`
-- Install required libraries: `sudo apt install python3-tk`
+---
 
-**License Verification Fails:**
-- Check internet connectivity
-- Verify institutional firewall settings
-- Contact samuel.macharia@dkut.ac.ke for assistance
+## :material-wrench: Troubleshooting
 
-### Getting Help
+??? warning "Application won't start"
+    **Windows:** Ensure you have Visual C++ Redistributable installed
 
-If you encounter installation issues:
+    **Linux:** Check Python version: `python3 --version` (requires 3.8+)
 
-1. **Check** the [Troubleshooting Guide](../support/troubleshooting.md)
-2. **Review** [Frequently Asked Questions](../support/faq.md)
-3. **Contact** samuel.macharia@dkut.ac.ke for assistance
+    **macOS:** Allow app in System Preferences → Security & Privacy
+
+??? warning "License activation fails"
+    - Check internet connection
+    - Verify credentials are entered correctly
+    - Ensure no firewall blocking the connection
+    - Contact support if issue persists
+
+??? warning "Missing dependencies (Linux/macOS)"
+    ```bash
+    # Install system dependencies
+    sudo apt install python3-pip python3-venv  # Ubuntu/Debian
+
+    # Reinstall Python packages
+    pip install --upgrade -r requirements.txt
+    ```
 
 ---
 
 ## :material-arrow-right: Next Steps
 
-Once DEEPS is installed successfully:
+<div class="grid cards" markdown>
 
-1. **[System Requirements](requirements.md)** - Verify your system is optimized
-2. **[First Setup](setup.md)** - Configure DEEPS for your institution
-3. **[User Guide](../user-guide/overview.md)** - Learn to use DEEPS effectively
+-   :material-rocket: **Quick Start**
 
----
+    ---
 
-*Installation complete? Proceed to [System Requirements](requirements.md) to optimize your setup.*
+    Learn the basic workflow for processing scoresheets
+
+    [:octicons-arrow-right-24: Quick Start Guide](quick-start.md)
+
+-   :material-folder-multiple: **Folder Structure**
+
+    ---
+
+    Understand how DEEPS organizes your data
+
+    [:octicons-arrow-right-24: Folder Structure](../user-guide/folder-structure.md)
+
+</div>
