@@ -4,6 +4,25 @@ Understanding how DEEPS organizes your academic data.
 
 ---
 
+## :material-database-outline: Data Architecture
+
+!!! info "XLSX Files Are the Source of Truth"
+    DEEPS uses **Excel files (.xlsx)** as the primary data storage. All your exam data lives in these files on your local computer.
+
+    - **All data is stored locally** - DEEPS does not upload data to any server
+    - **XLSX files are the master copy** - Any edits you make to consolidated files are preserved
+    - **Student Search uses a local cache** - A SQLite database indexes your XLSX files for fast searching
+    - **The cache syncs automatically** - When you edit XLSX files, the database updates to reflect your changes
+
+!!! danger "Backup Your Data"
+    Since all data is stored locally on your computer:
+
+    - **If files are deleted, they cannot be recovered** from DEEPS
+    - **Set up regular backups** to cloud storage (Google Drive, OneDrive, etc.)
+    - See [Cloud Backup Guide](cloud-backup.md) for setup instructions
+
+---
+
 ## :material-file-tree: Overview
 
 DEEPS uses a hierarchical folder structure to organize exam data by academic year, year of study, and semester:
@@ -63,14 +82,13 @@ inputs/2024-2025/YR3/SEM1/
 
 ### Verified Results
 
-Processed and validated data:
+Processed and validated data (user-editable):
 
 ```
 outputs/verified_results/2024-2025/YR3/SEM1/
-├── YR3_SEM1_consolidated_verified.xlsx    # All marks merged
-├── YR3_SEM1_pass_list.xlsx                # Passing students
-├── YR3_SEM1_supp_list.xlsx                # Supplementary cases
-└── YR3_SEM1_special_cases.xlsx            # Manual review needed
+├── 2024_2025_YR3_SEM1_consolidated_verified.xlsx   # All marks merged
+├── 2024_2025_YR3_SEM1_processing_report.txt        # Processing log
+└── (category sheets are added to the consolidated file)
 ```
 
 ### Senate Documents
@@ -79,19 +97,20 @@ Official documents for board approval:
 
 ```
 outputs/senate_documents/2024-2025/YR3/SEM1/
-├── YR3_SEM1_senate_document.docx          # Main senate document
-└── YR3_SEM1_senate_document.pdf           # PDF version
+└── 2024_2025_YR3_SEM1_senate_document.docx         # Senate document
 ```
 
-### Raw Files
+### Raw Files (Hidden)
 
-Intermediate processing files (for debugging):
+Auto-generated backup copies (not for editing):
 
 ```
 outputs/.raw/2024-2025/YR3/SEM1/
-├── YR3_SEM1_consolidated_raw.xlsx         # Before validation
-└── processing_log.txt                      # Detailed log
+└── 2024_2025_YR3_SEM1_consolidated_raw.xlsx        # Original auto-generated
 ```
+
+!!! note "Raw Folder"
+    The `.raw/` folder contains auto-generated backups. Always edit the files in `verified_results/` instead.
 
 ---
 
@@ -149,7 +168,7 @@ If creating folders manually, ensure:
 
 ## :material-file-tree: File Naming Conventions
 
-### Scoresheet Files
+### Scoresheet Files (Input)
 
 Recommended naming pattern:
 
@@ -165,17 +184,20 @@ Recommended naming pattern:
 
 ### Output Files
 
-DEEPS automatically names output files:
+DEEPS automatically names output files with the academic year prefix:
 
 ```
-[YEAR]_[SEMESTER]_[type].xlsx
+[ACADEMIC_YEAR]_[YEAR]_[SEMESTER]_[type].xlsx
 ```
 
 **Examples:**
 
-- `YR3_SEM1_consolidated_verified.xlsx`
-- `YR3_SEM1_pass_list.xlsx`
-- `YR3_SEM1_senate_document.docx`
+| File | Description |
+|------|-------------|
+| `2024_2025_YR3_SEM1_consolidated_verified.xlsx` | Semester consolidated |
+| `2024_2025_YR3_annual_consolidated.xlsx` | Annual consolidated |
+| `2024_2025_YR3_SEM1_senate_document.docx` | Senate document |
+| `2024_2025_YR3_SEM1_processing_report.txt` | Processing log |
 
 ---
 

@@ -2,66 +2,86 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://siliconwit.github.io/deeps/</loc>
-         <lastmod>2026-01-11</lastmod>
-    </url>
-    <url>
-         <loc>https://siliconwit.github.io/deeps/features/capabilities/</loc>
-         <lastmod>2026-01-11</lastmod>
-    </url>
-    <url>
-         <loc>https://siliconwit.github.io/deeps/features/reports/</loc>
-         <lastmod>2026-01-11</lastmod>
-    </url>
-    <url>
-         <loc>https://siliconwit.github.io/deeps/features/workflow/</loc>
-         <lastmod>2026-01-11</lastmod>
+         <lastmod>2026-01-27</lastmod>
     </url>
     <url>
          <loc>https://siliconwit.github.io/deeps/getting-started/installation/</loc>
-         <lastmod>2026-01-11</lastmod>
+         <lastmod>2026-01-27</lastmod>
     </url>
     <url>
-         <loc>https://siliconwit.github.io/deeps/getting-started/requirements/</loc>
-         <lastmod>2026-01-11</lastmod>
-    </url>
-    <url>
-         <loc>https://siliconwit.github.io/deeps/getting-started/setup/</loc>
-         <lastmod>2026-01-11</lastmod>
+         <loc>https://siliconwit.github.io/deeps/getting-started/quick-start/</loc>
+         <lastmod>2026-01-27</lastmod>
     </url>
     <url>
          <loc>https://siliconwit.github.io/deeps/support/contact/</loc>
-         <lastmod>2026-01-11</lastmod>
+         <lastmod>2026-01-27</lastmod>
     </url>
     <url>
          <loc>https://siliconwit.github.io/deeps/support/faq/</loc>
-         <lastmod>2026-01-11</lastmod>
+         <lastmod>2026-01-27</lastmod>
     </url>
     <url>
-         <loc>https://siliconwit.github.io/deeps/support/troubleshooting/</loc>
-         <lastmod>2026-01-11</lastmod>
+         <loc>https://siliconwit.github.io/deeps/user-guide/cloud-backup/</loc>
+         <lastmod>2026-01-27</lastmod>
     </url>
     <url>
          <loc>https://siliconwit.github.io/deeps/user-guide/encrypting-documents/</loc>
-         <lastmod>2026-01-11</lastmod>
+         <lastmod>2026-01-27</lastmod>
     </url>
     <url>
-         <loc>https://siliconwit.github.io/deeps/user-guide/overview/</loc>
-         <lastmod>2026-01-11</lastmod>
+         <loc>https://siliconwit.github.io/deeps/user-guide/folder-structure/</loc>
+         <lastmod>2026-01-27</lastmod>
     </url>
     <url>
-         <loc>https://siliconwit.github.io/deeps/user-guide/processing/</loc>
-         <lastmod>2026-01-11</lastmod>
+         <loc>https://siliconwit.github.io/deeps/user-guide/processing-scoresheets/</loc>
+         <lastmod>2026-01-27</lastmod>
     </url>
     <url>
-         <loc>https://siliconwit.github.io/deeps/user-guide/reports/</loc>
-         <lastmod>2026-01-11</lastmod>
+         <loc>https://siliconwit.github.io/deeps/user-guide/settings/</loc>
+         <lastmod>2026-01-27</lastmod>
     </url>
     <url>
-         <loc>https://siliconwit.github.io/deeps/user-guide/security/</loc>
-         <lastmod>2026-01-11</lastmod>
+         <loc>https://siliconwit.github.io/deeps/user-guide/tools-reference/</loc>
+         <lastmod>2026-01-27</lastmod>
     </url>
     <url>
-         <loc>https://siliconwit.github.io/deeps/user-guide/student-data/</loc>
-         <lastmod>2026-01-11</lastmod>
+         <loc>https://siliconwit.github.io/deeps/user-guide/tools/check-missing-data/</loc>
+         <lastmod>2026-01-27</lastmod>
+    </url>
+    <url>
+         <loc>https://siliconwit.github.io/deeps/user-guide/tools/create-academic-folder/</loc>
+         <lastmod>2026-01-27</lastmod>
+    </url>
+    <url>
+         <loc>https://siliconwit.github.io/deeps/user-guide/tools/extract-cases/</loc>
+         <lastmod>2026-01-27</lastmod>
+    </url>
+    <url>
+         <loc>https://siliconwit.github.io/deeps/user-guide/tools/generate-annual-consolidated/</loc>
+         <lastmod>2026-01-27</lastmod>
+    </url>
+    <url>
+         <loc>https://siliconwit.github.io/deeps/user-guide/tools/generate-senate-documents/</loc>
+         <lastmod>2026-01-27</lastmod>
+    </url>
+    <url>
+         <loc>https://siliconwit.github.io/deeps/user-guide/tools/next-semester-scoresheets/</loc>
+         <lastmod>2026-01-27</lastmod>
+    </url>
+    <url>
+         <loc>https://siliconwit.github.io/deeps/user-guide/tools/sheet-extractor/</loc>
+         <lastmod>2026-01-27</lastmod>
+    </url>
+    <url>
+         <loc>https://siliconwit.github.io/deeps/user-guide/tools/student-search/</loc>
+         <lastmod>2026-01-27</lastmod>
+    </url>
+    <url>
+         <loc>https://siliconwit.github.io/deeps/user-guide/tools/update-consolidated/</loc>
+         <lastmod>2026-01-27</lastmod>
+    </url>
+    <url>
+         <loc>https://siliconwit.github.io/deeps/user-guide/tools/xlsx-to-pdf/</loc>
+         <lastmod>2026-01-27</lastmod>
     </url>
 </urlset>

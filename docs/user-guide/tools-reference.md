@@ -4,352 +4,148 @@ Complete guide to all DEEPS tools and features.
 
 ---
 
-## :material-menu: Menu Overview
+## :material-tools: Tools Overview
 
-DEEPS provides tools through these menus:
+DEEPS provides a comprehensive set of tools for exam processing and academic administration. Each tool is designed for a specific task in the exam processing workflow.
 
-| Menu | Purpose |
-|------|---------|
-| **File** | Open folders, settings, exit |
-| **View** | View configuration files, clear log |
-| **Tools** | Processing and generation tools |
-| **License** | License status and activation |
-| **Help** | Documentation and about |
+<div class="grid cards" markdown>
 
----
+-   📁 **[Create Academic Folder](tools/create-academic-folder.md)**
 
-## :material-folder-open: File Menu
+    ---
 
-### Open Input Folder
+    Create standardized folder structures for new semesters, annual, or graduation periods.
 
-**File → Open Input Folder...**
+    **Use for:** Starting a new semester or academic period
 
-Opens a semester folder for processing.
+-   📄 **[XLSX to PDF Converter](tools/xlsx-to-pdf.md)**
 
-!!! example "Usage"
-    1. Click **File → Open Input Folder...**
-    2. Navigate to `inputs/2024-2025/YR3/SEM1/`
-    3. Click **Select Folder**
-    4. DEEPS scans for scoresheets in the `scoresheets/` subfolder
+    ---
 
-### Settings
+    Convert Excel spreadsheets to PDF format for printing and distribution.
 
-**File → Settings...**
+    **Use for:** Creating print-ready documents
 
-Opens the settings dialog. See [Settings Guide](settings.md) for details.
+-   📑 **[Sheet Extractor](tools/sheet-extractor.md)**
 
----
+    ---
 
-## :material-eye: View Menu
+    Extract specific sheets from multi-sheet Excel workbooks into separate files.
 
-### Course Syllabus
+    **Use for:** Sharing individual unit data with lecturers
 
-**View → Course Syllabus...**
+-   ✏️ **[Update Consolidated](tools/update-consolidated.md)**
 
-Displays the configured course units in a tree view:
+    ---
 
-```
-Year 1
-├── Semester 1 (6 units)
-│   ├── EMT1101 - Engineering Mathematics I
-│   ├── EMT1102 - Engineering Drawing
-│   └── ...
-└── Semester 2 (6 units)
-    └── ...
-```
+    Edit and recalculate existing consolidated results files.
 
-!!! info "Configuration"
-    Configure the syllabus file in **Settings → Paths → Units JSON**
+    **Use for:** Correcting marks or adding missing students
 
-### Unit Assessments
+-   🔍 **[Extract Cases](tools/extract-cases.md)**
 
-**View → Unit Assessments...**
+    ---
 
-Shows assessment breakdown for each unit:
+    Extract students by case type (Pass, Supp, Retake, etc.) into separate files.
 
-| Unit | Pattern | CAT | Labs | Exam |
-|------|---------|-----|------|------|
-| EMT3101 | Standard | 30% | - | 70% |
-| EMT3102 | With Labs | 20% | 20% | 60% |
+    **Use for:** Creating case-specific lists for administration
 
-!!! info "Configuration"
-    Configure in **Settings → Paths → Unit Assessments JSON**
+-   🔎 **[Student Search](tools/student-search.md)**
 
-### Engineering Rules
+    ---
 
-**View → Engineering Rules...**
+    Search and view individual student records across all processed semesters.
 
-Displays the engineering rules and regulations used for citations in senate documents:
+    **Use for:** Looking up student academic history
 
-- ENG. 15 (d) - Retake regulations
-- ENG. 13 (a) - Supplementary exam rules
-- etc.
+-   📋 **[Next Semester Scoresheets](tools/next-semester-scoresheets.md)**
 
-!!! info "Configuration"
-    Configure in **Settings → Paths → Rules JSON**
+    ---
 
-### Raw Auto-generated Files
+    Generate empty scoresheet templates with student lists pre-filled.
 
-**View → Raw Auto-generated Files...**
+    **Use for:** Preparing templates for lecturers
 
-Opens the `.raw` output folder containing intermediate processing files.
+-   📜 **[Generate Senate Documents](tools/generate-senate-documents.md)**
 
-### Clear Log
+    ---
 
-**View → Clear Log**
+    Create official senate documents from processed exam results.
 
-Clears the log panel in the main window.
+    **Use for:** Preparing results for senate approval
+
+-   📅 **[Generate Annual Consolidated](tools/generate-annual-consolidated.md)**
+
+    ---
+
+    Combine both semester results into an annual consolidated summary.
+
+    **Use for:** Year-end processing and progression decisions
+
+-   ✅ **[Check Missing Data](tools/check-missing-data.md)**
+
+    ---
+
+    Verify data completeness by checking for missing folders and files.
+
+    **Use for:** Auditing data integrity and completeness
+
+</div>
 
 ---
 
-## :material-tools: Tools Menu
-
-### Create Academic Folder
-
-**Tools → Create Academic Folder...**
-
-Creates the standard folder structure for a new semester.
-
-!!! example "Options"
-    | Option | Creates |
-    |--------|---------|
-    | **SEM1 / SEM2** | Regular semester folder with scoresheets/, student_matters/, templates/ |
-    | **ANNUAL** | Annual consolidated folder |
-    | **GRADUATION** | Graduation folder (final year only) |
-
-**Folder Structure Created:**
-
-```
-inputs/2024-2025/YR3/SEM1/
-├── scoresheets/
-├── student_matters/
-└── templates/
-
-outputs/verified_results/2024-2025/YR3/SEM1/
-outputs/.raw/2024-2025/YR3/SEM1/
-```
-
----
-
-### XLSX to PDF Converter
-
-**Tools → XLSX to PDF Converter...**
-
-Converts Excel files to PDF format.
-
-!!! example "Usage"
-    1. Select Excel file(s) to convert
-    2. Choose output location
-    3. Configure page settings (orientation, margins)
-    4. Click **Convert**
-
-**Options:**
-
-| Setting | Description |
-|---------|-------------|
-| **Page orientation** | Portrait or Landscape |
-| **Fit to page** | Scale to fit page width |
-| **Include gridlines** | Show cell borders |
-
----
-
-### Sheet Extractor
-
-**Tools → Sheet Extractor...**
-
-Extracts specific sheets from multi-sheet Excel files.
-
-!!! example "Usage"
-    1. Select source Excel file
-    2. Choose sheets to extract
-    3. Select output location
-    4. Click **Extract**
-
-**Use Cases:**
-
-- Extract individual unit sheets from combined workbook
-- Separate lecturer data by unit
-- Create standalone files for each sheet
-
----
-
-### Update Consolidated
-
-**Tools → Update Consolidated...**
-
-Modifies an existing consolidated results file.
-
-!!! example "Usage"
-    1. Select the consolidated file to update
-    2. Make changes:
-       - Edit individual marks
-       - Add missing students
-       - Correct errors
-    3. Click **Save and Recalculate**
-
-**Features:**
-
-- Live grade recalculation
-- Maintains file format
-- Updates pass/supp/special classifications
-
----
-
-### Extract Cases
-
-**Tools → Extract Cases...**
-
-Extracts specific case types from consolidated results.
-
-!!! example "Case Types"
-    | Case | Description |
-    |------|-------------|
-    | **Pass** | Students passing all units |
-    | **Supplementary** | Students with supp exams |
-    | **Retake** | Students requiring retake |
-    | **Discontinued** | Students to be discontinued |
-    | **Special** | Cases needing manual review |
-
-**Output:**
-
-Creates separate Excel files for each case type.
-
----
-
-### Next Semester Scoresheets
-
-**Tools → Next Semester Scoresheets...**
-
-Generates empty scoresheet templates for the next semester.
-
-!!! example "Usage"
-    1. Select the current semester's consolidated file
-    2. Choose units for next semester
-    3. Configure template format
-    4. Click **Generate**
-
-**Generated Templates:**
-
-```
-templates/
-├── EMT3201-template.xlsx
-├── EMT3202-template.xlsx
-└── EMT3203-template.xlsx
-```
-
-Each template includes:
-
-- Student registration numbers
-- Student names
-- Empty columns for marks
-
----
-
-### Generate Senate Documents
-
-**Tools → Generate Senate Documents...**
-
-Creates official senate documents from processed results.
-
-!!! example "Usage"
-    1. Select processed semester
-    2. Configure document options:
-       - Meeting details (date, venue)
-       - Include pass list
-       - Include supplementary list
-       - Include special cases
-       - Rule citations
-    3. Click **Generate**
-
-**Output:**
-
-```
-outputs/senate_documents/2024-2025/YR3/SEM1/
-├── YR3_SEM1_senate_document.docx
-└── YR3_SEM1_senate_document.pdf
-```
-
-**Document Sections:**
-
-1. Header with institution logo
-2. Meeting details
-3. Candidates proceeding normally (pass list)
-4. Supplementary examination cases
-5. Special cases with rule citations
-6. Signature lines for officials
-
----
-
-### Generate Annual Consolidated
-
-**Tools → Generate Annual Consolidated...**
-
-Combines both semester results into annual summary.
-
-!!! example "Usage"
-    1. Select SEM1 consolidated file
-    2. Select SEM2 consolidated file
-    3. Configure annual report options
-    4. Click **Generate**
-
-**Output:**
-
-Creates annual consolidated showing:
-
-- Both semester results
-- Annual averages
-- Progression status
-- Cases for academic board
-
----
-
-## :material-key: License Menu
-
-### License Status
-
-Shows current license status:
-
-- :material-check-circle:{ .success } **Licensed** - Full features available
-- :material-alert:{ .warning } **Trial** - Limited features
-- :material-close-circle:{ .error } **Expired** - Renewal required
-
-### License Details
-
-**License → License Details...**
-
-Shows:
-
-- License holder name
-- Expiration date
-- Licensed features
-- Machine ID
-
-### Renew License
-
-**License → Renew License**
-
-Opens activation dialog for entering new credentials.
-
----
-
-## :material-help-circle: Help Menu
-
-### Documentation
-
-**Help → Documentation**
-
-Opens this documentation website.
-
-### About DEEPS
-
-**Help → About DEEPS**
-
-Shows:
-
-- Version number
-- Build date
-- Credits
-- Support contact
+## :material-menu: Menu Structure
+
+### File Menu
+
+| Item | Shortcut | Description |
+|------|----------|-------------|
+| **Open Input Folder...** | `Ctrl+O` | Select a semester folder for processing |
+| **Settings...** | `Ctrl+,` | Configure DEEPS settings |
+| **Exit** | `Ctrl+Q` | Close DEEPS |
+
+### View Menu
+
+| Item | Description |
+|------|-------------|
+| **Course Syllabus...** | View configured course units in tree format |
+| **Unit Assessments...** | View assessment breakdown for each unit |
+| **Engineering Rules...** | View rules and regulations for citations |
+| **Calculation Rules...** | View grade calculation rules |
+| **Case Decision Rules...** | View case decision engine configuration |
+| **Raw Auto-generated Files...** | Open the `.raw` output folder |
+| **Clear Log** | Clear the processing log panel |
+
+### Tools Menu
+
+| Icon | Item | Description | Page |
+|:----:|------|-------------|:----:|
+| 📁 | **Create Academic Folder...** | Create folder structure | [:octicons-arrow-right-24:](tools/create-academic-folder.md) |
+| 📄 | **XLSX to PDF Converter...** | Convert Excel to PDF | [:octicons-arrow-right-24:](tools/xlsx-to-pdf.md) |
+| 📑 | **Sheet Extractor...** | Extract sheets from workbooks | [:octicons-arrow-right-24:](tools/sheet-extractor.md) |
+| ✏️ | **Update Consolidated...** | Edit consolidated files | [:octicons-arrow-right-24:](tools/update-consolidated.md) |
+| 🔍 | **Extract Cases...** | Extract by case type | [:octicons-arrow-right-24:](tools/extract-cases.md) |
+| 🔎 | **Student Search...** | Search student records | [:octicons-arrow-right-24:](tools/student-search.md) |
+| 📋 | **Next Semester Scoresheets...** | Generate templates | [:octicons-arrow-right-24:](tools/next-semester-scoresheets.md) |
+| 📜 | **Generate Senate Documents...** | Create senate docs | [:octicons-arrow-right-24:](tools/generate-senate-documents.md) |
+| 📅 | **Generate Annual Consolidated...** | Combine semesters | [:octicons-arrow-right-24:](tools/generate-annual-consolidated.md) |
+| ✅ | **Check Missing Data...** | Verify data integrity | [:octicons-arrow-right-24:](tools/check-missing-data.md) |
+
+### License Menu
+
+| Item | Description |
+|------|-------------|
+| **License Status** | Shows current license status indicator |
+| **License Details...** | View detailed license information |
+| **Renew License** | Open donation/renewal page |
+
+### Help Menu
+
+| Item | Description |
+|------|-------------|
+| **Documentation** | Open online documentation |
+| **File Requirements...** | View scoresheet format requirements |
+| **About DEEPS** | Version, credits, and support info |
 
 ---
 
@@ -365,24 +161,78 @@ Shows:
 
 ---
 
-## :material-arrow-right: Related Pages
+## :material-file-tree: File Naming Conventions
+
+DEEPS uses consistent file naming with the academic year prefix:
+
+| File Type | Example |
+|-----------|---------|
+| **Consolidated (Semester)** | `2024_2025_YR3_SEM1_consolidated_verified.xlsx` |
+| **Consolidated (Annual)** | `2024_2025_YR3_annual_consolidated.xlsx` |
+| **Senate Document** | `2024_2025_YR3_SEM1_senate_document.docx` |
+| **Raw Auto-generated** | Stored in hidden `.raw/` folder |
+
+!!! info "Raw vs Verified Files"
+    - **Verified Results** (`outputs/verified_results/`) - Working copies you edit and verify
+    - **Raw Files** (`outputs/.raw/`) - Auto-generated backups, do not edit
+
+---
+
+## :material-chart-timeline: Typical Workflow
+
+The tools are designed to support this typical exam processing workflow:
+
+```mermaid
+graph TD
+    A[📁 Create Academic Folder] --> B[Collect Scoresheets]
+    B --> C[Process Scoresheets - Step 1]
+    C --> D[✏️ Update Consolidated - Step 2]
+    D --> E[🔍 Extract Cases]
+    E --> F[📜 Generate Senate Documents]
+    F --> G[📋 Next Semester Scoresheets]
+
+    D --> H[📅 Generate Annual Consolidated]
+    H --> I[Annual Senate Documents]
+```
+
+!!! tip "Workflow Summary"
+    1. **📁 [Create Academic Folder](tools/create-academic-folder.md)** - Set up folder structure
+    2. **Collect scoresheets** - Get completed scoresheets from lecturers
+    3. **Process** - Run Step 1 processing from main window
+    4. **✏️ [Update Consolidated](tools/update-consolidated.md)** - Review and correct results (Step 2)
+    5. **🔍 [Extract Cases](tools/extract-cases.md)** - Create case-specific lists
+    6. **📜 [Generate Senate Documents](tools/generate-senate-documents.md)** - Prepare for senate
+    7. **📋 [Next Semester Scoresheets](tools/next-semester-scoresheets.md)** - Prepare for next semester
+    8. **📅 [Generate Annual Consolidated](tools/generate-annual-consolidated.md)** - After both semesters
+
+---
+
+## :material-help-circle: Getting Help
 
 <div class="grid cards" markdown>
 
--   :material-cog: **Settings**
+-   :material-book-open-variant: **Documentation**
 
     ---
 
-    Configure DEEPS for your institution
+    Full documentation available online
 
-    [:octicons-arrow-right-24: Settings Guide](settings.md)
+    [:octicons-arrow-right-24: siliconwit.github.io/deeps](https://siliconwit.github.io/deeps/)
 
--   :material-file-excel: **Processing**
+-   :material-frequently-asked-questions: **FAQ**
 
     ---
 
-    Detailed scoresheet processing guide
+    Frequently asked questions
 
-    [:octicons-arrow-right-24: Processing Guide](processing-scoresheets.md)
+    [:octicons-arrow-right-24: FAQ](../support/faq.md)
+
+-   :material-email: **Support**
+
+    ---
+
+    Contact the development team
+
+    [:octicons-arrow-right-24: Contact](../support/contact.md)
 
 </div>

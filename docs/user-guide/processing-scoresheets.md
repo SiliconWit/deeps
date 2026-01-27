@@ -270,7 +270,7 @@ Before generating senate documents, verify:
 
     Create senate documents from processed results
 
-    [:octicons-arrow-right-24: Tools Reference](tools-reference.md#generate-senate-documents)
+    [:octicons-arrow-right-24: Generate Senate Documents](tools/generate-senate-documents.md)
 
 -   :material-tools: **All Tools**
 

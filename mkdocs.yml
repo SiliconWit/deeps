@@ -51,6 +51,17 @@ nav:
     - Folder Structure: user-guide/folder-structure.md
     - Processing Scoresheets: user-guide/processing-scoresheets.md
     - Tools Reference: user-guide/tools-reference.md
+    - Tools:
+      - Create Academic Folder: user-guide/tools/create-academic-folder.md
+      - XLSX to PDF Converter: user-guide/tools/xlsx-to-pdf.md
+      - Sheet Extractor: user-guide/tools/sheet-extractor.md
+      - Update Consolidated: user-guide/tools/update-consolidated.md
+      - Extract Cases: user-guide/tools/extract-cases.md
+      - Student Search: user-guide/tools/student-search.md
+      - Next Semester Scoresheets: user-guide/tools/next-semester-scoresheets.md
+      - Generate Senate Documents: user-guide/tools/generate-senate-documents.md
+      - Generate Annual Consolidated: user-guide/tools/generate-annual-consolidated.md
+      - Check Missing Data: user-guide/tools/check-missing-data.md
     - Settings: user-guide/settings.md
     - Cloud Backup: user-guide/cloud-backup.md
     - Encrypting Documents: user-guide/encrypting-documents.md
@@ -65,7 +76,11 @@ markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.emoji:

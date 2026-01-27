@@ -12,26 +12,28 @@
         <meta name="author" content="SiliconWit">
       
       
-        <link rel="canonical" href="https://siliconwit.github.io/deeps/">
+        <link rel="canonical" href="https://siliconwit.github.io/deeps/user-guide/tools/xlsx-to-pdf/">
       
       
+        <link rel="prev" href="../create-academic-folder/">
       
-        <link rel="next" href="getting-started/installation/">
+      
+        <link rel="next" href="../sheet-extractor/">
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
     
     
       
-        <title>DEEPS - Departmental Exams Processing Spreadsheet-based System</title>
+        <title>XLSX to PDF Converter - DEEPS - Departmental Exams Processing Spreadsheet-based System</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.e53b48f4.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.e53b48f4.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -50,9 +52,9 @@
       
     
     
-      <link rel="stylesheet" href="stylesheets/custom.css">
+      <link rel="stylesheet" href="../../../stylesheets/custom.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -78,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#deeps-departmental-exams-processing-spreadsheet-based-system" class="md-skip">
+        <a href="#xlsx-to-pdf-converter" class="md-skip">
           Skip to content
         </a>
       
@@ -92,7 +94,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="DEEPS - Departmental Exams Processing Spreadsheet-based System" class="md-header__button md-logo" aria-label="DEEPS - Departmental Exams Processing Spreadsheet-based System" data-md-component="logo">
+    <a href="../../.." title="DEEPS - Departmental Exams Processing Spreadsheet-based System" class="md-header__button md-logo" aria-label="DEEPS - Departmental Exams Processing Spreadsheet-based System" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
@@ -112,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              XLSX to PDF Converter
             
           </span>
         </div>
@@ -228,11 +230,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="." class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
         
   
   
@@ -253,7 +253,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="getting-started/installation/" class="md-tabs__link">
+        <a href="../../../getting-started/installation/" class="md-tabs__link">
           
   
   
@@ -269,11 +269,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="user-guide/folder-structure/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../folder-structure/" class="md-tabs__link">
           
   
   
@@ -293,7 +295,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="support/faq/" class="md-tabs__link">
+        <a href="../../../support/faq/" class="md-tabs__link">
           
   
   
@@ -327,7 +329,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="DEEPS - Departmental Exams Processing Spreadsheet-based System" class="md-nav__button md-logo" aria-label="DEEPS - Departmental Exams Processing Spreadsheet-based System" data-md-component="logo">
+    <a href="../../.." title="DEEPS - Departmental Exams Processing Spreadsheet-based System" class="md-nav__button md-logo" aria-label="DEEPS - Departmental Exams Processing Spreadsheet-based System" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg>
@@ -354,32 +356,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Home
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -390,98 +370,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#what-is-deeps" class="md-nav__link">
-    <span class="md-ellipsis">
-      What is DEEPS?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-features" class="md-nav__link">
-    <span class="md-ellipsis">
-      Key Features
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#quick-start" class="md-nav__link">
-    <span class="md-ellipsis">
-      Quick Start
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-it-works" class="md-nav__link">
-    <span class="md-ellipsis">
-      How It Works
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#available-tools" class="md-nav__link">
-    <span class="md-ellipsis">
-      Available Tools
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#getting-deeps" class="md-nav__link">
-    <span class="md-ellipsis">
-      Getting DEEPS
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#security-privacy" class="md-nav__link">
-    <span class="md-ellipsis">
-      Security &amp; Privacy
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#support" class="md-nav__link">
-    <span class="md-ellipsis">
-      Support
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -538,7 +426,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting-started/installation/" class="md-nav__link">
+      <a href="../../../getting-started/installation/" class="md-nav__link">
         
   
   
@@ -561,7 +449,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting-started/quick-start/" class="md-nav__link">
+      <a href="../../../getting-started/quick-start/" class="md-nav__link">
         
   
   
@@ -588,28 +476,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -622,7 +513,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             User Guide
@@ -636,7 +527,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user-guide/folder-structure/" class="md-nav__link">
+      <a href="../../folder-structure/" class="md-nav__link">
         
   
   
@@ -659,7 +550,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user-guide/processing-scoresheets/" class="md-nav__link">
+      <a href="../../processing-scoresheets/" class="md-nav__link">
         
   
   
@@ -682,7 +573,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user-guide/tools-reference/" class="md-nav__link">
+      <a href="../../tools-reference/" class="md-nav__link">
         
   
   
@@ -702,28 +593,31 @@
                 
   
   
+    
   
   
+  
     
     
     
     
       
       
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
         
           
+          
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_4" >
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="">
             
   
   
@@ -736,7 +630,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_4">
             <span class="md-nav__icon md-icon"></span>
             Tools
@@ -750,7 +644,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user-guide/tools/create-academic-folder/" class="md-nav__link">
+      <a href="../create-academic-folder/" class="md-nav__link">
         
   
   
@@ -770,10 +664,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="user-guide/tools/xlsx-to-pdf/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    XLSX to PDF Converter
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -784,6 +700,140 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accessing-the-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accessing the Tool
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-by-step-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step-by-Step Guide
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step-by-Step Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#open-the-dialog" class="md-nav__link">
+    <span class="md-ellipsis">
+      Open the Dialog
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#select-excel-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Select Excel Files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure Options
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#choose-output-location" class="md-nav__link">
+    <span class="md-ellipsis">
+      Choose Output Location
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert" class="md-nav__link">
+    <span class="md-ellipsis">
+      Convert
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conversion-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conversion Options
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      Best Practices
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Related Tools
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -796,7 +846,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user-guide/tools/sheet-extractor/" class="md-nav__link">
+      <a href="../sheet-extractor/" class="md-nav__link">
         
   
   
@@ -819,7 +869,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user-guide/tools/update-consolidated/" class="md-nav__link">
+      <a href="../update-consolidated/" class="md-nav__link">
         
   
   
@@ -842,7 +892,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user-guide/tools/extract-cases/" class="md-nav__link">
+      <a href="../extract-cases/" class="md-nav__link">
         
   
   
@@ -865,7 +915,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user-guide/tools/student-search/" class="md-nav__link">
+      <a href="../student-search/" class="md-nav__link">
         
   
   
@@ -888,7 +938,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user-guide/tools/next-semester-scoresheets/" class="md-nav__link">
+      <a href="../next-semester-scoresheets/" class="md-nav__link">
         
   
   
@@ -911,7 +961,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user-guide/tools/generate-senate-documents/" class="md-nav__link">
+      <a href="../generate-senate-documents/" class="md-nav__link">
         
   
   
@@ -934,7 +984,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user-guide/tools/generate-annual-consolidated/" class="md-nav__link">
+      <a href="../generate-annual-consolidated/" class="md-nav__link">
         
   
   
@@ -957,7 +1007,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user-guide/tools/check-missing-data/" class="md-nav__link">
+      <a href="../check-missing-data/" class="md-nav__link">
         
   
   
@@ -988,7 +1038,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user-guide/settings/" class="md-nav__link">
+      <a href="../../settings/" class="md-nav__link">
         
   
   
@@ -1011,7 +1061,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user-guide/cloud-backup/" class="md-nav__link">
+      <a href="../../cloud-backup/" class="md-nav__link">
         
   
   
@@ -1034,7 +1084,7 @@
   
   
     <li class="md-nav__item">
-      <a href="user-guide/encrypting-documents/" class="md-nav__link">
+      <a href="../../encrypting-documents/" class="md-nav__link">
         
   
   
@@ -1109,7 +1159,7 @@
   
   
     <li class="md-nav__item">
-      <a href="support/faq/" class="md-nav__link">
+      <a href="../../../support/faq/" class="md-nav__link">
         
   
   
@@ -1132,7 +1182,7 @@
   
   
     <li class="md-nav__item">
-      <a href="support/contact/" class="md-nav__link">
+      <a href="../../../support/contact/" class="md-nav__link">
         
   
   
@@ -1182,72 +1232,114 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-is-deeps" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      What is DEEPS?
+      Overview
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#key-features" class="md-nav__link">
+  <a href="#accessing-the-tool" class="md-nav__link">
     <span class="md-ellipsis">
-      Key Features
+      Accessing the Tool
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#quick-start" class="md-nav__link">
+  <a href="#step-by-step-guide" class="md-nav__link">
     <span class="md-ellipsis">
-      Quick Start
+      Step-by-Step Guide
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step-by-Step Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#open-the-dialog" class="md-nav__link">
+    <span class="md-ellipsis">
+      Open the Dialog
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#select-excel-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Select Excel Files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure Options
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#choose-output-location" class="md-nav__link">
+    <span class="md-ellipsis">
+      Choose Output Location
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert" class="md-nav__link">
+    <span class="md-ellipsis">
+      Convert
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conversion-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conversion Options
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-it-works" class="md-nav__link">
+  <a href="#best-practices" class="md-nav__link">
     <span class="md-ellipsis">
-      How It Works
+      Best Practices
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#available-tools" class="md-nav__link">
+  <a href="#troubleshooting" class="md-nav__link">
     <span class="md-ellipsis">
-      Available Tools
+      Troubleshooting
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#getting-deeps" class="md-nav__link">
+  <a href="#related-tools" class="md-nav__link">
     <span class="md-ellipsis">
-      Getting DEEPS
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#security-privacy" class="md-nav__link">
-    <span class="md-ellipsis">
-      Security &amp; Privacy
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#support" class="md-nav__link">
-    <span class="md-ellipsis">
-      Support
+      Related Tools
     </span>
   </a>
   
@@ -1272,198 +1364,265 @@
   
 
 
-<h1 id="deeps-departmental-exams-processing-spreadsheet-based-system">DEEPS: Departmental Exams Processing Spreadsheet-based System<a class="headerlink" href="#deeps-departmental-exams-processing-spreadsheet-based-system" title="Permanent link">&para;</a></h1>
-<p><strong>DEEPS</strong> (Departmental Exams Processing Spreadsheet-based System) is an initiative by <strong><a href="https://siliconwit.com">SiliconWit</a></strong> to provide educational institutions with an affordable, transparent exam processing solution.</p>
-<p><img alt="Platform" src="https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey?style=for-the-badge" /> <img alt="License" src="https://img.shields.io/badge/License-Donation--Supported-green?style=for-the-badge" /></p>
+<h1 id="xlsx-to-pdf-converter">📄 XLSX to PDF Converter<a class="headerlink" href="#xlsx-to-pdf-converter" title="Permanent link">&para;</a></h1>
+<p>Convert Excel spreadsheets to PDF format for printing and distribution.</p>
 <hr />
-<h2 id="what-is-deeps"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17z"/></svg></span> What is DEEPS?<a class="headerlink" href="#what-is-deeps" title="Permanent link">&para;</a></h2>
-<p>DEEPS is a desktop application that processes exam scoresheets from lecturers and generates:</p>
-<ul>
-<li><strong>Consolidated results</strong> - All marks merged by student</li>
-<li><strong>Pass/Supplementary lists</strong> - Automatic classification</li>
-<li><strong>Senate documents</strong> - Official board-ready reports</li>
-<li><strong>Annual consolidated</strong> - Year-end summaries</li>
-</ul>
+<h2 id="overview"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-9.5 8.5c0 .8-.7 1.5-1.5 1.5H7v2H5.5V9H8c.8 0 1.5.7 1.5 1.5zm5 2c0 .8-.7 1.5-1.5 1.5h-2.5V9H13c.8 0 1.5.7 1.5 1.5zm4-3H17v1h1.5V13H17v2h-1.5V9h3zm-6.5 0h1v3h-1zm-5 0h1v1H7z"/></svg></span> Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The <strong>XLSX to PDF Converter</strong> tool converts Excel files (.xlsx) to PDF format. This is useful for creating print-ready versions of scoresheets, consolidated results, and reports.</p>
 <div class="admonition info">
-<p class="admonition-title">Key Principles</p>
+<p class="admonition-title">When to Use This Tool</p>
+<p>Use this tool when you need to:</p>
 <ul>
-<li><strong>Spreadsheet-based</strong> - Works with familiar Excel files</li>
-<li><strong>Local processing</strong> - All data stays on your computer</li>
-<li><strong>No database</strong> - Simple file-based workflow</li>
-<li><strong>Cross-platform</strong> - Runs on Windows, macOS, and Linux</li>
+<li>Print exam results for notice boards</li>
+<li>Create PDF copies for digital archives</li>
+<li>Share results without allowing editing</li>
+<li>Submit documents to examination offices</li>
 </ul>
 </div>
 <hr />
-<h2 id="key-features"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m20 22-3.86-1.55c.7-1.53 1.2-3.11 1.51-4.72zM7.86 20.45 4 22l2.35-6.27c.31 1.61.81 3.19 1.51 4.72M12 2s5 2 5 10c0 3.1-.75 5.75-1.67 7.83A2 2 0 0 1 13.5 21h-3a2 2 0 0 1-1.83-1.17C7.76 17.75 7 15.1 7 12c0-8 5-10 5-10m0 10c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2"/></svg></span> Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
-<div class="grid cards">
-<ul>
-<li>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zm1.8 18H14l-2-3.4-2 3.4H8.2l2.9-4.5L8.2 11H10l2 3.4 2-3.4h1.8l-2.9 4.5zM13 9V3.5L18.5 9z"/></svg></span> <strong>Excel Processing</strong></p>
+<h2 id="accessing-the-tool"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2 4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg></span> Accessing the Tool<a class="headerlink" href="#accessing-the-tool" title="Permanent link">&para;</a></h2>
+<p><strong>Tools → XLSX to PDF Converter...</strong></p>
 <hr />
-<p>Import scoresheet files from lecturers and automatically merge, validate, and calculate results</p>
-</li>
-<li>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 4v18h16v2H4c-1.1 0-2-.9-2-2V4zm11 3h5.5L15 1.5zM8 0h8l6 6v12c0 1.11-.89 2-2 2H8a2 2 0 0 1-2-2V2c0-1.11.89-2 2-2m9 16v-2H8v2zm3-4v-2H8v2z"/></svg></span> <strong>Senate Documents</strong></p>
-<hr />
-<p>Generate professional Word documents with institution branding, ready for board approval</p>
-</li>
-<li>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16 17v2H2v-2s0-4 7-4 7 4 7 4m-3.5-9.5A3.5 3.5 0 1 0 9 11a3.5 3.5 0 0 0 3.5-3.5m3.44 5.5A5.32 5.32 0 0 1 18 17v2h4v-2s0-3.63-6.06-4M15 4a3.4 3.4 0 0 0-1.93.59 5 5 0 0 1 0 5.82A3.4 3.4 0 0 0 15 11a3.5 3.5 0 0 0 0-7"/></svg></span> <strong>Student Classification</strong></p>
-<hr />
-<p>Automatically categorize students into pass, supplementary, retake, and special cases</p>
-</li>
-<li>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 4h-8l-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2M2 6H0v14a2 2 0 0 0 2 2h18v-2H2z"/></svg></span> <strong>Organized Structure</strong></p>
-<hr />
-<p>Standard folder organization by academic year, year of study, and semester</p>
-</li>
-</ul>
+<h2 id="step-by-step-guide"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1M7 7h10V5h2v14H5V5h2zm5 10v-2h5v2zm0-6V9h5v2zm-4 1V9H7V8h2v4zm1.25 2c.41 0 .75.34.75.75 0 .2-.08.39-.21.52L8.12 17H10v1H7v-.92L9 15H7v-1z"/></svg></span> Step-by-Step Guide<a class="headerlink" href="#step-by-step-guide" title="Permanent link">&para;</a></h2>
+<h3 id="open-the-dialog"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7v2h2v8h2V7zm2-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2"/></svg></span> Open the Dialog<a class="headerlink" href="#open-the-dialog" title="Permanent link">&para;</a></h3>
+<p>Click <strong>Tools → XLSX to PDF Converter...</strong> to open the conversion dialog.</p>
+<h3 id="select-excel-files"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7v2h4v2h-2a2 2 0 0 0-2 2v4h6v-2h-4v-2h2a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2"/></svg></span> Select Excel Files<a class="headerlink" href="#select-excel-files" title="Permanent link">&para;</a></h3>
+<p>Choose the Excel file(s) to convert:</p>
+<ol>
+<li>Click <strong>Browse</strong> or drag-and-drop files</li>
+<li>Select one or more <code>.xlsx</code> files</li>
+<li>Files appear in the list with their names</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Batch Conversion</p>
+<p>You can select multiple files at once. Hold <code>Ctrl</code> (Windows/Linux) or <code>Cmd</code> (Mac) to select multiple files.</p>
 </div>
-<hr />
-<h2 id="quick-start"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 16a3 3 0 0 1-3-3c0-1.12.61-2.1 1.5-2.61l9.71-5.62-5.53 9.58c-.5.98-1.51 1.65-2.68 1.65m0-13c1.81 0 3.5.5 4.97 1.32l-2.1 1.21C14 5.19 13 5 12 5a8 8 0 0 0-8 8c0 2.21.89 4.21 2.34 5.65h.01c.39.39.39 1.02 0 1.41s-1.03.39-1.42.01A9.97 9.97 0 0 1 2 13 10 10 0 0 1 12 3m10 10c0 2.76-1.12 5.26-2.93 7.07-.39.38-1.02.38-1.41-.01a.996.996 0 0 1 0-1.41A7.95 7.95 0 0 0 20 13c0-1-.19-2-.54-2.9L20.67 8C21.5 9.5 22 11.18 22 13"/></svg></span> Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
-<div class="grid cards">
-<ul>
-<li>
-<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"/></svg></span> <strong>Install DEEPS</strong></p>
-<hr />
-<p>Download and install DEEPS for your operating system</p>
-<p><a href="getting-started/installation/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Installation Guide</a></p>
-</li>
-<li>
-<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m20 22-3.86-1.55c.7-1.53 1.2-3.11 1.51-4.72zM7.86 20.45 4 22l2.35-6.27c.31 1.61.81 3.19 1.51 4.72M12 2s5 2 5 10c0 3.1-.75 5.75-1.67 7.83A2 2 0 0 1 13.5 21h-3a2 2 0 0 1-1.83-1.17C7.76 17.75 7 15.1 7 12c0-8 5-10 5-10m0 10c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2"/></svg></span> <strong>Quick Start</strong></p>
-<hr />
-<p>Process your first semester of scoresheets</p>
-<p><a href="getting-started/quick-start/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Quick Start Guide</a></p>
-</li>
-<li>
-<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 4h-8l-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2M2 6H0v14a2 2 0 0 0 2 2h18v-2H2z"/></svg></span> <strong>Folder Structure</strong></p>
-<hr />
-<p>Learn how DEEPS organizes your data</p>
-<p><a href="user-guide/folder-structure/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Folder Structure</a></p>
-</li>
-<li>
-<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> <strong>Get Help</strong></p>
-<hr />
-<p>Find answers and support</p>
-<p><a href="support/faq/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> FAQ</a></p>
-</li>
-</ul>
-</div>
-<hr />
-<h2 id="how-it-works"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m-7 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m3 16-4-4h3V8h2v7h3zm-5-3H8V9H5l4-4 4 4h-3z"/></svg></span> How It Works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌─────────────────────────────────────────────────────────────────┐
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│                      DEEPS Workflow                             │
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├─────────────────────────────────────────────────────────────────┤
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│                                                                 │
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│   📊 Lecturers submit          📁 Organize in                   │
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│      Excel scoresheets    →       semester folders              │
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│                                                                 │
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│            ↓                                                    │
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│                                                                 │
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│   🔄 DEEPS processes           📋 Generates consolidated        │
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│      and validates        →       results                       │
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│                                                                 │
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│            ↓                                                    │
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│                                                                 │
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│   📄 Creates senate            ✅ Ready for                     │
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>│      documents            →       board approval                │
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>│                                                                 │
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>└─────────────────────────────────────────────────────────────────┘
-</code></pre></div>
-<hr />
-<h2 id="available-tools"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.71 20.29-1.42 1.42a1 1 0 0 1-1.41 0L7 9.85A3.8 3.8 0 0 1 6 10a4 4 0 0 1-3.78-5.3l2.54 2.54.53-.53 1.42-1.42.53-.53L4.7 2.22A4 4 0 0 1 10 6a3.8 3.8 0 0 1-.15 1l11.86 11.88a1 1 0 0 1 0 1.41M2.29 18.88a1 1 0 0 0 0 1.41l1.42 1.42a1 1 0 0 0 1.41 0l5.47-5.46-2.83-2.83M20 2l-4 2v2l-2.17 2.17 2 2L18 8h2l2-4Z"/></svg></span> Available Tools<a class="headerlink" href="#available-tools" title="Permanent link">&para;</a></h2>
+<h3 id="configure-options"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 15v-1.5a1.5 1.5 0 0 0-1.5-1.5 1.5 1.5 0 0 0 1.5-1.5V9a2 2 0 0 0-2-2H9v2h4v2h-2v2h2v2H9v2h4a2 2 0 0 0 2-2M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2"/></svg></span> Configure Options<a class="headerlink" href="#configure-options" title="Permanent link">&para;</a></h3>
+<p>Set your conversion preferences:</p>
 <table>
 <thead>
 <tr>
-<th>Tool</th>
-<th>Purpose</th>
+<th>Option</th>
+<th>Description</th>
+<th>Default</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Process Scoresheets</strong></td>
-<td>Main processing - merge and validate marks</td>
+<td><strong>Page Orientation</strong></td>
+<td>Portrait or Landscape</td>
+<td>Landscape</td>
 </tr>
 <tr>
-<td><strong>Generate Senate Documents</strong></td>
-<td>Create official board documents</td>
+<td><strong>Paper Size</strong></td>
+<td>A4, Letter, Legal, etc.</td>
+<td>A4</td>
 </tr>
 <tr>
-<td><strong>Generate Annual Consolidated</strong></td>
-<td>Combine semester results</td>
+<td><strong>Fit to Page</strong></td>
+<td>Scale content to fit page width</td>
+<td>Enabled</td>
 </tr>
 <tr>
-<td><strong>Next Semester Scoresheets</strong></td>
-<td>Create templates for next term</td>
+<td><strong>Include Gridlines</strong></td>
+<td>Show cell borders in output</td>
+<td>Enabled</td>
 </tr>
 <tr>
-<td><strong>Sheet Extractor</strong></td>
-<td>Extract sheets from workbooks</td>
-</tr>
-<tr>
-<td><strong>XLSX to PDF Converter</strong></td>
-<td>Convert Excel to PDF</td>
+<td><strong>Sheet Selection</strong></td>
+<td>Convert all sheets or specific ones</td>
+<td>All sheets</td>
 </tr>
 </tbody>
 </table>
-<p><a href="user-guide/tools-reference/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> View All Tools</a></p>
-<hr />
-<h2 id="getting-deeps"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 10a3.04 3.04 0 0 1 3-3 3.04 3.04 0 0 1 3 3 3.04 3.04 0 0 1-3 3 3.04 3.04 0 0 1-3-3m3 9 4 1v-3.08A7.54 7.54 0 0 1 12 18a7.54 7.54 0 0 1-4-1.08V20m4-16a5.78 5.78 0 0 0-4.24 1.74A5.78 5.78 0 0 0 6 10a5.78 5.78 0 0 0 1.76 4.23A5.78 5.78 0 0 0 12 16a5.78 5.78 0 0 0 4.24-1.77A5.78 5.78 0 0 0 18 10a5.78 5.78 0 0 0-1.76-4.26A5.78 5.78 0 0 0 12 4m8 6a8 8 0 0 1-.57 2.8A7.8 7.8 0 0 1 18 15.28V23l-6-2-6 2v-7.72A7.9 7.9 0 0 1 4 10a7.68 7.68 0 0 1 2.33-5.64A7.73 7.73 0 0 1 12 2a7.73 7.73 0 0 1 5.67 2.36A7.68 7.68 0 0 1 20 10"/></svg></span> Getting DEEPS<a class="headerlink" href="#getting-deeps" title="Permanent link">&para;</a></h2>
-<div class="admonition tip">
-<p class="admonition-title">Donation-Supported Software</p>
-<p>DEEPS is <strong>donation-supported</strong> software. Support the project at <a href="https://siliconwit.com/donate">siliconwit.com/donate</a> to receive activation credentials.</p>
-<p>Your support helps:</p>
+<h3 id="choose-output-location"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7v6h4v4h2V7h-2v4h-2V7zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2"/></svg></span> Choose Output Location<a class="headerlink" href="#choose-output-location" title="Permanent link">&para;</a></h3>
+<p>Select where to save the PDF files:</p>
 <ul>
-<li>Continued development</li>
-<li>Bug fixes and improvements</li>
-<li>Documentation and support</li>
+<li><strong>Same folder</strong> - Save PDFs alongside original Excel files</li>
+<li><strong>Custom folder</strong> - Choose a different destination</li>
 </ul>
+<h3 id="convert"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7v6h4v2H9v2h4a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-2V9h4V7zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2"/></svg></span> Convert<a class="headerlink" href="#convert" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Click <strong>Convert</strong></li>
+<li>Progress bar shows conversion status</li>
+<li>Success message displays when complete</li>
+<li>Click <strong>Open Folder</strong> to view the PDFs</li>
+</ol>
+<hr />
+<h2 id="conversion-options"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97s-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1s.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64z"/></svg></span> Conversion Options<a class="headerlink" href="#conversion-options" title="Permanent link">&para;</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2m0 2v4h12V4z"/></svg></span> Page Layout</label><label for="__tabbed_1_2"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2m0 4v4h6V8zm8 0v4h6V8zm-8 6v4h6v-4zm8 0v4h6v-4z"/></svg></span> Content Options</label><label for="__tabbed_1_3"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 4v18h16v2H4c-1.1 0-2-.9-2-2V4zm11 3h5.5L15 1.5zM8 0h8l6 6v12c0 1.11-.89 2-2 2H8a2 2 0 0 1-2-2V2c0-1.11.89-2 2-2m9 16v-2H8v2zm3-4v-2H8v2z"/></svg></span> Multi-Sheet Handling</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Options</th>
+<th>Recommended</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Orientation</strong></td>
+<td>Portrait, Landscape</td>
+<td>Landscape for wide tables</td>
+</tr>
+<tr>
+<td><strong>Paper Size</strong></td>
+<td>A4, Letter, Legal, A3</td>
+<td>A4</td>
+</tr>
+<tr>
+<td><strong>Margins</strong></td>
+<td>Normal, Narrow, Wide</td>
+<td>Narrow</td>
+</tr>
+<tr>
+<td><strong>Scaling</strong></td>
+<td>Fit to page, Actual size</td>
+<td>Fit to page</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Gridlines</strong></td>
+<td>Show cell borders</td>
+<td>On</td>
+</tr>
+<tr>
+<td><strong>Headers</strong></td>
+<td>Include column headers</td>
+<td>On</td>
+</tr>
+<tr>
+<td><strong>Row numbers</strong></td>
+<td>Include row numbers</td>
+<td>Off</td>
+</tr>
+<tr>
+<td><strong>Print area</strong></td>
+<td>Convert entire sheet or selection</td>
+<td>Entire sheet</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>All sheets</strong></td>
+<td>Convert every sheet to PDF</td>
+</tr>
+<tr>
+<td><strong>Active sheet</strong></td>
+<td>Convert only the currently active sheet</td>
+</tr>
+<tr>
+<td><strong>Selected sheets</strong></td>
+<td>Choose specific sheets to convert</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <hr />
-<h2 id="security-privacy"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17a2 2 0 0 0 2-2 2 2 0 0 0-2-2 2 2 0 0 0-2 2 2 2 0 0 0 2 2m6-9a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2h1V6a5 5 0 0 1 5-5 5 5 0 0 1 5 5v2zm-6-5a3 3 0 0 0-3 3v2h6V6a3 3 0 0 0-3-3"/></svg></span> Security &amp; Privacy<a class="headerlink" href="#security-privacy" title="Permanent link">&para;</a></h2>
-<div class="grid">
-<div class="admonition success">
-<p class="admonition-title">What DEEPS Does</p>
-<ul>
-<li>Processes data locally on your computer</li>
-<li>Stores files in your chosen folders</li>
-<li>Works completely offline</li>
-</ul>
-</div>
-<div class="admonition danger">
-<p class="admonition-title">What DEEPS Doesn't Do</p>
-<ul>
-<li>Collect or transmit student data</li>
-<li>Store data in external databases</li>
-<li>Require internet for processing</li>
-</ul>
-</div>
-</div>
-<p>For secure document transmission, see <a href="user-guide/encrypting-documents/">Encrypting Documents</a>.</p>
-<hr />
-<h2 id="support"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.07 11.25-.9.92C13.45 12.89 13 13.5 13 15h-2v-.5c0-1.11.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41a2 2 0 0 0-2-2 2 2 0 0 0-2 2H8a4 4 0 0 1 4-4 4 4 0 0 1 4 4 3.2 3.2 0 0 1-.93 2.25M13 19h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-5.53-4.5-10-10-10"/></svg></span> Support<a class="headerlink" href="#support" title="Permanent link">&para;</a></h2>
+<h2 id="best-practices"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 6a6 6 0 0 1 6 6c0 2.22-1.21 4.16-3 5.2V19a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-1.8c-1.79-1.04-3-2.98-3-5.2a6 6 0 0 1 6-6m2 15v1a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-1zm6-10h3v2h-3zM1 11h3v2H1zM13 1v3h-2V1zM4.92 3.5l2.13 2.14-1.42 1.41L3.5 4.93zm12.03 2.13 2.12-2.13 1.43 1.43-2.13 2.12z"/></svg></span> Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
 <div class="grid cards">
 <ul>
 <li>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 15H6l-4 4V3a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1m5-6v14l-4-4H8a1 1 0 0 1-1-1v-1h14V8h1a1 1 0 0 1 1 1M8.19 4c-.87 0-1.57.2-2.11.59-.52.41-.78.98-.77 1.77l.01.03h1.93c.01-.3.1-.53.28-.69a1 1 0 0 1 .66-.23c.31 0 .57.1.75.28.18.19.26.45.26.75 0 .32-.07.59-.23.82-.14.23-.35.43-.61.59-.51.34-.86.64-1.05.91C7.11 9.08 7 9.5 7 10h2c0-.31.04-.56.13-.74s.26-.36.51-.52c.45-.24.82-.53 1.11-.93s.44-.81.44-1.31c0-.76-.27-1.37-.81-1.82C9.85 4.23 9.12 4 8.19 4M7 11v2h2v-2zm6 2h2v-2h-2zm0-9v6h2V4z"/></svg></span> <strong>FAQ</strong></p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> <strong>Use Landscape for Results</strong></p>
 <hr />
-<p>Common questions and answers</p>
-<p><a href="support/faq/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> View FAQ</a></p>
+<p>Consolidated results tables are typically wide. Use landscape orientation to fit all columns on one page.</p>
 </li>
 <li>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m20 8-8 5-8-5V6l8 5 8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2"/></svg></span> <strong>Contact</strong></p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> <strong>Check Print Preview</strong></p>
 <hr />
-<p>Get help from the developer</p>
-<p><a href="support/contact/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Contact</a></p>
+<p>Before converting, use Excel's Print Preview to verify how content will appear in the PDF.</p>
+</li>
+<li>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> <strong>Name Files Clearly</strong></p>
+<hr />
+<p>Use descriptive names like <code>YR3_SEM1_consolidated_results.xlsx</code> for easy identification.</p>
+</li>
+<li>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 13h-2V7h2m0 10h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg></span> <strong>Verify Before Sharing</strong></p>
+<hr />
+<p>Always review the PDF output to ensure all data is visible and correctly formatted.</p>
 </li>
 </ul>
 </div>
 <hr />
-<p><center>
-<a class="md-button md-button--primary" href="getting-started/installation/">Get Started <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span></a>
-</center></p>
+<h2 id="troubleshooting"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2 1 21h22M12 6l7.53 13H4.47M11 10v4h2v-4m-2 6v2h2v-2"/></svg></span> Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<details class="warning">
+<summary>Text is cut off in PDF</summary>
+<p><strong>Problem:</strong> Some text is truncated or missing in the PDF.</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li>Use <strong>Fit to Page</strong> option to scale content</li>
+<li>Switch to <strong>Landscape</strong> orientation</li>
+<li>Reduce font size in the original Excel file</li>
+<li>Use <strong>A3</strong> paper size for very wide tables</li>
+</ol>
+</details>
+<details class="warning">
+<summary>PDF is blank or has missing data</summary>
+<p><strong>Problem:</strong> The PDF file appears empty or has missing sheets.</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li>Ensure the Excel file has data (not just formatting)</li>
+<li>Check that sheets are not hidden in Excel</li>
+<li>Verify the file is not password-protected</li>
+<li>Try converting a single sheet first</li>
+</ol>
+</details>
+<details class="warning">
+<summary>Conversion fails with error</summary>
+<p><strong>Problem:</strong> The tool shows an error during conversion.</p>
+<p><strong>Solutions:</strong></p>
+<ol>
+<li>Close the Excel file if it's open in another program</li>
+<li>Check that you have write permissions to the output folder</li>
+<li>Ensure the Excel file is not corrupted</li>
+<li>Try saving the Excel file with a new name and convert again</li>
+</ol>
+</details>
 <hr />
-<p><em>DEEPS is developed by the <a href="https://siliconwit.com">SiliconWit</a> team.</em></p>
+<h2 id="related-tools"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg></span> Related Tools<a class="headerlink" href="#related-tools" title="Permanent link">&para;</a></h2>
+<div class="grid cards">
+<ul>
+<li>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 5v16h16v2H3c-1.1 0-2-.9-2-2V5zm18-4H7c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14c1.11 0 2-.89 2-2V3a2 2 0 0 0-2-2M11 16H8v-2h3zm0-3H8v-2h3zm0-3H8V8h3zm4 6h-3v-2h3zm0-3h-3v-2h3zm0-3h-3V8h3z"/></svg></span> <strong>Sheet Extractor</strong></p>
+<hr />
+<p>Extract individual sheets from multi-sheet workbooks</p>
+<p><a href="../sheet-extractor/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Sheet Extractor</a></p>
+</li>
+<li>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-1.9l10-10V8l-6-6zm7 1.5L18.5 9H13zm7.1 9.5c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-2 1.8L12 20.9V23h2.1l6.1-6.1z"/></svg></span> <strong>Update Consolidated</strong></p>
+<hr />
+<p>Edit and update consolidated results files</p>
+<p><a href="../update-consolidated/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Update Consolidated</a></p>
+</li>
+</ul>
+</div>
 
 
 
@@ -1546,16 +1705,16 @@
     
     
       
-      <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "search.highlight", "search.share", "search.suggest", "content.code.copy", "content.tabs.link", "toc.follow"], "search": "assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "search.highlight", "search.share", "search.suggest", "content.code.copy", "content.tabs.link", "toc.follow"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.f55a23d4.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
       
         <script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6590816372910687"></script>
       
-        <script src="javascripts/tawk.js"></script>
+        <script src="../../../javascripts/tawk.js"></script>
       
-        <script src="javascripts/copyright.js"></script>
+        <script src="../../../javascripts/copyright.js"></script>
       
     
   </body>
