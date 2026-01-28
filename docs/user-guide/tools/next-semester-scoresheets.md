@@ -113,6 +113,17 @@ Each template contains:
 | **Total** | Formula: =CAT+Exam+Lab |
 | **Grade** | Formula-based grade |
 
+!!! tip "Why Templates Have Formulas"
+    **Input templates include formulas** (Total, Grade) to help lecturers:
+
+    - See calculated totals as they enter marks
+    - Catch data entry errors immediately (e.g., marks > 100)
+    - Verify calculations before submission
+
+    This "garbage in, garbage out" prevention ensures cleaner data reaches DEEPS.
+
+    **Note:** After DEEPS processes the scoresheets, the verified output files contain **static values only** (no formulas) to ensure audit integrity and prevent accidental changes.
+
 ---
 
 ## :material-account-filter: Student Filtering

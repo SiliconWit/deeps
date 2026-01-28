@@ -149,6 +149,15 @@ Main output in `outputs/verified_results/[year]/[YR#]/[SEM#]/`:
 └─────────────┴──────────┴─────────┴─────────┴─────────┴─────────┴────────┘
 ```
 
+!!! info "Static Values for Audit Integrity"
+    Verified output files contain **static values only** (no Excel formulas). This ensures:
+
+    - **Immutable record** - What you see is exactly what was approved
+    - **No accidental changes** - Editing one cell won't cascade to others
+    - **Transmission safety** - File displays consistently across different spreadsheet applications
+
+    Input scoresheet templates have formulas to help lecturers catch errors during data entry. See [Next Semester Scoresheets](tools/next-semester-scoresheets.md) for details.
+
 ---
 
 ## :material-alert: Handling Warnings
