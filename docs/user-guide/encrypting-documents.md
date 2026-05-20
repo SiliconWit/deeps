@@ -1,1750 +1,492 @@
-# Encrypting Exam Documents with OpenPGP
+# Encrypting Exam Documents with SiliconWit Seal
 
-Secure guide for encrypting sensitive exam materials (scoresheets, question papers, answer keys) for safe transmission to examination offices.
+A secure guide for encrypting sensitive exam materials (scoresheets, question papers, answer keys) before emailing them to the examinations office.
+
+We recommend the SiliconWit team's own desktop app, **SiliconWit Seal**, for everything in this guide. Seal is purpose-built for the workflow described here. If you already use Kleopatra, GPG Suite, Thunderbird, or the `gpg` command line, those still work too. They all read and write the same standard OpenPGP files.
+
+---
+
+## :material-rocket-launch: Recommended: SiliconWit Seal
+
+!!! tip "The short version"
+    1. Install **SiliconWit Seal** from the [releases page](https://github.com/SiliconWit/siwit-seal-releases/releases).
+    2. The app walks you through setup the first time you open it. It generates your key, prompts you to save a backup, and is ready to use in under five minutes.
+    3. To encrypt, drag your exam files onto the **Send** tab, pick the recipient, and click **Encrypt and Save**.
+    4. To decrypt, drag the `.gpg` or `.pgp` file onto the **Receive** tab and type your passphrase.
+    5. Full documentation lives at [siliconwit.github.io/siwit-seal-releases](https://siliconwit.github.io/siwit-seal-releases/).
+
+[:material-book-open-variant: Full Seal documentation](https://siliconwit.github.io/siwit-seal-releases/){ .md-button .md-button--primary }
+[:material-rocket-launch: Quick start](https://siliconwit.github.io/siwit-seal-releases/quickstart/){ .md-button }
+[:material-compass: Tour of every tab](https://siliconwit.github.io/siwit-seal-releases/using/){ .md-button }
+[:material-file-pdf-box: Install slides (PDF)](https://siliconwit.github.io/siwit-seal-releases/assets/install.pdf){ .md-button }
+
+### :material-checkbox-marked-circle-outline: Why we recommend Seal for DEEPS workflows
+
+<div class="grid cards" markdown>
+
+-   :material-drag-variant: **Drag and drop**
+
+    ---
+
+    Drop a folder of scoresheets onto the Send tab. Seal zips, encrypts, and saves the bundle. No command line. No Kleopatra panels.
+
+-   :material-account-key: **Auto encrypt to yourself**
+
+    ---
+
+    On by default. You can always re-open the bundles you sent, which is the single most common reason senders get stuck with classic GPG.
+
+-   :material-key-chain-variant: **GnuPG is bundled**
+
+    ---
+
+    Nothing else to install on Windows, macOS, or Linux. No separate Gpg4win or GPG Suite step.
+
+-   :material-folder-key: **Backups built into onboarding**
+
+    ---
+
+    The first-run wizard refuses to let you start encrypting real files until you have saved both your private-key backup and your revocation certificate.
+
+-   :material-file-key-outline: **Standard OpenPGP output**
+
+    ---
+
+    Files are RFC 4880 with no custom metadata. Recipients can open them with Kleopatra, GPG Suite, Thunderbird, Mailvelope, or any other OpenPGP tool. They do not need Seal.
+
+-   :material-account-multiple: **Multiple accounts**
+
+    ---
+
+    Keep a personal key and a departmental key on the same machine and switch between them per send.
+
+</div>
 
 ---
 
 ## :material-lock-question: What is OpenPGP?
 
-!!! info "OpenPGP in 30 Seconds"
-    OpenPGP is an encryption standard that lets you lock files using the recipient’s public key. **Only the recipient can unlock** those files using their private key. You do not have the key, and no one else does. This is like placing documents in a box and locking it with the recipient’s padlock. Anyone can lock the box, but only the recipient, who owns the padlock, has the key to open it.
+!!! info "OpenPGP in 30 seconds"
+    OpenPGP is the encryption standard that lets you lock a file using the recipient's **public** key. Only the recipient can unlock the file, using their matching **private** key, which never leaves their computer.
 
-**Core Capabilities:**
+    Think of it like a padlock and key. The recipient hands out padlocks (their public key) so anyone can lock a box for them. Only the recipient holds the key that opens those padlocks.
 
-:material-shield-lock: **Encrypt files** - Make content unreadable to everyone except intended recipient
+**Core capabilities:**
 
-:material-shield-check: **Sign files** - Prove authenticity and detect tampering
+:material-shield-lock: **Encrypt files.** Make content unreadable to everyone except the intended recipient.
 
-:material-key-chain: **Key pairs** - You encrypt with recipient's public key, they decrypt with their private key
+:material-shield-check: **Sign files.** Prove the file really came from you, and detect tampering in transit.
 
-### :material-help-circle-outline: Understanding the Terminology
+:material-key-chain: **Key pairs.** You encrypt with the recipient's public key. They decrypt with their matching private key.
+
+### :material-help-circle-outline: Naming, demystified
 
 <div class="grid" markdown>
 
 !!! example "PGP"
     **Pretty Good Privacy**
 
-    The original commercial software created in 1991
+    The original commercial software from 1991. The name persists as shorthand for "OpenPGP" in everyday usage.
 
 !!! example "OpenPGP"
-    **The Standard**
+    **The standard (RFC 4880)**
 
-    Open protocol defining how encryption works
+    The open protocol that defines how the encryption actually works. Anyone can implement it.
 
-!!! example "GPG"
-    **GNU Privacy Guard**
+!!! example "GnuPG / GPG"
+    **The reference implementation**
 
-    Free tool we'll use (implements OpenPGP)
+    Free, open source, and bundled inside SiliconWit Seal. Also available as a command-line tool and inside Kleopatra, GPG Suite, Thunderbird.
 
 </div>
 
-!!! tip "Simple Analogy"
-    **Think of it like documents:**
-
-    - **OpenPGP** = The standard way to write documents (like "use A4 paper")
-    - **GPG/Gpg4win/GPG Suite** = The pen you use to write (different brands, same result)
-    - **.gpg file** = The locked document (same lock, different keys to open it)
-
-    **All OpenPGP tools are compatible** - A file encrypted with GPG on Linux can be decrypted with Gpg4win on Windows or GPG Suite on Mac. They all speak the same "language."
+!!! tip "Why this matters"
+    All OpenPGP tools speak the same language. A file encrypted with **Seal** on Linux can be opened with **Kleopatra** on Windows or **GPG Suite** on Mac. You and your recipient do not have to use the same tool.
 
 ---
 
-## :material-key-chain: How Public/Private Keys Work
+## :material-key-chain: How public and private keys work
 
-!!! abstract "The Two-Key System"
-    Think of public/private keys like a mailbox:
+!!! abstract "The two-key system"
+    Think of public and private keys like a mailbox:
 
-    - **Public Key** = The mailbox slot (anyone can drop mail in)
-    - **Private Key** = The mailbox key (only you can retrieve mail)
-
-**How Encryption Works:**
+    - **Public key.** The mailbox slot. Anyone can drop mail in.
+    - **Private key.** The mailbox key. Only you can pick the mail up.
 
 ```
-        YOU                           EXAM OFFICE
-         ↓                                 ↓
+        YOU                                EXAM OFFICE
+         ↓                                     ↓
 
-    🔑 Get their          📦 Encrypt with      📧 Email        🔓 They decrypt
-    public key      →     their public key →   .gpg file  →   with private key
+    🔑 Get their           📦 Encrypt with        📧 Email           🔓 They decrypt
+    public key      →      their public key   →   .gpg file   →     with private key
 
-                          exam.zip  →  exam.zip.gpg  →  [Email]  →  exam.zip
-
-                          ⚠️ You CANNOT decrypt .gpg - keep original .zip!
+                           exam.zip → exam.zip.gpg → [Email] → exam.zip
 ```
 
-### :material-account-multiple: Sender vs Recipient
+!!! danger "You cannot decrypt files you encrypted to someone else"
+    Once you encrypt a file with the recipient's public key, only their private key can decrypt it. Not even you can open it again. This is intentional security.
+
+    **With SiliconWit Seal this trap is removed by default.** The Send tab automatically encrypts a second copy to your own key as well, so you can always re-open what you sent. This option is labelled **Also encrypt to me (so I can open it later)** on the Send page.
+
+    If you use a different tool, keep a copy of the **original** files until the recipient confirms receipt.
+
+### :material-account-multiple: Sender vs recipient
 
 <div class="grid cards" markdown>
 
--   :material-account-edit: **YOU (Sender)**
+-   :material-account-edit: **YOU (Sender, the lecturer / coordinator)**
 
     ---
 
-    **Your Keys:**
+    **Your keys:**
 
-    - :material-key-variant: Private Key (keep secret)
-    - :material-lock-open: Public Key (share freely)
+    - :material-key-variant: Private key (kept secret, never shared)
+    - :material-lock-open: Public key (shared freely)
 
-    **Your Actions:**
+    **Your actions:**
 
-    1. Get recipient's public key
-    2. Encrypt using THEIR public key
-    3. :material-alert: You CANNOT decrypt what you encrypted
-    4. :material-check: Keep original files as backup!
+    1. Get the recipient's public key, once.
+    2. Encrypt using THEIR public key.
+    3. Send the encrypted bundle by email.
+    4. Keep originals (or rely on Seal's auto-encrypt-to-self).
 
 -   :material-account-school: **EXAM OFFICE (Recipient)**
 
     ---
 
-    **Their Keys:**
+    **Their keys:**
 
-    - :material-key-variant: Private Key (they keep secret)
-    - :material-lock-open: Public Key (they share with you)
+    - :material-key-variant: Private key (they keep secret)
+    - :material-lock-open: Public key (they publish to you)
 
-    **Their Actions:**
+    **Their actions:**
 
-    1. Share their public key with you
-    2. Decrypt using THEIR private key
-    3. :material-check: Can read encrypted files
-    4. Extract and process exam materials
+    1. Publish their public key to senders.
+    2. Decrypt incoming bundles with their private key.
+    3. Verify your signature (if you signed).
+    4. Extract and process the exam materials.
 
 </div>
 
-!!! danger "Critical Security Concept"
-    **You cannot decrypt files encrypted for someone else!**
+---
 
-    Once you encrypt a file with the recipient's public key, only their matching private key can decrypt it - not even you can open it. This is intentional security.
+## :material-arrow-right-bold: The workflow at a glance
 
-    **Always keep your original .zip file as backup before encrypting!**
+!!! success "End-to-end process"
+    ```
+    📄 Exam files       🗜️ ZIP archive      🔐 Encrypt          📧 Email           🔓 Recipient
+    (PDF, DOCX)    →   (auto in Seal)   →   (.zip.pgp)      →   Send securely   →  Decrypts
+        ↓
+    Organize in
+    one folder
+    ```
+
+**The seven steps, mapped to SiliconWit Seal:**
+
+| Step | Action | Where it happens in Seal |
+|:----:|--------|--------------------------|
+| **1** | Organize exam files (PDF, DOCX) in one folder | Outside the app, in your file manager |
+| **2** | Add files | Send tab. Drag onto the drop zone, or click **Browse files...** / **Add folder...** |
+| **3** | Pick the recipient | Send tab. Quick-pick dropdown, or the multi-select list |
+| **4** | Encrypt | Send tab. Click **Encrypt and Save** |
+| **5** | Locate output | `Documents/SILICONWIT-SEAL/Sent/<name>.zip.pgp`, plus a copy of your public key in the same folder |
+| **6** | Email both files | Your email client. Attach the `.zip.pgp` bundle and your `.asc` public key |
+| **7** | Recipient decrypts | Their OpenPGP tool, using their private key |
+
+!!! tip "Auto-zip and auto-wrap"
+    You do not need to zip the folder yourself. Seal does it. If you drop a set of loose files (no folder around them), Seal wraps them in a single folder named after the bundle, so the recipient unzips into one tidy folder instead of files scattered into wherever they extracted.
 
 ---
 
-## :material-arrow-right-bold: Encryption Workflow
+## :material-download: Install SiliconWit Seal
 
-!!! success "Complete Process at a Glance"
-    ```
-    📄 Exam Files      🗜️ Zip Archive      🔐 Encrypt         📧 Email          🔓 Recipient
-    (PDF, DOCX)    →   (.zip)          →   (.zip.gpg)     →   Secure send  →   Decrypts
-       ↓                  ↓
-    Organize         Keep backup!
-    ```
+Three flavours of installer, one set of features. Full instructions, expected SmartScreen warnings, and the printable install slides are on the official docs.
 
-**Step-by-Step Instructions:**
-
-| Step | Action | Important Notes |
-|:----:|--------|-----------------|
-| **1** | Organize exam files (PDF/DOCX) | Collect all materials in one folder |
-| **2** | Create .ZIP archive | ⚠️ Use .ZIP only (universal format)<br>Don't use .RAR, .7z, or other formats |
-| **3** | **SAVE ZIP BACKUP** | ⭐ **CRITICAL**: Keep this safe!<br>You cannot decrypt the .gpg later |
-| **4** | Import recipient's public key | Get their .asc file and import it |
-| **5** | Encrypt ZIP → .gpg file | Creates: `exam.zip.gpg` |
-| **6** | Email both files | 📎 Attach TWO files:<br>• `exam.zip.gpg` (encrypted exams)<br>• `your-public-key.asc` (for replies) |
-| **7** | Recipient decrypts | They use their private key to open |
-
----
-
-## :material-download: Installation Guide
-
-!!! note "Choose Your Platform"
-    Click the tab for your operating system below for specific installation instructions.
+[:material-book-open-variant: Install instructions](https://siliconwit.github.io/siwit-seal-releases/install/){ .md-button .md-button--primary }
 
 === ":fontawesome-brands-windows: Windows"
-    ### Gpg4win - GPG for Windows
 
-    !!! download "Download & Install"
-        **Step 1: Download**
+    **Tested on Windows 10 (1909+) and Windows 11.**
 
-        Visit [gpg4win.org](https://www.gpg4win.org/) and download the latest version
+    1. Download `siwit-seal-<version>-win-x64.msi` from the [Releases page](https://github.com/SiliconWit/siwit-seal-releases/releases) or the [Google Drive mirror](https://drive.google.com/file/d/1_sCuSeqJO8JbBs8dWMn0VtlgerIXMrI3/view?usp=sharing) (byte identical).
+    2. Double-click the `.msi`. Follow the installer prompts.
+    3. Launch **SiliconWit Seal** from the Start menu.
 
-        **Step 2: Run Installer**
+    See the [Windows install notes](https://siliconwit.github.io/siwit-seal-releases/install/windows/) for the SmartScreen and UAC warnings that are normal on a brand-new open-source signing identity.
 
-        Execute `gpg4win-x.x.x.exe`
+=== ":fontawesome-brands-ubuntu: Linux"
 
-        **Step 3: Select Components**
-
-        - :material-check-bold: **GnuPG** (required - core encryption)
-        - :material-check-bold: **Kleopatra** (required - user interface)
-        - :material-checkbox-blank-outline: **GpgOL** (optional - Outlook integration)
-        - :material-checkbox-blank-outline: **GpgEX** (optional - File Explorer integration)
-
-        **Step 4: Complete Installation**
-
-        Follow the installation wizard prompts
-
-    !!! success "Verify Installation"
-        Open **Command Prompt** or **PowerShell** and run:
-
-        ```cmd
-        gpg --version
-        ```
-
-        Expected output: `gpg (GnuPG) 2.x.x`
-
-=== ":fontawesome-brands-ubuntu: Ubuntu/Linux"
-    ### GPG (Usually Pre-installed)
-
-    !!! info "Check Installation"
-        Most Linux distributions include GPG by default. Verify with:
-
-        ```bash
-        gpg --version
-        ```
-
-    !!! download "Install if Needed"
-        If not installed:
-
-        ```bash
-        sudo apt update
-        sudo apt install gnupg
-        ```
-
-        For other distributions:
-
-        - **Fedora/RHEL:** `sudo dnf install gnupg2`
-        - **Arch:** `sudo pacman -S gnupg`
-
-    !!! success "Verify Installation"
-        ```bash
-        gpg --version
-        ```
-
-        Expected output: `gpg (GnuPG) 2.x.x`
-
-=== ":fontawesome-brands-apple: macOS"
-    ### GPG Suite for Mac
-
-    !!! download "Installation Methods"
-        === "Homebrew (Recommended)"
-            **If you have Homebrew installed:**
-
-            ```bash
-            brew install gnupg
-            ```
-
-            **Don't have Homebrew?** Install from [brew.sh](https://brew.sh/)
-
-        === "GPG Suite (GUI)"
-            **For graphical interface:**
-
-            1. Visit [gpgtools.org](https://gpgtools.org/)
-            2. Download GPG Suite
-            3. Open the `.dmg` file
-            4. Run the installer
-            5. Complete installation
-
-    !!! success "Verify Installation"
-        Open **Terminal** and run:
-
-        ```bash
-        gpg --version
-        ```
-
-        Expected output: `gpg (GnuPG) 2.x.x`
-
----
-
-## :material-key-plus: First-Time Setup
-
-!!! warning "One-Time Setup"
-    You only need to generate your key pair **once**. It will be stored securely on your computer for future use.
-
-### :material-numeric-1-circle: Generate Your Key Pair
-
-Your key pair consists of:
-
-- :material-key-variant: **Private Key** - Stays on your computer (never share!)
-- :material-key: **Public Key** - Share with others so they can send YOU encrypted files
-
-=== ":fontawesome-brands-windows: Windows (Kleopatra GUI)"
-    !!! example "Step-by-Step Key Creation"
-        **1. Launch Kleopatra**
-
-        - Open from Start Menu → Gpg4win → Kleopatra
-
-        **2. Create New Key**
-
-        - Click **New Key Pair** button (top toolbar)
-
-        **3. Enter Your Details**
-
-        ```
-        Name:    Your Full Name
-        Email:   coordinator@institution.edu
-        ```
-
-        **4. Advanced Settings (Optional)**
-
-        - Click **Advanced Settings**
-        - Key Material: RSA, 4096 bits (recommended)
-        - Valid until: No expiration (or set custom)
-
-        **5. Create Key**
-
-        - Click **Create**
-
-        **6. Set Passphrase**
-
-        - Enter a **strong passphrase** (you'll need this to use the key)
-        - Confirm passphrase
-        - :material-alert: **Remember this passphrase!** Cannot be recovered if lost
-
-        **7. Finish**
-
-        - Click **Finish**
-        - Your key pair is now created and ready to use!
-
-    !!! success "Key Created Successfully"
-        You should now see your key listed in the Kleopatra main window.
-
-=== ":fontawesome-brands-ubuntu: Ubuntu/Linux (Command Line)"
-    !!! example "Generate Key Pair"
-        **Run the generation command:**
-
-        ```bash
-        gpg --full-generate-key
-        ```
-
-        **Follow the prompts:**
-
-        ```
-        Please select what kind of key you want:
-           (1) RSA and RSA (default)
-           (2) DSA and Elgamal
-           ...
-        Your selection? 1 ← Press 1
-
-        What keysize do you want? (3072) 4096 ← Type 4096
-
-        Please specify how long the key should be valid.
-           0 = key does not expire
-        Key is valid for? (0) 0 ← Type 0 (no expiration)
-
-        Is this correct? (y/N) y ← Type y
-        ```
-
-        **Enter your information:**
-
-        ```
-        Real name: Your Full Name
-        Email address: coordinator@institution.edu
-        Comment: (optional - can leave blank)
-
-        Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O ← Type O
-        ```
-
-        **Set passphrase:**
-
-        - Enter a strong passphrase
-        - Confirm passphrase
-        - :material-alert: **Remember this!** Cannot be recovered
-
-    !!! success "Key Generated"
-        ```bash
-        gpg: key XXXXXXXX marked as ultimately trusted
-        gpg: revocation certificate stored at '/home/user/.gnupg/openpgp-revocs.d/...'
-        public and secret key created and signed.
-        ```
-
-=== ":fontawesome-brands-apple: macOS (Command Line)"
-    !!! example "Generate Key Pair"
-        **Run the generation command:**
-
-        ```bash
-        gpg --full-generate-key
-        ```
-
-        **Follow the prompts:**
-
-        ```
-        Please select what kind of key you want:
-           (1) RSA and RSA (default)
-           (2) DSA and Elgamal
-           ...
-        Your selection? 1 ← Press 1
-
-        What keysize do you want? (3072) 4096 ← Type 4096
-
-        Please specify how long the key should be valid.
-           0 = key does not expire
-        Key is valid for? (0) 0 ← Type 0 (no expiration)
-
-        Is this correct? (y/N) y ← Type y
-        ```
-
-        **Enter your information:**
-
-        ```
-        Real name: Your Full Name
-        Email address: coordinator@institution.edu
-        Comment: (optional - can leave blank)
-
-        Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O ← Type O
-        ```
-
-        **Set passphrase:**
-
-        - Enter a strong passphrase
-        - Confirm passphrase
-        - :material-alert: **Remember this!** Cannot be recovered
-
-    !!! success "Key Generated"
-        ```bash
-        gpg: key XXXXXXXX marked as ultimately trusted
-        public and secret key created and signed.
-        ```
-
----
-
-### :material-numeric-2-circle: Export Your Public Key
-
-Others need your public key to send YOU encrypted files. It's safe to share publicly.
-
-=== ":fontawesome-brands-windows: Windows (Kleopatra)"
-    !!! example "Export Public Key"
-        **1. Find Your Key**
-
-        - In Kleopatra main window, locate your key
-
-        **2. Export**
-
-        - Right-click your key
-        - Select **Export...**
-
-        **3. Save File**
-
-        - Choose location
-        - Filename: `YourName-PublicKey.asc`
-        - Click **Save**
-
-        **4. Share**
-
-        - Email this `.asc` file to anyone who needs to send you encrypted documents
-        - :material-check: Safe to share publicly - it's your public key!
-
-=== ":fontawesome-brands-ubuntu: Ubuntu/Linux"
-    !!! example "Export Public Key"
-        ```bash
-        gpg --export -a coordinator@institution.edu > MyPublicKey.asc
-        ```
-
-        This creates `MyPublicKey.asc` in your current directory.
-
-        **Verify the export:**
-
-        ```bash
-        ls -lh MyPublicKey.asc
-        cat MyPublicKey.asc  # Should show ASCII-armored key
-        ```
-
-        **Share this file** with anyone who needs to send you encrypted documents.
-
-=== ":fontawesome-brands-apple: macOS"
-    !!! example "Export Public Key"
-        ```bash
-        gpg --export -a coordinator@institution.edu > MyPublicKey.asc
-        ```
-
-        This creates `MyPublicKey.asc` in your current directory.
-
-        **Verify the export:**
-
-        ```bash
-        ls -lh MyPublicKey.asc
-        cat MyPublicKey.asc  # Should show ASCII-armored key
-        ```
-
-        **Share this file** with anyone who needs to send you encrypted documents.
-
----
-
-### :material-numeric-3-circle: Import Recipient's Public Key
-
-Before encrypting files for someone, you need their public key.
-
-!!! info "Getting the Recipient's Key"
-    Contact your institution's exam office and request their public GPG key. They should provide a `.asc` file.
-
-=== ":fontawesome-brands-windows: Windows (Kleopatra)"
-    !!! example "Import Public Key"
-        **1. Get the Key File**
-
-        - Save the recipient's `.asc` file (e.g., `ExamsOffice-PublicKey.asc`)
-
-        **2. Import in Kleopatra**
-
-        - Click **Import...** button (top toolbar)
-        - Browse and select the `.asc` file
-        - Click **Open**
-
-        **3. Verify Import**
-
-        - Key should now appear in your key list
-        - Check the name/email matches the exam office
-
-        **4. Certify Trust (Optional)**
-
-        - Right-click the imported key
-        - Select **Certify...** to mark as trusted
-
-    !!! success "Key Imported"
-        The recipient's key is now ready for encrypting files.
-
-=== ":fontawesome-brands-ubuntu: Ubuntu/Linux"
-    !!! example "Import Public Key"
-        ```bash
-        gpg --import ExamsOffice-PublicKey.asc
-        ```
-
-        **Verify the import:**
-
-        ```bash
-        gpg --list-keys
-        ```
-
-        You should see the exam office's key listed.
-
-        **Check the fingerprint (recommended):**
-
-        ```bash
-        gpg --fingerprint exams@institution.edu
-        ```
-
-        Verify this matches the fingerprint provided by the exam office (via phone or in-person).
-
-=== ":fontawesome-brands-apple: macOS"
-    !!! example "Import Public Key"
-        ```bash
-        gpg --import ExamsOffice-PublicKey.asc
-        ```
-
-        **Verify the import:**
-
-        ```bash
-        gpg --list-keys
-        ```
-
-        You should see the exam office's key listed.
-
-        **Check the fingerprint (recommended):**
-
-        ```bash
-        gpg --fingerprint exams@institution.edu
-        ```
-
-        Verify this matches the fingerprint provided by the exam office (via phone or in-person).
-
----
-
-## :material-file-lock: Encrypting Exam Documents
-
-Now let's encrypt your exam materials for secure transmission.
-
-### :material-numeric-1-circle: Create a Zip Archive
-
-Combine all exam files into a single compressed archive.
-
-!!! warning "Use ZIP Format Only"
-    **Always use .ZIP format** - it's universally supported on all platforms (Windows, Mac, Linux) without additional software.
-
-    **Do NOT use:**
-
-    - ❌ .RAR (requires WinRAR)
-    - ❌ .7z (requires 7-Zip)
-    - ❌ .tar.gz (Linux-specific, confusing on Windows)
-    - ❌ Other proprietary formats
-
-    **Why ZIP?** Built into every operating system, guaranteed to work everywhere, exam offices can open it without installing extra software.
-
-=== ":fontawesome-brands-windows: Windows"
-    !!! example "Create ZIP File"
-        === "File Explorer Method"
-            **1. Organize Files**
-
-            - Create a folder: `MSc-Exams-Dec2025`
-            - Place all exam files inside:
-                - Question papers (PDFs)
-                - Answer keys (DOCX)
-                - Marking schemes
-                - Score sheets
-
-            **2. Compress**
-
-            - Right-click the folder
-            - Select **Send to → Compressed (zipped) folder**
-            - Result: `MSc-Exams-Dec2025.zip`
-
-        === "7-Zip Method"
-            If you have 7-Zip installed:
-
-            - Right-click the folder
-            - Select **7-Zip → Add to "MSc-Exams-Dec2025.zip"**
-
-    !!! success "ZIP Created"
-        You now have: `MSc-Exams-Dec2025.zip`
-
-        :material-alert: **Keep this file as backup!** You'll need it later if issues arise.
-
-=== ":fontawesome-brands-ubuntu: Ubuntu/Linux"
-    !!! example "Create ZIP Archive"
-        ```bash
-        # Navigate to parent directory
-        cd /path/to/exams/
-
-        # Create zip archive
-        zip -r MSc-Exams-Dec2025.zip MSc-Exams-Dec2025/
-        ```
-
-        **For verbose output:**
-
-        ```bash
-        zip -rv MSc-Exams-Dec2025.zip MSc-Exams-Dec2025/
-        ```
-
-        **Verify the zip:**
-
-        ```bash
-        ls -lh MSc-Exams-Dec2025.zip
-        unzip -l MSc-Exams-Dec2025.zip  # List contents without extracting
-        ```
-
-    !!! success "ZIP Created"
-        Archive created: `MSc-Exams-Dec2025.zip`
-
-        :material-alert: **Keep this as backup!**
-
-=== ":fontawesome-brands-apple: macOS"
-    !!! example "Create ZIP Archive"
-        === "Finder Method"
-            **1. Organize Files**
-
-            - Create folder: `MSc-Exams-Dec2025`
-            - Add all exam files
-
-            **2. Compress**
-
-            - Right-click (or Control+click) the folder
-            - Select **Compress "MSc-Exams-Dec2025"**
-            - Result: `MSc-Exams-Dec2025.zip`
-
-        === "Terminal Method"
-            ```bash
-            # Navigate to parent directory
-            cd /path/to/exams/
-
-            # Create zip archive
-            zip -r MSc-Exams-Dec2025.zip MSc-Exams-Dec2025/
-            ```
-
-    !!! success "ZIP Created"
-        Archive created: `MSc-Exams-Dec2025.zip`
-
-        :material-alert: **Keep this as backup!**
-
----
-
-### :material-numeric-2-circle: Encrypt the Archive
-
-Now encrypt the zip file so only the recipient can open it.
-
-=== ":fontawesome-brands-windows: Windows (Kleopatra)"
-    !!! example "Encrypt with Kleopatra"
-        **1. Start Encryption**
-
-        - Click **Sign/Encrypt...** button (top toolbar)
-        - Or: File → Sign/Encrypt Files
-
-        **2. Select Your ZIP File**
-
-        - Browse and select: `MSc-Exams-Dec2025.zip`
-        - Click **Open**
-
-        **3. Choose Options**
-
-        - :material-check-bold: Check **Encrypt**
-        - :material-check-bold: Optional: Check **Sign** (proves authenticity)
-
-        **4. Select Recipient**
-
-        - Choose: **Exams Office** (or their email)
-        - This is the public key you imported earlier
-
-        **5. Encrypt**
-
-        - Click **Encrypt** button
-        - Choose save location (same folder is fine)
-        - Result: `MSc-Exams-Dec2025.zip.gpg`
-
-    !!! success "File Encrypted"
-        :material-check-circle: Encrypted file created: `MSc-Exams-Dec2025.zip.gpg`
-
-        :material-email: Ready to email to exam office
-
-        :material-backup-restore: Original .zip kept as backup
-
-=== ":fontawesome-brands-ubuntu: Ubuntu/Linux"
-    !!! example "Encrypt via Command Line"
-        **Basic encryption:**
-
-        ```bash
-        gpg --trust-model always --encrypt \
-          --recipient exams@institution.edu \
-          MSc-Exams-Dec2025.zip
-        ```
-
-        **With signature (recommended for authenticity):**
-
-        ```bash
-        gpg --trust-model always --sign --encrypt \
-          --recipient exams@institution.edu \
-          MSc-Exams-Dec2025.zip
-        ```
-
-        **For ASCII-armored output (.asc instead of .gpg):**
-
-        ```bash
-        gpg --trust-model always --armor --encrypt \
-          --recipient exams@institution.edu \
-          MSc-Exams-Dec2025.zip
-        ```
-
-    !!! info "Understanding the Flags"
-        - `--trust-model always` - Skip trust verification (use if you trust the key)
-        - `--encrypt` - Encrypt the file
-        - `--sign` - Add your digital signature
-        - `--armor` - Create ASCII text output (.asc) instead of binary (.gpg)
-        - `--recipient` - Who can decrypt (their email from their key)
-
-    !!! success "File Encrypted"
-        Created: `MSc-Exams-Dec2025.zip.gpg`
-
-        ```bash
-        ls -lh MSc-Exams-Dec2025.zip*
-        ```
-
-        You should see both files:
-        - `MSc-Exams-Dec2025.zip` (original - keep this!)
-        - `MSc-Exams-Dec2025.zip.gpg` (encrypted - email this)
-
-=== ":fontawesome-brands-apple: macOS"
-    !!! example "Encrypt via Command Line"
-        **Basic encryption:**
-
-        ```bash
-        gpg --trust-model always --encrypt \
-          --recipient exams@institution.edu \
-          MSc-Exams-Dec2025.zip
-        ```
-
-        **With signature (recommended for authenticity):**
-
-        ```bash
-        gpg --trust-model always --sign --encrypt \
-          --recipient exams@institution.edu \
-          MSc-Exams-Dec2025.zip
-        ```
-
-        **For ASCII-armored output (.asc instead of .gpg):**
-
-        ```bash
-        gpg --trust-model always --armor --encrypt \
-          --recipient exams@institution.edu \
-          MSc-Exams-Dec2025.zip
-        ```
-
-    !!! info "Understanding the Flags"
-        - `--trust-model always` - Skip trust verification
-        - `--encrypt` - Encrypt the file
-        - `--sign` - Add your digital signature
-        - `--armor` - Create ASCII text output (.asc)
-        - `--recipient` - Who can decrypt (their email)
-
-    !!! success "File Encrypted"
-        Created: `MSc-Exams-Dec2025.zip.gpg`
-
-        You should see both:
-        - Original: `MSc-Exams-Dec2025.zip` (keep!)
-        - Encrypted: `MSc-Exams-Dec2025.zip.gpg` (email)
-
----
-
-### :material-numeric-3-circle: Send via Email
-
-!!! example "Email Delivery"
-    **1. Compose New Email**
-
-    - To: `exams@institution.edu`
-    - Subject: `MSc December 2025 Examinations - Encrypted`
-
-    **2. Write Brief Message**
-
-    ```
-    Dear Exams Office,
-
-    Please find attached the encrypted examination materials for MSc December 2025.
-
-    Attachments:
-    1. MSc-Exams-Dec2025.zip.gpg (encrypted exam files)
-    2. MyPublicKey.asc (my public key for your replies)
-
-    Contents:
-    - Question papers (5 courses)
-    - Marking schemes
-    - Answer keys
-
-    Please confirm receipt and use my public key if you need to send
-    encrypted materials back to me.
-
-    Best regards,
-    [Your Name]
-    [Your Department]
-    ```
-
-    **3. Attach Files**
-
-    Attach **TWO files**:
-
-    1. :material-file-lock: `MSc-Exams-Dec2025.zip.gpg` (the encrypted exams)
-    2. :material-key: `MyPublicKey.asc` (your public key - so they can send encrypted replies to you)
-
-    !!! tip "Why attach your public key?"
-        Including your public key allows the exam office to:
-
-        - Send encrypted confirmation back to you
-        - Send encrypted score reports or feedback
-        - Avoid having to request your key later
-
-        **Your public key is safe to share** - it can only encrypt, not decrypt.
-
-    **Do NOT attach:**
-
-    - :material-close: The original .zip file (keep this as backup)
-
-    **4. Send**
-
-    - Click Send
-    - :material-check: Email is now safely encrypted end-to-end
-
-!!! success "Encryption Complete"
-    :material-check-circle-outline: Exam materials encrypted
-    :material-check-circle-outline: Sent securely via email
-    :material-check-circle-outline: Only recipient can decrypt
-    :material-check-circle-outline: Original files backed up
-
----
-
-## :material-lock-open: Decrypting Documents
-
-When someone sends YOU an encrypted file (using your public key), here's how to decrypt it.
-
-!!! info "Prerequisites"
-    - You must have your **private key** on this computer
-    - The file was encrypted with **your public key**
-    - You know your **passphrase**
-
-### :material-numeric-1-circle: Decrypt the File
-
-=== ":fontawesome-brands-windows: Windows (Kleopatra)"
-    !!! example "Decrypt with Kleopatra"
-        **1. Start Decryption**
-
-        - Click **Decrypt/Verify...** button (top toolbar)
-        - Or: File → Decrypt/Verify Files
-
-        **2. Select Encrypted File**
-
-        - Browse and select the `.gpg` file (e.g., `Results-Dec2025.zip.gpg`)
-        - Click **Open**
-
-        **3. Enter Passphrase**
-
-        - Enter your private key passphrase when prompted
-        - Click **OK**
-
-        **4. Choose Output Location**
-
-        - Select where to save the decrypted file
-        - Default: Same folder, without `.gpg` extension
-
-    !!! success "File Decrypted"
-        The original file (e.g., `Results-Dec2025.zip`) is now available.
-
-=== ":fontawesome-brands-ubuntu: Ubuntu/Linux"
-    !!! example "Decrypt via Command Line"
-        **Basic decryption:**
-
-        ```bash
-        gpg --decrypt Results-Dec2025.zip.gpg > Results-Dec2025.zip
-        ```
-
-        **Or let GPG choose the filename:**
-
-        ```bash
-        gpg --output Results-Dec2025.zip --decrypt Results-Dec2025.zip.gpg
-        ```
-
-        **Interactive decryption (prompts for output):**
-
-        ```bash
-        gpg Results-Dec2025.zip.gpg
-        ```
-
-        You'll be prompted for your passphrase.
-
-    !!! success "File Decrypted"
-        ```bash
-        ls -lh Results-Dec2025.zip
-        # Should show the decrypted file
-        ```
-
-=== ":fontawesome-brands-apple: macOS"
-    !!! example "Decrypt via Command Line"
-        **Basic decryption:**
-
-        ```bash
-        gpg --decrypt Results-Dec2025.zip.gpg > Results-Dec2025.zip
-        ```
-
-        **Or with explicit output:**
-
-        ```bash
-        gpg --output Results-Dec2025.zip --decrypt Results-Dec2025.zip.gpg
-        ```
-
-        You'll be prompted for your passphrase.
-
-    !!! success "File Decrypted"
-        The decrypted file is ready to use.
-
----
-
-### :material-numeric-2-circle: Extract the Contents
-
-After decryption, you'll have a `.zip` file. Extract it:
-
-=== ":fontawesome-brands-windows: Windows"
-    - Right-click the `.zip` file
-    - Select **Extract All...**
-    - Choose destination folder
-    - Click **Extract**
-
-=== ":fontawesome-brands-ubuntu: Ubuntu/Linux"
-    ```bash
-    unzip Results-Dec2025.zip
-    ```
-
-=== ":fontawesome-brands-apple: macOS"
-    - Double-click the `.zip` file (auto-extracts)
-    - Or via Terminal: `unzip Results-Dec2025.zip`
-
----
-
-### :material-shield-check: Verify Signature (Optional)
-
-If the sender signed the file, verify their identity:
-
-=== ":fontawesome-brands-windows: Windows (Kleopatra)"
-    When decrypting a signed file, Kleopatra automatically shows:
-
-    - :material-check-circle: **Good signature** - File is authentic
-    - :material-alert-circle: **Unknown signature** - Sender's key not imported
-    - :material-close-circle: **Bad signature** - File may be tampered
-
-=== ":fontawesome-brands-ubuntu: Ubuntu/Linux"
-    ```bash
-    gpg --verify Results-Dec2025.zip.gpg
-    ```
-
-    **Good output:**
-    ```
-    gpg: Signature made Mon 01 Dec 2025 10:00:00 AM
-    gpg: Good signature from "Exams Office <exams@institution.edu>"
-    ```
-
-=== ":fontawesome-brands-apple: macOS"
-    ```bash
-    gpg --verify Results-Dec2025.zip.gpg
-    ```
-
-    Look for "Good signature" in the output.
-
----
-
-## :material-file-document-multiple: Complete Example Workflow
-
-Let's walk through a real-world scenario from start to finish.
-
-!!! abstract "Scenario: Sending Supplementary Exam Papers"
-    You need to submit BSc December 2025 supplementary exams containing:
-
-    - EMCH101-Exam.pdf
-    - EMCH102-Exam.pdf
-    - Marking-Scheme.pdf
-
-=== ":fontawesome-brands-windows: Windows"
-    ```powershell
-    # 1. Organize files in folder
-    # C:\Users\You\Documents\Exams\BSc-Supp-Dec2025\
-    #   ├── EMCH101-Exam.pdf
-    #   ├── EMCH102-Exam.pdf
-    #   └── Marking-Scheme.pdf
-
-    # 2. Create ZIP (via File Explorer)
-    # Right-click folder → Send to → Compressed folder
-    # Result: BSc-Supp-Dec2025.zip
-
-    # 3. Encrypt using Kleopatra
-    # - Open Kleopatra
-    # - Click "Sign/Encrypt"
-    # - Select BSc-Supp-Dec2025.zip
-    # - Choose recipient: Exams Office
-    # - Check "Encrypt" and "Sign"
-    # - Click Encrypt
-    # Result: BSc-Supp-Dec2025.zip.gpg
-
-    # 4. Email the .gpg file to exams@institution.edu
-
-    # 5. Move original .zip to backup folder (keep it safe!)
-    ```
-
-    !!! tip "Pro Tips"
-        - Create a folder structure: `Exams/Submitted/` and `Exams/Backup/`
-        - After successful delivery, move .gpg to archive
-        - Keep original .zip in `Backup/` folder
-        - Maintain a submission log (Excel/Word)
-
-=== ":fontawesome-brands-ubuntu: Ubuntu/Linux"
-    ```bash
-    # 1. Create folder and organize files
-    mkdir -p ~/Exams/BSc-Supp-Dec2025
-    cd ~/Exams/
-
-    # Copy exam files into folder
-    cp /path/to/EMCH101-Exam.pdf BSc-Supp-Dec2025/
-    cp /path/to/EMCH102-Exam.pdf BSc-Supp-Dec2025/
-    cp /path/to/Marking-Scheme.pdf BSc-Supp-Dec2025/
-
-    # 2. Create ZIP archive
-    zip -r BSc-Supp-Dec2025.zip BSc-Supp-Dec2025/
-
-    # Verify contents
-    unzip -l BSc-Supp-Dec2025.zip
-
-    # 3. Encrypt for exam office
-    gpg --trust-model always --sign --encrypt \
-      --recipient exams@institution.edu \
-      BSc-Supp-Dec2025.zip
-
-    # Verify encryption succeeded
-    ls -lh BSc-Supp-Dec2025.zip.gpg
-
-    # 4. Email the .gpg file
-    # Use your email client to attach and send BSc-Supp-Dec2025.zip.gpg
-
-    # 5. Backup original ZIP
-    mkdir -p ~/Exams/Backup/
-    cp BSc-Supp-Dec2025.zip ~/Exams/Backup/
-
-    # Optional: Clean up after confirmation of delivery
-    # rm BSc-Supp-Dec2025.zip.gpg
-    ```
-
-    !!! tip "Automation Tip"
-        Create a shell script for repeated submissions:
-
-        ```bash
-        #!/bin/bash
-        # encrypt-exams.sh
-        EXAM_FOLDER=$1
-        RECIPIENT="exams@institution.edu"
-
-        zip -r "${EXAM_FOLDER}.zip" "$EXAM_FOLDER"
-        gpg --trust-model always --sign --encrypt --recipient "$RECIPIENT" "${EXAM_FOLDER}.zip"
-        echo "Created: ${EXAM_FOLDER}.zip.gpg"
-        ```
-
-=== ":fontawesome-brands-apple: macOS"
-    ```bash
-    # 1. Create folder and organize files
-    mkdir -p ~/Documents/Exams/BSc-Supp-Dec2025
-    cd ~/Documents/Exams/
-
-    # Copy exam files into folder
-    cp /path/to/EMCH101-Exam.pdf BSc-Supp-Dec2025/
-    cp /path/to/EMCH102-Exam.pdf BSc-Supp-Dec2025/
-    cp /path/to/Marking-Scheme.pdf BSc-Supp-Dec2025/
-
-    # 2. Create ZIP archive
-    zip -r BSc-Supp-Dec2025.zip BSc-Supp-Dec2025/
-
-    # Verify contents
-    unzip -l BSc-Supp-Dec2025.zip
-
-    # 3. Encrypt for exam office
-    gpg --trust-model always --sign --encrypt \
-      --recipient exams@institution.edu \
-      BSc-Supp-Dec2025.zip
-
-    # Verify encryption succeeded
-    ls -lh BSc-Supp-Dec2025.zip.gpg
-
-    # 4. Email the .gpg file
-    # Use Mail.app or your email client to attach BSc-Supp-Dec2025.zip.gpg
-
-    # 5. Backup original ZIP
-    mkdir -p ~/Documents/Exams/Backup/
-    cp BSc-Supp-Dec2025.zip ~/Documents/Exams/Backup/
-    ```
-
-    !!! tip "Finder Integration"
-        You can create an Automator Quick Action to encrypt files:
-
-        1. Open Automator
-        2. Create new Quick Action
-        3. Add "Run Shell Script"
-        4. Save as "Encrypt for Exams Office"
-        5. Right-click any file → Quick Actions → Encrypt for Exams Office
-
----
-
-## :material-frequently-asked-questions: Common Questions
-
-??? question "Can I decrypt files I encrypted for others?"
-    **No, you cannot.** This is by design for security.
-
-    When you encrypt a file with someone else's public key:
-
-    - Only their private key can decrypt it
-    - Even you (the encryptor) cannot decrypt it
-    - This ensures only the intended recipient can read the contents
-
-    **Solution:** Always keep the original .zip file as backup before encrypting!
-
-??? question "What if I lose my private key?"
-    If you lose your private key:
-
-    - :material-close: You cannot decrypt files encrypted FOR you
-    - :material-check: You can still encrypt files for others (only need their public key)
-    - :material-close: Cannot recover your private key without backup
-
-    **Where private keys are stored:**
-
-    - **Linux/Mac:** `~/.gnupg/`
-    - **Windows:** `%APPDATA%\gnupg\`
-
-    **Prevention:** [Backup your private key](#backing-up-your-keys) to secure storage!
-
-??? question "Can I use the same encryption for multiple recipients?"
-    **No.** Each recipient needs their own encrypted copy.
-
-    To send to multiple recipients:
+    **Tested on Ubuntu 22.04+, Debian 12+, Linux Mint 21+.**
 
     ```bash
-    # Encrypt for first recipient
-    gpg --encrypt --recipient office1@institution.edu exam.zip
-
-    # Encrypt for second recipient
-    gpg --encrypt --recipient office2@institution.edu exam.zip
+    sudo apt install ./siwit-seal_<version>_amd64.deb
     ```
 
-    Or encrypt for multiple recipients at once:
+    The leading `./` is required so apt resolves dependencies. See the [Linux install notes](https://siliconwit.github.io/siwit-seal-releases/install/linux/).
+
+=== ":fontawesome-brands-apple: macOS"
+
+    **Coming soon. Apple Silicon and Intel, macOS 12+.**
+
+    Watch the [Releases page](https://github.com/SiliconWit/siwit-seal-releases/releases) for the `.dmg`. Meanwhile, macOS users can fall back to GPG Suite (see the section at the bottom of this page).
+
+---
+
+## :material-key-plus: First-time setup in Seal
+
+The first time you open Seal, the **First-time setup** wizard runs automatically. Six steps shown down the left:
+
+| Step | What you do | Why it matters |
+|:----:|-------------|----------------|
+| 1 | **Welcome** | Visual explanation of public vs. private keys |
+| 2 | **Your identity** | Real name and email get embedded in your public key |
+| 3 | **Your passphrase** | Protects your private key. There is no recovery if lost |
+| 4 | **Generate keys** | Creates a 4096-bit RSA key pair locally (up to a minute) |
+| 5 | **Back up your keys** | Saves your **private-key backup** and **revocation certificate** to disk |
+| 6 | **You're ready** | Shows your fingerprint so contacts can verify your key |
+
+!!! danger "Save the backup and the revocation certificate before you encrypt real exams"
+    If you lose the passphrase and the backup, the files encrypted to you cannot be opened by anyone, including you. If your laptop is stolen, the revocation certificate is your only way to publicly invalidate the lost key.
+
+    Save both to a place only you can reach: a USB stick locked in a drawer, an institutional password manager, or an encrypted cloud folder.
+
+For the full step-by-step walkthrough with screenshots and explanations, see the [Seal Quick Start](https://siliconwit.github.io/siwit-seal-releases/quickstart/#1-first-run-create-your-key).
+
+---
+
+## :material-file-lock: Encrypting a scoresheet bundle
+
+The most common DEEPS scenario: you have a folder of scoresheets and you need to send them to the examinations office.
+
+!!! example "End-to-end with Seal"
+    1. Open Seal.
+    2. Click **↑ Send** in the left sidebar (this is the first tab).
+    3. In **Files to send**, click **Add folder...** and pick your scoresheet folder. Or drag the folder onto the drop area.
+    4. In **Recipients**, pick the examinations office contact. If they are not in your address book yet, click **Add a contact** and paste their public key first.
+    5. Leave **Also encrypt to me (so I can open it later)** checked. Leave **Sign with my key** off unless your recipient specifically asks for a signature.
+    6. Click **Encrypt and Save**. Pick a location, or accept the default (`Documents/SILICONWIT-SEAL/Sent/`).
+    7. Seal writes two files in that folder:
+        - `<your-folder-name>.zip.pgp` (the encrypted bundle).
+        - `<your-name>-<short-fp>-public.asc` (a copy of your public key).
+    8. Email both as attachments. The recipient uses your public key to add you as a future contact and (if you signed) to verify the signature.
+
+!!! tip "Verify the recipient first"
+    Before encrypting anything truly sensitive, confirm the recipient's fingerprint over a **trusted channel** (in person or by phone). Read the 40-character fingerprint, four characters at a time. Seal groups the fingerprint in fours on the Contacts page for exactly this reason. Once verified, click **Mark verified** and the contact gets a checkmark badge in the recipients list.
+
+---
+
+## :material-lock-open: Decrypting a bundle you received
+
+This is the reverse direction: someone has emailed you a `.gpg` or `.pgp` file.
+
+!!! example "End-to-end with Seal"
+    1. Save the attachment to your computer.
+    2. Open Seal.
+    3. Click **↓ Receive** in the left sidebar.
+    4. Drag the encrypted file onto the drop area, or click **Browse...** and pick it.
+    5. Click **Decrypt**. Type your passphrase.
+    6. Seal extracts the contents into `Documents/SILICONWIT-SEAL/Received/<bundle-name>/`. If you have decrypted the same bundle before, the new copy lands in `<bundle-name> (2)`, then `(3)`, so nothing is overwritten.
+    7. Double-click any row in the list to open the file, or click **Open folder** to reveal the folder in your file manager.
+
+!!! info "Signature verification, automatically"
+    If the sender signed the bundle and you already have their public key in **Contacts**, Seal verifies the signature and tells you who signed it. If the sender is not in your contacts yet, the file still decrypts; Seal just notes that it could not verify the signature.
+
+---
+
+## :material-backup-restore: Backup and recovery
+
+!!! warning "If you lose your private key, you lose your encrypted data"
+    Treat your private-key backup and revocation certificate the same way you treat your most important credentials.
+
+**What Seal saves automatically (under `Documents/SILICONWIT-SEAL/`):**
+
+| Folder | What is in it |
+|--------|---------------|
+| `Sent/` | Encrypted bundles you have sealed |
+| `Received/` | Decrypted contents, one subfolder per bundle |
+| `Backups/` | Your private-key backup files (`.asc`) |
+| `Revocations/` | Your revocation certificates (`.asc`) |
+| `Public keys/` | Your exported public keys (`.asc`) |
+
+**To re-export from inside Seal:**
+
+1. Open **⚿ My Keys**.
+2. The red **Private Key** card has **Re-export private-key backup** and **Re-export revocation certificate** buttons.
+3. The blue **Public Key** card has **Copy public key to clipboard** and **Save public key as file**.
+
+**To restore on a new computer:**
+
+1. Install Seal on the new machine.
+2. When the first-run wizard appears, close it.
+3. Copy your saved backup `.asc` into the keyring directory:
+    - Linux: `~/.local/share/Seal/gnupg/`
+    - Windows: `%APPDATA%\Seal\gnupg\`
+    - macOS: `~/Library/Application Support/Seal/gnupg/`
+4. Reopen Seal. Your identity is now active.
+
+Backup and restore in the regular GPG sense (using `gpg --export-secret-keys` / `gpg --import`) also works. The on-disk format is standard OpenPGP.
+
+---
+
+## :material-tools: Falling back to Kleopatra, GPG Suite, or the command line
+
+If you cannot install Seal (locked-down corporate machine, IT policy, or just personal preference), the same workflow runs in the classic OpenPGP tools. Output is interchangeable. A bundle made with Seal opens in Kleopatra, and vice versa.
+
+=== ":fontawesome-brands-windows: Kleopatra (Gpg4win)"
+
+    1. Install [Gpg4win](https://www.gpg4win.org/) with **GnuPG** and **Kleopatra** selected.
+    2. **Kleopatra**, then **New Key Pair**. Enter your name and email. Choose RSA 4096. Set a strong passphrase.
+    3. **Export** your public key (right-click the key, **Export...**) and email it to the examinations office once.
+    4. **Import** their public key the same way.
+    5. To encrypt a folder:
+        1. Compress it to a `.zip` in File Explorer first (right-click, **Send to**, **Compressed (zipped) folder**).
+        2. In Kleopatra, **File**, then **Sign/Encrypt Files...**, pick the `.zip`, choose **Encrypt for others**, select the recipient, save the `.gpg`.
+    6. To decrypt, open Kleopatra, **File**, then **Decrypt/Verify Files...**, pick the `.gpg`, enter your passphrase.
+
+    !!! warning "No auto-encrypt-to-self in Kleopatra by default"
+        Always add **yourself** as a second recipient when encrypting, or you will not be able to open the bundle you just sent.
+
+=== ":fontawesome-brands-apple: GPG Suite (macOS)"
+
+    1. Install [GPG Suite](https://gpgtools.org/) from gpgtools.org, or `brew install gnupg` for the command line.
+    2. Open **GPG Keychain**, then **New**, then create a 4096-bit RSA key with a strong passphrase.
+    3. Export your public key, import theirs (drag-drop both work).
+    4. Encrypt: right-click the `.zip` in Finder, **Services**, then **OpenPGP: Encrypt File**. Select the recipient. Tick **Add to recipients** for yourself.
+    5. Decrypt: double-click the `.gpg` file. GPG Keychain prompts for your passphrase.
+
+=== ":material-console: Command line (Linux, macOS, WSL)"
+
+    Most distributions ship `gpg` already. If not, `sudo apt install gnupg` or `brew install gnupg`.
+
+    **Generate a key (one time):**
 
     ```bash
-    gpg --encrypt \
-      --recipient office1@institution.edu \
-      --recipient office2@institution.edu \
-      exam.zip
+    gpg --full-generate-key
+    # Choose RSA, 4096 bits, set a strong passphrase
     ```
 
-    This creates one file both recipients can decrypt with their respective private keys.
-
-??? question "How do I verify I have the correct public key?"
-    Always verify the key fingerprint with the recipient via a different channel (phone, in-person, official website).
-
-    **Check fingerprint:**
-
-    === "Windows (Kleopatra)"
-        - Right-click the key
-        - Select **Certificate Details**
-        - View **Fingerprint**
-
-    === "Linux/Mac"
-        ```bash
-        gpg --fingerprint exams@institution.edu
-        ```
-
-    **Compare this fingerprint** with what the exam office officially provides (via phone, official letterhead, institutional website).
-
-??? question "What's the difference between signing and encrypting?"
-    Both serve different security purposes:
-
-    | Feature | Signing | Encrypting |
-    |---------|---------|------------|
-    | **Purpose** | Prove authenticity | Ensure confidentiality |
-    | **Who can read?** | Anyone | Only recipient |
-    | **Verifies** | File origin & integrity | Nothing (just locks content) |
-    | **Protects against** | Tampering & forgery | Unauthorized reading |
-
-    **Best practice:** Use both for exam submissions!
+    **Export your public key to send to the examinations office:**
 
     ```bash
-    gpg --sign --encrypt --recipient exams@institution.edu exam.zip
+    gpg --armor --export your@email.example > my-public-key.asc
     ```
 
-??? question "The recipient says they can't decrypt my file"
-    Common causes and solutions:
-
-    | Issue | Solution |
-    |-------|----------|
-    | **Wrong public key used** | Verify you imported their correct key |
-    | **Sent .zip instead of .gpg** | Check attachment - must be .gpg file |
-    | **Key mismatch** | Their private key doesn't match the public key you used |
-    | **Corrupted file** | Re-encrypt and resend |
-    | **Wrong recipient specified** | Check `--recipient` email matches their key |
-
-    **Debug steps:**
-
-    1. Verify you have their current public key
-    2. Check the encrypted file extension (.gpg or .asc)
-    3. Test by asking them to confirm their public key fingerprint
-    4. Try re-encrypting with explicit recipient ID
-
-??? question "Can I password-protect instead of using keys?"
-    Yes, GPG supports symmetric encryption (password-based), but it's less secure for exam submissions.
-
-    **Symmetric encryption:**
+    **Import their public key:**
 
     ```bash
-    gpg --symmetric exam.zip
+    gpg --import exam-office-public.asc
     ```
 
-    **Why key-based is better:**
+    **Zip and encrypt to BOTH the recipient AND yourself:**
 
-    - :material-check: No need to share passwords over phone/email
-    - :material-check: Stronger security (4096-bit vs typical passwords)
-    - :material-check: Non-repudiation (signing proves it's from you)
-    - :material-check: Key management (rotate keys, revoke compromised keys)
+    ```bash
+    zip -r scoresheets.zip scoresheets/
+    gpg --output scoresheets.zip.gpg \
+        --encrypt \
+        --recipient exam-office@example.edu \
+        --recipient your@email.example \
+        scoresheets.zip
+    ```
 
-    **When to use symmetric:** Personal backups, temporary sharing
+    !!! warning "The second `--recipient` is what lets you open the bundle later"
+        Without it, you cannot decrypt your own outgoing file. This is the most common CLI mistake.
 
-??? question "How large can encrypted files be?"
-    GPG has no practical size limit for modern systems.
+    **Decrypt a bundle:**
 
-    **Considerations:**
+    ```bash
+    gpg --output scoresheets.zip --decrypt scoresheets.zip.gpg
+    unzip scoresheets.zip
+    ```
 
-    | Size Range | Notes |
-    |------------|-------|
-    | **< 25 MB** | Email directly without issues |
-    | **25-100 MB** | May need institutional email or Google Drive/OneDrive |
-    | **> 100 MB** | Use file sharing services, share .gpg file link |
+---
 
-    **Email size limits:**
+## :material-shield-check: Security checklist
 
-    - Gmail: 25 MB
-    - Outlook.com: 20 MB
-    - Institutional email: Varies (typically 25-50 MB)
+A short list, applicable whether you use Seal or any other OpenPGP tool.
 
-    **For large files:**
+- [x] Generate keys at **4096-bit RSA** or stronger.
+- [x] Use a **passphrase of several words**. Random words from a wordlist are stronger than a short password with symbols.
+- [x] **Save** your private-key backup and revocation certificate to a place only you can reach.
+- [x] **Verify** the recipient's fingerprint over a trusted channel (in person, voice call) before sending sensitive material.
+- [x] **Always encrypt to yourself** in addition to the recipient (Seal does this by default).
+- [x] **Keep the original files** until the recipient confirms receipt, unless you are relying on auto-encrypt-to-self.
+- [x] **Update Seal** when new releases ship. Bug fixes for the OpenPGP backend ride along.
+- [x] **Never** email your private-key backup as an attachment. Never paste it into a chat.
 
-    1. Upload .gpg file to Google Drive/OneDrive
-    2. Share link with exam office (file still encrypted, safe to share link)
-    3. They download and decrypt locally
+---
+
+## :material-frequently-asked-questions: Common questions
+
+??? question "Do I have to use SiliconWit Seal?"
+    No. Seal produces standard OpenPGP files. You can use Kleopatra, GPG Suite, Thunderbird, Mailvelope, or the `gpg` command line and the workflow is the same. We recommend Seal because it is purpose-built for the DEEPS workflow described on this page and removes the most common pitfalls (no auto-encrypt-to-self, no built-in zipping, no enforced backup step).
+
+??? question "My recipient does not use Seal. Can they still open my bundles?"
+    Yes. The file format is RFC 4880, the same format Kleopatra, GPG Suite, Thunderbird, and Mailvelope produce. Your recipient sees a normal `.gpg` or `.pgp` file and opens it with whatever OpenPGP tool they prefer.
 
 ??? question "What if I forget my passphrase?"
-    **Unfortunately, your passphrase cannot be recovered.**
+    There is no recovery. The passphrase is the only thing protecting your private key, and it never leaves your computer. If you forget it:
 
-    **Impact:**
+    1. Publish your revocation certificate (or send it to the examinations office) so contacts know to stop trusting your old key.
+    2. In Seal, open **My Keys**, then **Replace this key**, and generate a fresh one with the same name and email.
+    3. Email the new public key to your contacts. Old encrypted bundles cannot be recovered, but the old key cannot be misused either.
 
-    - :material-close: Cannot use your private key
-    - :material-close: Cannot decrypt files sent to you
-    - :material-close: Cannot sign files
-    - :material-check: Your public key still exists (others can still encrypt for you)
+??? question "What is the difference between `.gpg` and `.pgp`?"
+    Nothing. They are the same OpenPGP format with a different file extension. Some tools accept only one, some accept both. Pick the default in **Settings**, then **Default suffix** inside Seal.
 
-    **Solution:**
+??? question "Where does Seal store my keys?"
+    The visible folders are under `Documents/SILICONWIT-SEAL/`. The keyring itself lives in the platform's app-data location:
 
-    1. Generate a new key pair
-    2. Export and distribute your new public key
-    3. Inform contacts about key change
-    4. Revoke old key (if you backed up the revocation certificate)
+    - Linux: `~/.local/share/Seal/`
+    - macOS: `~/Library/Application Support/Seal/`
+    - Windows: `%APPDATA%\Seal\` (or `%LOCALAPPDATA%\Seal\`)
 
----
+??? question "Can I have a personal key and a departmental key on the same machine?"
+    Yes. In **My Keys**, click **+ Add another account** and the wizard runs again. The dropdown at the top of My Keys, Send, and the sidebar pill all stay in sync.
 
-## :material-backup-restore: Backup and Recovery
+??? question "Is signing recommended?"
+    Off by default in Seal, and that is intentional. Some OpenPGP tools refuse to display content when they cannot verify a signature, which looks like "cannot decrypt" to the recipient. Turn signing on per-send when your recipient explicitly wants to verify the file came from you. When you do sign, Seal drops a copy of your public key next to the bundle so the recipient can attach both.
 
-!!! danger "Critical: Backup Your Private Key"
-    Your private key is the ONLY way to decrypt files sent to you. If your computer crashes or is replaced, you'll lose access to all encrypted communications unless you have a backup!
-
-### :material-download-box: Backing Up Your Keys
-
-=== ":fontawesome-brands-windows: Windows (Kleopatra)"
-    !!! example "Export Private Key Backup"
-        **1. Open Kleopatra**
-
-        **2. Export Secret Key**
-
-        - Right-click your key
-        - Select **Export Secret Keys...**
-        - Choose secure location
-        - Filename: `PRIVATE-KEY-BACKUP-YourName.asc`
-        - Click **Save**
-
-        **3. Secure Storage**
-
-        Store in one of these secure locations:
-
-        - :material-usb-flash-drive: Encrypted USB drive
-        - :material-cloud-lock: Password manager (1Password, Bitwarden)
-        - :material-safe: Physical safe with encrypted backup
-        - :material-harddisk: External hard drive (encrypted volume)
-
-    !!! danger "Never Share This File"
-        - :material-close: Never email your private key
-        - :material-close: Never upload to cloud (unless encrypted)
-        - :material-close: Never share with anyone
-        - :material-check: Only keep in secure, encrypted storage
-
-=== ":fontawesome-brands-ubuntu: Ubuntu/Linux"
-    !!! example "Export Private Key"
-        ```bash
-        # Export your private key
-        gpg --export-secret-keys -a coordinator@institution.edu > PRIVATE-KEY-BACKUP.asc
-
-        # Verify the export
-        ls -lh PRIVATE-KEY-BACKUP.asc
-        file PRIVATE-KEY-BACKUP.asc
-        ```
-
-        **Secure the backup:**
-
-        ```bash
-        # Move to secure location
-        mv PRIVATE-KEY-BACKUP.asc ~/SecureBackup/
-
-        # Set strict permissions
-        chmod 600 ~/SecureBackup/PRIVATE-KEY-BACKUP.asc
-
-        # Optional: Encrypt the backup with a password
-        gpg --symmetric ~/SecureBackup/PRIVATE-KEY-BACKUP.asc
-        ```
-
-    !!! warning "Storage Recommendations"
-        - Store on encrypted USB drive
-        - Keep offline backup in safe location
-        - Use password manager for secure cloud storage
-        - Never commit to git repositories
-
-=== ":fontawesome-brands-apple: macOS"
-    !!! example "Export Private Key"
-        ```bash
-        # Export your private key
-        gpg --export-secret-keys -a coordinator@institution.edu > PRIVATE-KEY-BACKUP.asc
-
-        # Verify the export
-        ls -lh PRIVATE-KEY-BACKUP.asc
-        file PRIVATE-KEY-BACKUP.asc
-        ```
-
-        **Secure the backup:**
-
-        ```bash
-        # Move to secure location
-        mv PRIVATE-KEY-BACKUP.asc ~/Documents/SecureBackup/
-
-        # Set strict permissions
-        chmod 600 ~/Documents/SecureBackup/PRIVATE-KEY-BACKUP.asc
-
-        # Optional: Create encrypted disk image
-        hdiutil create -encryption AES-256 -size 10m -volname "GPG Backup" -fs HFS+ GPGBackup.dmg
-        # Mount and copy backup file to encrypted image
-        ```
-
-    !!! warning "Storage Recommendations"
-        - Use macOS Keychain for additional protection
-        - Store on encrypted Time Machine backup
-        - Keep offline copy in secure location
+??? question "Can I report a bug?"
+    Open an issue on the releases repo: <https://github.com/SiliconWit/siwit-seal-releases/issues>. Attach the diagnostics log from Seal's **Help and Support** page if the issue is technical. The log records what went wrong but never records your passphrase, private-key material, or file contents.
 
 ---
 
-### :material-upload-box: Restoring Keys on New Computer
-
-=== ":fontawesome-brands-windows: Windows (Kleopatra)"
-    !!! example "Restore Private Key"
-        **1. Install Gpg4win**
-
-        - Download and install on new computer
-        - Launch Kleopatra
-
-        **2. Import Private Key**
-
-        - Click **Import...**
-        - Browse to `PRIVATE-KEY-BACKUP.asc`
-        - Select and click **Open**
-        - Enter your passphrase
-
-        **3. Import Recipient Public Keys**
-
-        - Click **Import...**
-        - Select exam office public key files
-        - Import each recipient key you work with
-
-        **4. Verify**
-
-        - Your key should show :material-key: (public) and :material-key-variant: (private)
-        - Check that all recipient keys are imported
-
-    !!! success "Restoration Complete"
-        You can now encrypt and decrypt files as before!
-
-=== ":fontawesome-brands-ubuntu: Ubuntu/Linux"
-    !!! example "Restore Keys"
-        ```bash
-        # Install GPG (if needed)
-        sudo apt install gnupg
-
-        # Import your private key
-        gpg --import PRIVATE-KEY-BACKUP.asc
-
-        # Import recipient public keys
-        gpg --import ExamsOffice-PublicKey.asc
-        gpg --import RegistrarOffice-PublicKey.asc
-
-        # Verify imports
-        gpg --list-secret-keys  # Your private key
-        gpg --list-keys         # All public keys
-
-        # Set ultimate trust on your own key
-        gpg --edit-key coordinator@institution.edu
-        # At gpg> prompt, type: trust
-        # Select: 5 = I trust ultimately
-        # Type: quit
-        ```
-
-    !!! success "Keys Restored"
-        ```bash
-        # Test encryption
-        echo "Test" > test.txt
-        gpg --encrypt --recipient exams@institution.edu test.txt
-
-        # If successful, you're ready to go!
-        rm test.txt test.txt.gpg
-        ```
-
-=== ":fontawesome-brands-apple: macOS"
-    !!! example "Restore Keys"
-        ```bash
-        # Install GPG (via Homebrew)
-        brew install gnupg
-
-        # Import your private key
-        gpg --import PRIVATE-KEY-BACKUP.asc
-
-        # Import recipient public keys
-        gpg --import ExamsOffice-PublicKey.asc
-
-        # Verify imports
-        gpg --list-secret-keys  # Your private key
-        gpg --list-keys         # All public keys
-
-        # Set ultimate trust on your own key
-        gpg --edit-key coordinator@institution.edu
-        # At gpg> prompt, type: trust
-        # Select: 5 = I trust ultimately
-        # Type: quit
-        ```
-
-    !!! success "Keys Restored"
-        Test the restoration:
-
-        ```bash
-        echo "Test" > test.txt
-        gpg --encrypt --recipient exams@institution.edu test.txt
-        ls test.txt.gpg  # Should exist
-        rm test.txt test.txt.gpg
-        ```
-
----
-
-## :material-console: Quick Reference
-
-### Command Cheat Sheet
-
-=== ":fontawesome-brands-windows: GUI (Kleopatra)"
-    | Task | Action |
-    |------|--------|
-    | **Create key pair** | New Key Pair button |
-    | **Import public key** | Import... → Select .asc file |
-    | **Export your public key** | Right-click key → Export... |
-    | **Export your private key (backup)** | Right-click key → Export Secret Keys... |
-    | **Encrypt file** | Sign/Encrypt... → Select file → Choose recipient |
-    | **Decrypt file** | Decrypt/Verify... → Select .gpg file |
-    | **View all keys** | Main window (automatic display) |
-    | **Check key fingerprint** | Right-click → Certificate Details |
-
-=== ":fontawesome-brands-ubuntu: Ubuntu/Linux"
-    | Command | Purpose |
-    |---------|---------|
-    | `gpg --full-generate-key` | Create new key pair |
-    | `gpg --list-keys` | List all public keys |
-    | `gpg --list-secret-keys` | List your private keys |
-    | `gpg --import file.asc` | Import a public key |
-    | `gpg --export -a email > key.asc` | Export your public key |
-    | `gpg --export-secret-keys -a email > key.asc` | Backup your private key |
-    | `gpg --encrypt --recipient email file` | Encrypt file |
-    | `gpg --sign --encrypt --recipient email file` | Sign and encrypt |
-    | `gpg --decrypt file.gpg > file` | Decrypt file |
-    | `gpg --fingerprint email` | Show key fingerprint |
-    | `gpg --edit-key email` | Edit key (trust, sign, etc.) |
-
-=== ":fontawesome-brands-apple: macOS"
-    | Command | Purpose |
-    |---------|---------|
-    | `gpg --full-generate-key` | Create new key pair |
-    | `gpg --list-keys` | List all public keys |
-    | `gpg --list-secret-keys` | List your private keys |
-    | `gpg --import file.asc` | Import a public key |
-    | `gpg --export -a email > key.asc` | Export your public key |
-    | `gpg --export-secret-keys -a email > key.asc` | Backup your private key |
-    | `gpg --encrypt --recipient email file` | Encrypt file |
-    | `gpg --sign --encrypt --recipient email file` | Sign and encrypt |
-    | `gpg --decrypt file.gpg > file` | Decrypt file |
-    | `gpg --fingerprint email` | Show key fingerprint |
-    | `gpg --edit-key email` | Edit key (trust, sign, etc.) |
-
----
-
-## :material-shield-check: Security Best Practices
+## :material-information: Additional resources
 
 <div class="grid cards" markdown>
 
--   :material-check-circle: **Critical DO's**
+-   :material-book-open-variant: **SiliconWit Seal docs**
 
     ---
 
-    - ✅ **Always keep original .zip files** - You can't decrypt your own .gpg files!
-    - ✅ **Use .ZIP format only** - Universal compatibility (not RAR/7z)
-    - ✅ **Back up your private key** - Secure, offline storage
-    - ✅ **Verify recipient's key fingerprint** - Ensure authenticity
-    - ✅ **Test before deadline** - Practice the process when not under pressure
+    - [Documentation home](https://siliconwit.github.io/siwit-seal-releases/)
+    - [Quick start](https://siliconwit.github.io/siwit-seal-releases/quickstart/)
+    - [Using Seal: tour of every tab](https://siliconwit.github.io/siwit-seal-releases/using/)
+    - [Install slides (PDF)](https://siliconwit.github.io/siwit-seal-releases/assets/install.pdf)
+    - [Releases and downloads](https://github.com/SiliconWit/siwit-seal-releases/releases)
 
--   :material-close-circle: **Critical DON'Ts**
+-   :material-account-multiple-outline: **Other OpenPGP tools**
 
     ---
 
-    - ❌ **Never share your private key** - Not with anyone, ever!
-    - ❌ **Don't delete originals after encrypting** - You'll need them!
-    - ❌ **Don't forget you can't decrypt what you encrypt** - Only recipient can
-    - ❌ **Don't store private keys unencrypted** - Even in cloud backups
-    - ❌ **Don't skip importing recipient's key** - Must have it before encrypting
+    - [Gpg4win (Kleopatra) for Windows](https://www.gpg4win.org/)
+    - [GPG Suite for macOS](https://gpgtools.org/)
+    - [Thunderbird built-in OpenPGP](https://support.mozilla.org/en-US/kb/openpgp-thunderbird-howto-and-faq)
+    - [Mailvelope (in-browser)](https://www.mailvelope.com/)
+
+-   :material-file-document-multiple: **The standard, and the spec**
+
+    ---
+
+    - [OpenPGP.org](https://www.openpgp.org/)
+    - [RFC 4880: OpenPGP Message Format](https://tools.ietf.org/html/rfc4880)
+    - [GnuPG documentation](https://gnupg.org/documentation/)
 
 </div>
 
 ---
 
-## :material-tools: Troubleshooting
-
-??? warning "**Error:** No public key available"
-    **Problem:** You haven't imported the recipient's public key.
-
-    **Solution:**
-
-    1. Request the recipient's public key (.asc file)
-    2. Import it: `gpg --import recipient-key.asc`
-    3. Verify: `gpg --list-keys` shows their key
-    4. Retry encryption
-
-??? warning "**Error:** Unusable public key"
-    **Problem:** The imported key is expired, revoked, or corrupted.
-
-    **Solution:**
-
-    1. Contact recipient for a current public key
-    2. Remove old key: `gpg --delete-keys email@domain.edu`
-    3. Import new key
-    4. Verify expiration: `gpg --list-keys email@domain.edu`
-
-??? warning "**Error:** Cannot find gpg command"
-    **Problem:** GPG not installed or not in system PATH.
-
-    **Solution:**
-
-    === "Windows"
-        1. Reinstall Gpg4win
-        2. Restart Command Prompt/PowerShell
-        3. Try: `"C:\Program Files (x86)\GnuPG\bin\gpg.exe" --version`
-
-    === "Linux"
-        ```bash
-        # Install GPG
-        sudo apt install gnupg  # Ubuntu/Debian
-        sudo dnf install gnupg2  # Fedora
-        ```
-
-    === "Mac"
-        ```bash
-        brew install gnupg
-        # Or reinstall: brew reinstall gnupg
-        ```
-
-??? warning "**Error:** Forgot passphrase"
-    **Problem:** Cannot remember passphrase for private key.
-
-    **Solution:**
-
-    **Unfortunately, passphrases cannot be recovered.** You must:
-
-    1. Generate a new key pair
-    2. Export and distribute new public key
-    3. Notify all contacts of key change
-    4. Revoke old key (if you created revocation certificate)
-
-??? warning "**Problem:** File too large for email"
-    **Problem:** Encrypted .gpg file exceeds email attachment limits.
-
-    **Solution:**
-
-    **Option 1: Institutional File Sharing**
-
-    1. Upload .gpg file to Google Drive/OneDrive
-    2. Share link with exam office
-    3. File remains encrypted - safe to share link
-
-    **Option 2: Split Large Files**
-
-    ```bash
-    # Split encrypted file into parts
-    split -b 20M exam.zip.gpg exam.zip.gpg.part-
-
-    # Creates: exam.zip.gpg.part-aa, exam.zip.gpg.part-ab, etc.
-    # Email each part separately
-
-    # Recipient reassembles:
-    cat exam.zip.gpg.part-* > exam.zip.gpg
-    gpg --decrypt exam.zip.gpg > exam.zip
-    ```
-
-??? warning "**Error:** There is no assurance this key belongs to the named user"
-    **Problem:** GPG cannot verify the authenticity of the imported key.
-
-    **Solution:**
-
-    **Option 1: Bypass with trust flag**
-
-    ```bash
-    gpg --trust-model always --encrypt --recipient email@domain.edu file
-    ```
-
-    **Option 2: Manually trust the key**
-
-    ```bash
-    gpg --edit-key email@domain.edu
-    # At gpg> prompt:
-    trust
-    # Select: 4 = I trust fully (or 5 = I trust ultimately)
-    quit
-    ```
-
-    **Option 3: Verify and sign the key**
-
-    1. Verify key fingerprint with recipient (phone/in-person)
-    2. Sign their key: `gpg --sign-key email@domain.edu`
-
-??? warning "**Problem:** Permission denied errors"
-    **Problem:** Insufficient file permissions on GPG directories.
-
-    **Solution:**
-
-    === "Linux/Mac"
-        ```bash
-        # Fix GPG directory permissions
-        chmod 700 ~/.gnupg
-        chmod 600 ~/.gnupg/*
-        chmod 700 ~/.gnupg/*.d
-
-        # Fix key files
-        find ~/.gnupg -type f -exec chmod 600 {} \;
-        find ~/.gnupg -type d -exec chmod 700 {} \;
-        ```
-
-    === "Windows"
-        1. Right-click `%APPDATA%\gnupg` folder
-        2. Properties → Security
-        3. Ensure your user has Full Control
-        4. Remove other users if present
-
-??? warning "**Problem:** Recipient cannot decrypt"
-    **Problem:** Exam office reports they cannot decrypt your file.
-
-    **Troubleshooting checklist:**
-
-    - [ ] Verify you sent the .gpg file (not the .zip)
-    - [ ] Confirm you used their correct public key
-    - [ ] Check their key fingerprint matches what they provided
-    - [ ] Ask them to verify their GPG installation
-    - [ ] Test by encrypting a simple text file for them
-    - [ ] Ensure file wasn't corrupted during transmission
-    - [ ] Try re-encrypting with explicit --armor flag
-
-    **Debug test:**
-
-    ```bash
-    # Create test file
-    echo "Test message" > test.txt
-
-    # Encrypt
-    gpg --armor --encrypt --recipient exams@institution.edu test.txt
-
-    # Send test.txt.asc to recipient
-    # If they can decrypt this, issue is with your original file
-    ```
-
----
-
-## :material-information: Additional Resources
-
-<div class="grid cards" markdown>
-
--   :material-book-open-variant: **Official Documentation**
-
-    ---
-
-    - [GnuPG Official Docs](https://gnupg.org/documentation/)
-    - [OpenPGP Standard](https://www.openpgp.org/)
-    - [RFC 4880 - OpenPGP Message Format](https://tools.ietf.org/html/rfc4880)
-
--   :fontawesome-brands-windows: **Windows Tools**
-
-    ---
-
-    - [Gpg4win Homepage](https://www.gpg4win.org/)
-    - [Kleopatra User Manual](https://docs.kde.org/stable5/en/kleopatra/kleopatra/)
-    - [Gpg4win Compendium (PDF Guide)](https://www.gpg4win.org/doc/en/gpg4win-compendium.html)
-
--   :fontawesome-brands-apple: **macOS Tools**
-
-    ---
-
-    - [GPG Suite for Mac](https://gpgtools.org/)
-    - [Homebrew GPG Formula](https://formulae.brew.sh/formula/gnupg)
-    - [GPG Keychain User Guide](https://gpgtools.tenderapp.com/kb)
-
--   :fontawesome-brands-ubuntu: **Linux Resources**
-
-    ---
-
-    - [Ubuntu GPG Guide](https://help.ubuntu.com/community/GnuPrivacyGuardHowto)
-    - [Arch Wiki - GnuPG](https://wiki.archlinux.org/title/GnuPG)
-    - [Debian GPG Documentation](https://www.debian.org/doc/manuals/securing-debian-manual/ch7.en.html)
-
-</div>
-
-### :material-school: Video Tutorials
-
-!!! info "Learning Resources"
-    - Search for "GPG encryption tutorial" on YouTube for visual guides
-    - Look for platform-specific tutorials (Windows/Mac/Linux)
-    - Many universities provide institutional GPG training
-
----
-
-## :material-link: Related Documentation
+## :material-link: Related documentation
 
 <div class="grid cards" markdown>
 
@@ -1770,15 +512,14 @@ Let's walk through a real-world scenario from start to finish.
 
 ---
 
-!!! success "You're Now Ready to Encrypt and Decrypt Documents!"
-    You've learned how to:
+!!! success "You are ready to encrypt and decrypt documents"
+    You can now:
 
-    - ✅ Install and configure GPG on your platform
-    - ✅ Generate and manage key pairs
-    - ✅ Import recipient public keys
-    - ✅ Create encrypted zip archives
-    - ✅ Send encrypted exams securely
-    - ✅ **Decrypt files sent to you**
-    - ✅ Backup and restore your keys
+    - :material-check: Install and configure SiliconWit Seal on your platform
+    - :material-check: Generate, back up, and restore your key pair
+    - :material-check: Add the examinations office as a contact and verify their fingerprint
+    - :material-check: Encrypt a folder of scoresheets in three clicks
+    - :material-check: Decrypt bundles sent back to you
+    - :material-check: Fall back to Kleopatra, GPG Suite, or `gpg` when needed
 
-    **Remember:** Always keep original files as backup before encrypting!
+    For everything else, the [full Seal documentation](https://siliconwit.github.io/siwit-seal-releases/) is the source of truth.
