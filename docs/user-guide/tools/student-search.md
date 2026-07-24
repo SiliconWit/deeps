@@ -103,6 +103,31 @@ When you select a student, the record displays in three sections:
 
 ---
 
+## :material-gavel: Academic Status Tab
+
+This tab reports the student's standing **exactly as recorded in the
+consolidated results**. It shows, for the most recent year and then for
+every year on record:
+
+- the **recommendation**, word for word as written in the workbook
+- the **student matters** behind it (FINANCIAL, MEDICAL, EXAM IRREGULARITY, ...)
+- the **rules** quoted in the reference column
+
+Nothing here is recalculated. Correct the consolidated workbook, let the
+database re-sync, and the tab follows.
+
+!!! tip "Every rule is clickable"
+    A reference listing several rules, such as `ENG.15(a), ENG.23(c)`,
+    gives one link per rule. Click any of them to open that rule in the
+    rules viewer. Where a reference lists subsections, such as
+    `ENG.18(a,b,c)`, the section and each subsection are separately
+    clickable.
+
+A year sat more than once shows each sitting, with the earlier one marked
+*superseded*; the later decision is the one that stands.
+
+---
+
 ## :material-magnify: Search Tips
 
 <div class="grid cards" markdown>
@@ -184,17 +209,67 @@ outputs/verified_results/{academic_year}/YR{n}/SEM{n}/
 
 ---
 
-## :material-export: Exporting Records
+## :material-printer: Printing a Student's Status
 
-To export a student's record:
+The **Status Report...** button on the student card prints everything on
+record for the selected student as one official workbook.
 
 1. Select the student from search results
-2. Click **Export Record**
-3. Choose export format:
-   - **Excel (.xlsx)** - Full data with formatting
-   - **PDF** - Print-ready document
-4. Select save location
-5. Click **Export**
+2. Click **Status Report...**
+3. Check the output folder (see below), or change it
+4. Tick anything extra you want:
+   - **Also generate the standard annual transcripts** (off by default)
+   - **PDF copies as well** (a PDF of the report, and of any transcripts)
+5. Click **Generate**, then **Open Folder**
+
+The report is saved beside the transcripts, in the ANNUAL folder of the
+student's most recent year:
+
+```
+outputs/verified_results/2025-2026/YR4/ANNUAL/
+    status_reports/E000-00-0000_2022_Student_Name_status_report.xlsx
+    transcripts/
+```
+
+Generating it again replaces the previous copy, so a student's report is
+always the current one.
+
+The workbook carries the university letterhead and reads top to bottom:
+
+| Section | Contents |
+|---------|----------|
+| **Student** | Name, registration number, intake, programme |
+| **Status as recorded** | The recommendation, student matters and rules for the most recent year |
+| **Record by year** | Every year: attempt, mean, recommendation, matters, reference |
+| **Results by year** | Every unit sat, year by year, as the workbook records it |
+| **Units not yet passed** | With the entry recorded against each, or NOT TAKEN |
+| **Summary of results** | Totals, weighted mean, classification |
+| **How these figures are calculated** | Which units are excluded from each year mean, the year weights, the weighted mean formula, and the grade and classification bands |
+| **Approvals** | Departmental Board, School Board, Senate |
+
+!!! info "Entries are shown as recorded"
+    A mark stays a mark, an entry such as `19 C` (coursework only, no exam
+    sat) stays `19 C`, and only a unit with no entry anywhere reads NOT
+    TAKEN. The values are read from the annual workbooks themselves, so the
+    report matches what you see on opening them. A coursework-only entry reads
+    NOT PASSED in this report; on the transcript that grade cell shows an
+    em dash.
+
+!!! info "How this differs from a transcript"
+    A transcript covers one year: units, grades and the mean. The status
+    report adds every year at once, the reason recorded behind each
+    decision, the rules quoted, each sitting of a repeated year, the units
+    still outstanding, and how the weighted mean was arrived at.
+
+!!! note "Classification"
+    A classification is stated only once the final year is complete, or
+    where the award list already records one. Otherwise the report says why
+    there is none yet, rather than printing a running figure that could be
+    mistaken for an award.
+
+!!! note "PDF export needs LibreOffice"
+    The PDF option is disabled when LibreOffice is not installed. The
+    report is still produced without it.
 
 ---
 
