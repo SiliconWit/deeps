@@ -129,6 +129,7 @@ DEEPS provides a comprehensive set of tools for exam processing and academic adm
 | 📋 | **Next Semester Scoresheets...** | Generate templates | [:octicons-arrow-right-24:](tools/next-semester-scoresheets.md) |
 | 📜 | **Generate Senate Documents...** | Create senate docs | [:octicons-arrow-right-24:](tools/generate-senate-documents.md) |
 | 📅 | **Generate Annual Consolidated...** | Combine semesters | [:octicons-arrow-right-24:](tools/generate-annual-consolidated.md) |
+| 🗂️ | **Exam Question Paper Submission...** | Track question paper and marking scheme submission and moderation | |
 | ✅ | **Check Missing Data...** | Verify data integrity | [:octicons-arrow-right-24:](tools/check-missing-data.md) |
 
 ### License Menu
